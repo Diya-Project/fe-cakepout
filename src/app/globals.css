@@ -1,8 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500&display=swap');
 
-:root {
+.scrollbar-hide::-webkit-scrollbar {
+  width: 5px;
+}
+
+.scrollbar-hide::-webkit-scrollbar-track {
+  background: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar-thumb {
+  background-color: rgb(3 105 161);
+}
+
+/* :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
@@ -30,4 +44,4 @@ body {
   .text-balance {
     text-wrap: balance;
   }
-}
+} */
