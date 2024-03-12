@@ -1,7 +1,7 @@
 'use client'
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { deleteDisbursementOfFund, getAllDisbursementOfFund, getDisbursementOfFunByStatus, getDisbursementOfFundByActivity, getDisbursementOfFundByPtk, getDisbursementOfFundByUuid, getDisbursementOfFundByWithdraw, updateStatusDisbursementOfFund, updateWithdrawDisbursementOfFund } from "../requests/dibsursementOfFund";
-import { SetStateAction, useEffect } from "react";
+import { useEffect } from "react";
 
 export function useGetAllDisbursementOfFund(trigger: boolean) {
     const disbursementOfFund = useQuery({

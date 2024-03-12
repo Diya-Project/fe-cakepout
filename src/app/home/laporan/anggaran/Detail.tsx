@@ -1,4 +1,3 @@
-import DetailCard from '@/components/templates/DetailCard';
 import { currency } from '@/helper/currency';
 import { DisbursementOfFundAttributes } from '@/type'
 import { MdOutlineDescription } from "react-icons/md";
@@ -7,6 +6,9 @@ import { TbMoneybag } from "react-icons/tb";
 import { BsGraphUpArrow } from "react-icons/bs";
 import { GiMoneyStack } from "react-icons/gi";
 import { FaUserGroup } from "react-icons/fa6";
+import Header from '@/components/custom/Header';
+import DetailCard from '@/components/custom/DetailCard';
+import Button from '@/components/custom/Button';
 
 
 type DetailAttributes = {
@@ -25,6 +27,16 @@ export default function Detail({ anggaran, confirm }: DetailAttributes) {
         { icon: <FaUserGroup className='w-20 h-20 text-sky-800 my-auto' />, title: 'Program Bersama', value: anggaran?.sharing_program ? "Program Bersama" : "-" },
     ]
     return (
-        <DetailCard title='Detail Anggaran' data={listDetail} value={anggaran?.uuid} click={confirm} />
+        <div className='md:w-[70%] w-[100%] bg-white'>
+            <Header title='Detail Anggaran' />
+            <div className='h-[80%] py-3 flex flex-wrap md:gap-5 gap-3'>
+                {listDetail.map((e, i) => (
+                    <DetailCard key={i} icon={e.icon} title={e.title} value={e.value} />
+                ))}
+            </div>
+            <div className='flex justify-end borderrounded-md shadow-md'>
+                <Button title='Setujui' click={() => confirm(anggaran?.uuid)} value={anggaran?.uuid} />
+            </div>
+        </div>
     )
 }

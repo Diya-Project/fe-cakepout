@@ -1,9 +1,9 @@
 'use client'
-import ListCard from '@/components/templates/ListCard'
+import Header from '@/components/custom/Header'
 import Loading from '@/components/templates/Loading'
 import { useGetDisbursementOfFundByStatus } from '@/queries/dibursementOfFund'
 import { DisbursementOfFundAttributes } from '@/type'
-import React from 'react'
+import React, { useState } from 'react'
 
 type AntrianAttributes = {
     clickDisbursementOfFund: (e: DisbursementOfFundAttributes) => void;
@@ -11,18 +11,29 @@ type AntrianAttributes = {
     status: number;
 }
 
+function ListCard({ click, value, activeValue }: { click: () => void, value: DisbursementOfFundAttributes, activeValue: string }) {
+    return (
+        <div onClick={click} className={`${value.uuid === activeValue ? 'bg-sky-600 text-white' : 'bg-white'} border p-3 cursor-pointer active:bg-sky-600 hover:bg-sky-600 text-slate-800 hover:text-white rounded-md shadow-md`}>
+            <h1 className='font-montserrat font-semibold'>{value.rincian_kegiatan?.uraian}</h1>
+        </div>
+    )
+}
+
 export default function Antrian({ clickDisbursementOfFund, render, status }: AntrianAttributes) {
     const disbursementOfFund = useGetDisbursementOfFundByStatus(status, render)
+    const [activeColor, setActiveColor] = useState<string>('')
     return (
-        <>
-            <ListCard title='Antrian Anggaran'>
+        <div className='md:w-[30%] w-[100%] h-[84vh] relative bg-white'>
+            <Header title='Antrian Anggaran' />
+            <div className='h-[90%] py-3 overflow-y-auto scrollbar-hide flex flex-col gap-2'>
                 {disbursementOfFund?.data && disbursementOfFund?.data?.data?.map((e: DisbursementOfFundAttributes, i: number) => (
-                    <div key={i} onClick={() => clickDisbursementOfFund(e)} className='border p-3 cursor-pointer hover:bg-sky-600 text-slate-800 hover:text-white rounded-md shadow-md'>
-                        <h1 className='font-montserrat font-semibold'>{e.rincian_kegiatan?.uraian}</h1>
-                    </div>
+                    <ListCard key={i} value={e} activeValue={activeColor} click={() => {
+                        clickDisbursementOfFund(e)
+                        setActiveColor(e.uuid)
+                    }} />
                 ))}
-                <Loading show={disbursementOfFund?.isLoading} />
-            </ListCard>
-        </>
+            </div>
+            <Loading show={disbursementOfFund?.isLoading} />
+        </div>
     )
 }

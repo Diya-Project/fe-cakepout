@@ -1,5 +1,5 @@
 
-import Header from '@/components/templates/Header';
+import HeaderMenu from '@/components/templates/HeaderMenu';
 import React from 'react'
 
 export default function HomeLayout({
@@ -9,7 +9,7 @@ export default function HomeLayout({
 }>) {
     return (
         <>
-            <Header />
+            <HeaderMenu />
             <div className='mt-[10vh] h-[90vh] overflow-x-hidden scrollbar-hide'>
                 {children}
             </div>
