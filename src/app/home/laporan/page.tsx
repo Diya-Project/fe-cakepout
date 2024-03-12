@@ -8,7 +8,7 @@ const menuData = [
     { icon: <PiQueue className='w-36 h-36 text-white' />, link: '/home/laporan/anggaran/disetujui', color: 'bg-[#daa551] hover:bg-[#b28641]', title: "Anggaran Disetujui" },
 ]
 
-export default function page() {
+export default function Page() {
     return (
         <div className='flex flex-wrap gap-x-[1%] gap-y-5 md:m-20'>
             {menuData.map((e, i) => (

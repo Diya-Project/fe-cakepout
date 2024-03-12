@@ -10,7 +10,7 @@ export function useGetAllDisbursementOfFund(trigger: boolean) {
     })
     useEffect(() => {
         disbursementOfFund.refetch()
-    }, [trigger])
+    }, [trigger,disbursementOfFund])
     return disbursementOfFund
 }
 
@@ -24,7 +24,7 @@ export function useGetDisbursementOfFundByUuid(uuid: string, trigger: boolean) {
         if (uuid) {
             disbursementOfFund.refetch()
         }
-    }, [uuid, trigger])
+    }, [uuid, trigger,disbursementOfFund])
     return disbursementOfFund
 }
 
@@ -38,7 +38,8 @@ export function useGetDisbursementOfFundByActivity(activity_id: string, trigger:
         if (activity_id) {
             disbursementOfFund.refetch()
         }
-    }, [activity_id, trigger])
+    }, [activity_id, trigger,disbursementOfFund])
+    return disbursementOfFund
 }
 
 export function useGetDisbursementOfFundByPtk(ptk_id: string, trigger: boolean) {
@@ -51,7 +52,7 @@ export function useGetDisbursementOfFundByPtk(ptk_id: string, trigger: boolean) 
         if (ptk_id) {
             disbursementOfFund.refetch()
         }
-    }, [ptk_id, trigger])
+    }, [ptk_id, trigger,disbursementOfFund])
 }
 
 export function useGetDisbursementOfFundByStatus(status: number, trigger: boolean) {
@@ -64,7 +65,7 @@ export function useGetDisbursementOfFundByStatus(status: number, trigger: boolea
         if (status) {
             disbursementOfFund.refetch()
         }
-    }, [status, trigger])
+    }, [status, trigger,disbursementOfFund])
     return disbursementOfFund
 }
 
@@ -78,7 +79,7 @@ export function useGetDisbursementOfFundByWithdraw(withDraw: number, trigger: bo
         if (withDraw) {
             disbursementOfFund.refetch()
         }
-    }, [withDraw, trigger])
+    }, [withDraw, trigger,disbursementOfFund])
 }
 
 export function useUpdateStatusDisbursementOfFund() {

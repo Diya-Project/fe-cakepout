@@ -7,7 +7,7 @@ import ConfirmModal from '@/components/custom/ConfirmModal'
 import { useUpdateStatusDisbursementOfFund } from '@/queries/dibursementOfFund'
 import Message from '@/components/templates/Message'
 
-export default function page() {
+export default function Page() {
     const [oneDisbursementOfFund, setOneDisbursementOfFund] = useState<DisbursementOfFundAttributes>()
     const [showModalApproveStatusDisbursementOfFund, setShowModalApproveStatusDisbursementOfFund] = useState<boolean>(false)
     const [oneUuidDisbursementOfFund, setOneUuidDisbursementOfFund] = useState<string>('')

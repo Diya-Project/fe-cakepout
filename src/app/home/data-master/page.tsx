@@ -26,7 +26,7 @@ const menuData = [
     { icon: <LuListStart className='w-36 h-36 text-white' />, color: 'bg-[#6aa84f] hover:bg-[#568940]', title: "Data Lain" },
 ]
 
-export default function page() {
+export default function Page() {
     return (
         <div className='flex flex-wrap gap-x-[1%] gap-y-5 md:m-20 m-5'>
             {menuData.map((e, i) => (

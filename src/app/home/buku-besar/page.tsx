@@ -14,7 +14,7 @@ const menuData = [
 
 ]
 
-export default function page() {
+export default function Page() {
     return (
         <div className='flex flex-wrap gap-x-[1%] gap-y-4 md:m-20 m-5'>
             {menuData.map((e, i) => (

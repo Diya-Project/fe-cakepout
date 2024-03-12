@@ -13,7 +13,7 @@ const menuData = [
     { icon: <RiSecurePaymentFill className='w-36 h-36 text-white' />, link: '/home/laporan/anggaran/disetujui', color: 'bg-[#888997] hover:bg-[#6b6c76]', title: "Pembayaran Utang Usaha" },
 ]
 
-export default function page() {
+export default function Page() {
     return (
         <div className='flex flex-wrap gap-x-[1%] gap-y-5 md:m-20'>
             {menuData.map((e, i) => (

@@ -7,7 +7,7 @@ import Antrian from '../Antrian'
 import { useUpdateWithDrawDisbursementOfFund } from '@/queries/dibursementOfFund'
 import FormUpdateWithdrawDisbursementOfFund from '@/components/Form/FormUpdateWithdrawDisbursementOfFund'
 
-export default function page() {
+export default function Page() {
     const [oneDisbursementOfFund, setOneDisbursementOfFund] = useState<DisbursementOfFundAttributes>()
     const [showModalApproveWithdrawDisbursementOfFund, setShowModalApproveWithdrawDisbursementOfFund] = useState<boolean>(false)
     const [oneUuidDisbursementOfFund, setOneUuidDisbursementOfFund] = useState<string>('')
