@@ -53,3 +53,18 @@ export type PtkAttributes = {
     gelar: string;
     gol_darah: string;
 }
+
+export type AccountAttributes = {
+    uuid: string;
+    name: string;
+    group_account: number;
+    group_account_label: number;
+    account_number: string;
+    activity_id: string;
+}
+
+export type JournalReferenceNumberAttributes ={
+    uuid:string;
+    number:number;
+    accounting_year:string
+}

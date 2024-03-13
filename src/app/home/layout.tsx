@@ -10,7 +10,7 @@ export default function HomeLayout({
     return (
         <>
             <HeaderMenu />
-            <div className='mt-[10vh] h-[90vh] overflow-x-hidden scrollbar-hide'>
+            <div className='mt-[10vh] h-[90vh] overflow-x-hidden scrollbar-hide md:p-20 p-5 bg-slate-100'>
                 {children}
             </div>
         </>

@@ -15,7 +15,7 @@ const menuData = [
 
 export default function Page() {
     return (
-        <div className='flex flex-wrap gap-x-[1%] gap-y-5 md:m-20'>
+        <div className='flex flex-wrap gap-x-[1%] gap-y-5'>
             {menuData.map((e, i) => (
                 <Menu link={e.link} key={i} color={e.color} logo={e.icon} title={e.title} />
             ))}

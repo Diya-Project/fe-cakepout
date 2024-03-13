@@ -6,14 +6,15 @@ import Message from '@/components/templates/Message'
 import Antrian from '../Antrian'
 import { useUpdateWithDrawDisbursementOfFund } from '@/queries/dibursementOfFund'
 import FormUpdateWithdrawDisbursementOfFund from '@/components/Form/FormUpdateWithdrawDisbursementOfFund'
+import useShowMessage from '@/hooks/useShowMessage'
 
 export default function Page() {
     const [oneDisbursementOfFund, setOneDisbursementOfFund] = useState<DisbursementOfFundAttributes>()
     const [showModalApproveWithdrawDisbursementOfFund, setShowModalApproveWithdrawDisbursementOfFund] = useState<boolean>(false)
     const [oneUuidDisbursementOfFund, setOneUuidDisbursementOfFund] = useState<string>('')
-    const [messageAlertDisbursementOfFund, setMessageAlertDisbursementOfFund] = useState<string>('')
-    const [showAlertDisbursementOfFund, setShowAlertDisbursementOfFund] = useState<boolean>(false)
     const updateWithdrawDisbursementOfFund = useUpdateWithDrawDisbursementOfFund()
+    const showMessage = useShowMessage(updateWithdrawDisbursementOfFund?.data)
+
     const getAnggaranDisbursementOfFund = (e: DisbursementOfFundAttributes) => {
         setOneDisbursementOfFund(e)
     }
@@ -21,23 +22,14 @@ export default function Page() {
         updateWithdrawDisbursementOfFund.mutate({ uuid: oneUuidDisbursementOfFund, data: { ptk_id: e.ptk_id, receipient: e.receipient } })
         setShowModalApproveWithdrawDisbursementOfFund(false)
     }
-    useEffect(() => {
-        if (updateWithdrawDisbursementOfFund?.data?.status) {
-            setMessageAlertDisbursementOfFund(updateWithdrawDisbursementOfFund.data.data.msg)
-            setShowAlertDisbursementOfFund(true)
-            setTimeout(() => {
-                setShowAlertDisbursementOfFund(false)
-            }, 3000)
-        }
-    }, [updateWithdrawDisbursementOfFund?.data])
     return (
         <>
             <Message
-                message={messageAlertDisbursementOfFund} show={showAlertDisbursementOfFund}
+                message={showMessage.message} show={showMessage.show} succes={showMessage.status}
             />
-            <div className='m-5 flex md:flex-row flex-col gap-7'>
+            <div className='flex md:flex-row flex-col gap-7 -m-14'>
                 <Antrian
-                    render={showAlertDisbursementOfFund}
+                    render={showMessage.show}
                     clickDisbursementOfFund={getAnggaranDisbursementOfFund}
                     status={1} />
                 <Detail

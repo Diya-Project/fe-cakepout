@@ -7,8 +7,8 @@ import LogoPAH from "@/assets/logo.png"
 import useClickOutside from '@/hooks/useClickOutside'
 import userCircle from "@/assets/icons/userCircle.png"
 import FormDetailUser from '../Form/FormDetailUser'
-import Title from '../custom/Title'
 import { usePathname } from 'next/navigation'
+import Text from "@/components/custom/Text"
 
 
 function HeadMenu() {
@@ -26,11 +26,11 @@ function ProfileMenu({ title, click }: { title: string, click: () => void }) {
 function SideMenu({ profileMenu, setProfileMenu, setShowFormDetailUser }: { profileMenu: boolean, setProfileMenu: (e: boolean) => void, setShowFormDetailUser: (e: boolean) => void }) {
   return (
     <div className={`absolute p-6 right-0 top-20 w-72 bg-white shadow-lg border border-slate-200 transition-all ease-in-out duration-300 flex flex-col gap-6 ${profileMenu ? 'block' : 'hidden'}`}>
-      <Title title='User' value='Muhammad' />
+      <Text title='User' value='Muhammad' />
       <ProfileMenu click={() => console.log("hello")} title='Profile Aktif' />
       <ProfileMenu click={() => console.log("hello")} title='Ubah Kata Sandi' />
-      <Title title='Lembaga' value='Kebendaharaan' />
-      <Title title='Kadaluarsa' value='30 Februari 2024' />
+      <Text title='Lembaga' value='Kebendaharaan' />
+      <Text title='Kadaluarsa' value='30 Februari 2024' />
       <ProfileMenu click={() => {
         setProfileMenu(false)
         setShowFormDetailUser(true)

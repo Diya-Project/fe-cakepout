@@ -10,7 +10,8 @@ export function useGetAllDisbursementOfFund(trigger: boolean) {
     })
     useEffect(() => {
         disbursementOfFund.refetch()
-    }, [trigger,disbursementOfFund])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [trigger])
     return disbursementOfFund
 }
 
@@ -24,7 +25,8 @@ export function useGetDisbursementOfFundByUuid(uuid: string, trigger: boolean) {
         if (uuid) {
             disbursementOfFund.refetch()
         }
-    }, [uuid, trigger,disbursementOfFund])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [uuid, trigger])
     return disbursementOfFund
 }
 
@@ -38,7 +40,8 @@ export function useGetDisbursementOfFundByActivity(activity_id: string, trigger:
         if (activity_id) {
             disbursementOfFund.refetch()
         }
-    }, [activity_id, trigger,disbursementOfFund])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [activity_id, trigger])
     return disbursementOfFund
 }
 
@@ -52,7 +55,8 @@ export function useGetDisbursementOfFundByPtk(ptk_id: string, trigger: boolean) 
         if (ptk_id) {
             disbursementOfFund.refetch()
         }
-    }, [ptk_id, trigger,disbursementOfFund])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [ptk_id, trigger])
 }
 
 export function useGetDisbursementOfFundByStatus(status: number, trigger: boolean) {
@@ -62,10 +66,12 @@ export function useGetDisbursementOfFundByStatus(status: number, trigger: boolea
         enabled: status !== null ? true : false
     })
     useEffect(() => {
-        if (status) {
+        console.log(trigger)
+        if (status !== null) {
             disbursementOfFund.refetch()
         }
-    }, [status, trigger,disbursementOfFund])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [status, trigger])
     return disbursementOfFund
 }
 
@@ -76,10 +82,11 @@ export function useGetDisbursementOfFundByWithdraw(withDraw: number, trigger: bo
         enabled: withDraw !== null ? true : false
     })
     useEffect(() => {
-        if (withDraw) {
+        if (withDraw !== null) {
             disbursementOfFund.refetch()
         }
-    }, [withDraw, trigger,disbursementOfFund])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [withDraw, trigger])
 }
 
 export function useUpdateStatusDisbursementOfFund() {

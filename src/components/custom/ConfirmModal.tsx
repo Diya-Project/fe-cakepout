@@ -15,8 +15,8 @@ export default function ConfirmModal({ show, close, msg, onClick }: ConfrimModal
                 <div className='border-b border-slate-200 pb-5 mb-5'>
                     <h1 className='text-lg font-montserrat'>{msg}</h1>
                 </div>
-                <div className='px-1 w-full '>
-                    <button onClick={onClick} className='border border-sky-400 w-full  px-8 py-2 hover:text-sky-800 hover:border-sky-600 transition-colors ease-in-out duration-300'>Iya</button>
+                <div className='px-1 w-full'>
+                    <button onClick={onClick} className='bg-sky-700 text-white hover:bg-sky-800  w-full px-8 py-2 transition-colors ease-in-out duration-300'>Iya</button>
                 </div>
             </div>
         </Modal>

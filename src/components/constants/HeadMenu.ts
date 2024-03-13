@@ -7,4 +7,5 @@ export const menu = [
     { title: 'Kas & Bank', link: '/home/kas-bank' },
     { title: 'Persediaan', link: '/home/persediaan' },
     { title: 'Laporan', link: '/home/laporan' },
+    { title: 'Antrian', link: '/home/antrian' },
 ]

@@ -6,14 +6,14 @@ import { DisbursementOfFundAttributes } from '@/type'
 import ConfirmModal from '@/components/custom/ConfirmModal'
 import { useUpdateStatusDisbursementOfFund } from '@/queries/dibursementOfFund'
 import Message from '@/components/templates/Message'
+import useShowMessage from '@/hooks/useShowMessage'
 
 export default function Page() {
     const [oneDisbursementOfFund, setOneDisbursementOfFund] = useState<DisbursementOfFundAttributes>()
     const [showModalApproveStatusDisbursementOfFund, setShowModalApproveStatusDisbursementOfFund] = useState<boolean>(false)
     const [oneUuidDisbursementOfFund, setOneUuidDisbursementOfFund] = useState<string>('')
-    const [messageAlertDisbursementOfFund, setMessageAlertDisbursementOfFund] = useState<string>('')
-    const [showAlertDisbursementOfFund, setShowAlertDisbursementOfFund] = useState<boolean>(false)
     const updateDisbursementOfFund = useUpdateStatusDisbursementOfFund()
+    const showMessage = useShowMessage(updateDisbursementOfFund?.data)
     const getOneDisbursementOfFund = (e: DisbursementOfFundAttributes) => {
         setOneDisbursementOfFund(e)
     }
@@ -25,22 +25,13 @@ export default function Page() {
         updateDisbursementOfFund.mutate(oneUuidDisbursementOfFund)
         setShowModalApproveStatusDisbursementOfFund(false)
     }
-    useEffect(() => {
-        if (updateDisbursementOfFund?.data?.status) {
-            setMessageAlertDisbursementOfFund(updateDisbursementOfFund.data.data.msg)
-            setShowAlertDisbursementOfFund(true)
-            setTimeout(() => {
-                setShowAlertDisbursementOfFund(false)
-            }, 3000)
-        }
-    }, [updateDisbursementOfFund?.data])
     return (
         <>
-            <Message message={messageAlertDisbursementOfFund} show={showAlertDisbursementOfFund} />
-            <div className='m-5 flex md:flex-row flex-col gap-7'>
+            <Message message={showMessage.message} show={showMessage.show} succes={showMessage.status} />
+            <div className='flex md:flex-row flex-col gap-7 -m-14'>
                 <Antrian
                     clickDisbursementOfFund={getOneDisbursementOfFund}
-                    render={showAlertDisbursementOfFund}
+                    render={showMessage.show}
                     status={0}
                 />
                 <Detail

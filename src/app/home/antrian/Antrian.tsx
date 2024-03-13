@@ -23,7 +23,7 @@ export default function Antrian({ clickDisbursementOfFund, render, status }: Ant
     const disbursementOfFund = useGetDisbursementOfFundByStatus(status, render)
     const [activeColor, setActiveColor] = useState<string>('')
     return (
-        <div className='md:w-[30%] w-[100%] h-[84vh] relative bg-white'>
+        <div className='md:w-[30%] w-[100%] h-[84vh] relative bg-white p-2'>
             <Header title='Antrian Anggaran' />
             <div className='h-[90%] py-3 overflow-y-auto scrollbar-hide flex flex-col gap-2'>
                 {disbursementOfFund?.data && disbursementOfFund?.data?.data?.map((e: DisbursementOfFundAttributes, i: number) => (

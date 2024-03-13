@@ -3,19 +3,19 @@ import api from "./http";
 
 const ApiDisbursementOfFund = {
     getAllDisbursementOfFund: () => {
-        return api.get('/disbursementOfFund')
+        return api.get('/disbursement_of_fund')
     },
     getDisbursementOfFundByUuid: (uuid: string) => {
-        return api.get(`/disbursementOfFund/${uuid}`)
+        return api.get(`/disbursement_of_fund/${uuid}`)
     },
     getDisbursementOfFundByActivity: (activity_id: string) => {
-        return api.get(`/disbursementOfFund/activity/${activity_id}`)
+        return api.get(`/disbursement_of_fund/activity/${activity_id}`)
     },
     getDisbursementOfFundByPtk: (ptk_id: string) => {
-        return api.get(`/disbursementOfFund/ptk/${ptk_id}`)
+        return api.get(`/disbursement_of_fund/ptk/${ptk_id}`)
     },
     getDisbursementOfFunByStatus: (status: number) => {
-        return api.get(`/disbursementOfFund/status/${status}`)
+        return api.get(`/disbursement_of_fund/status/${status}`)
     },
     getDisbursementOfFundByWithdraw: (withdraw: number) => {
         return api.get(`/disbursementOfFund/withdraw/${withdraw}`)
