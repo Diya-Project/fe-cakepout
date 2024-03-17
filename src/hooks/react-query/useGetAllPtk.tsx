@@ -1,4 +1,5 @@
-import api from "@/queries/api";
+'use client'
+import api from "@/app/api/lib/axios";
 import { useQuery } from "@tanstack/react-query";
 
 export function useGetAllPtk() {

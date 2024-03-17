@@ -1,6 +1,6 @@
 import {  NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import api from "../../../queries/api";
+import api from "./axios";
 
 interface User {
     token: string;

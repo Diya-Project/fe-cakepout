@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup"
 import InputForm from "@/components/fields/InputForm";
-import { UseLogin } from "@/queries/authentication";
+import { useLogin } from "@/hooks/react-query/useLogin";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Loading from "@/components/templates/Loading";
@@ -27,7 +27,7 @@ export default function Login() {
     })
     const submit_ = async (e: AuthenticationAttributes) => {
         setShowLoading(true)
-        const isLogin = await UseLogin(e)
+        const isLogin = await useLogin(e)
         if (isLogin?.status === 200 && isLogin?.url) {
             console.log('hello')
             navigation.push(isLogin?.url)

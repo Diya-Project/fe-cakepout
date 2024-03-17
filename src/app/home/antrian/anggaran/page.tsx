@@ -4,7 +4,7 @@ import Antrian from '../Antrian'
 import Detail from '../Detail'
 import { DisbursementOfFundAttributes } from '@/type'
 import ConfirmModal from '@/components/custom/ConfirmModal'
-import { useUpdateStatusDisbursementOfFund } from '@/queries/dibursementOfFund'
+import { useUpdateStatusDisbursementOfFund } from '@/hooks/react-query/dibursementOfFund'
 import Message from '@/components/templates/Message'
 import useShowMessage from '@/hooks/useShowMessage'
 

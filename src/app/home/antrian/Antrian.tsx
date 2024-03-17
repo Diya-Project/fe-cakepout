@@ -1,7 +1,7 @@
 'use client'
 import Header from '@/components/custom/Header'
 import Loading from '@/components/templates/Loading'
-import { useGetDisbursementOfFundByStatus } from '@/queries/dibursementOfFund'
+import { useGetDisbursementOfFundByStatus } from '@/hooks/react-query/useGetDisbursementOfFundByStatus'
 import { DisbursementOfFundAttributes } from '@/type'
 import React, { useState } from 'react'
 

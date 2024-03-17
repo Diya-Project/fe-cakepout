@@ -1,4 +1,5 @@
-import api from "@/queries/api";
+'use client'
+import api from "@/app/api/lib/axios";
 import { JournalReferenceNumberAttributes } from "@/type";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";

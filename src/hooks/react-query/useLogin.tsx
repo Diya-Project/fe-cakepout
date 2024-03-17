@@ -1,11 +1,9 @@
 'use client'
 import { AuthenticationAttributes } from "@/type";
 import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
 
 
-export async function UseLogin(data: AuthenticationAttributes) {
+export async function useLogin(data: AuthenticationAttributes) {
     // const [loading, setLoading] = useState(true)
     // let [message, setMessage] = useState('')
     // const navigation = useRouter()

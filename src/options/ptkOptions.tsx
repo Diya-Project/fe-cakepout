@@ -1,4 +1,4 @@
-import { useGetAllPtk } from "@/queries/ptk";
+import { useGetAllPtk } from "@/hooks/react-query/ptk";
 import { PtkAttributes } from "@/type";
 import { useEffect, useState } from "react";
 

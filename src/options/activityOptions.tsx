@@ -1,4 +1,4 @@
-import { useGetAllDetailOfActivity } from "@/queries/detailOfActivity";
+import { useGetAllDetailOfActivity } from "@/hooks/react-query/detailOfActivity";
 import { DetailOfActivityAttributes } from "@/type";
 import { useEffect, useState } from "react";
 

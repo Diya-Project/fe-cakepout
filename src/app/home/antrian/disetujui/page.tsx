@@ -4,7 +4,7 @@ import { DisbursementOfFundAttributes } from '@/type'
 import Detail from '../Detail'
 import Message from '@/components/templates/Message'
 import Antrian from '../Antrian'
-import { useUpdateWithDrawDisbursementOfFund } from '@/queries/dibursementOfFund'
+import { useUpdateWithDrawDisbursementOfFund } from '@/hooks/react-query/dibursementOfFund'
 import FormUpdateWithdrawDisbursementOfFund from '@/components/Form/FormUpdateWithdrawDisbursementOfFund'
 import useShowMessage from '@/hooks/useShowMessage'
 

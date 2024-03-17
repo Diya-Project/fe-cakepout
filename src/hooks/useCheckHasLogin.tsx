@@ -11,6 +11,6 @@ export default function UseCheckHasLogin() {
         } else {
             navigate.push('/')
         }
-    }, [session?.data?.user?.token])
+    }, [session?.data?.user?.token,navigate])
     return session
 }
