@@ -1,4 +1,4 @@
-import ApiJournal from "@/app/api/services/journal";
+import ApiJournal from "@/app/api/fetch/journal";
 import { AxiosResponse } from "axios";
 
 export async function getAllJournal(): Promise<AxiosResponse> {

@@ -1,4 +1,4 @@
-import ApiAccount from "@/app/api/services/account";
+import ApiAccount from "@/app/api/fetch/account";
 import { AccountAttributes } from "@/type";
 import { AxiosResponse } from "axios";
 

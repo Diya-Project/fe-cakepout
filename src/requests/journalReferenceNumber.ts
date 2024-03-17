@@ -1,4 +1,4 @@
-import ApiJournalRefenceNumber from "@/app/api/services/journalReferenceNumber";
+import ApiJournalRefenceNumber from "@/app/api/fetch/journalReferenceNumber";
 import { JournalReferenceNumberAttributes } from "@/type";
 import { AxiosResponse } from "axios";
 

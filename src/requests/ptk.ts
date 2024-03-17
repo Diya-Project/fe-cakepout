@@ -1,4 +1,4 @@
-import ApiPtk from "@/app/api/services/ptk"
+import ApiPtk from "@/app/api/fetch/ptk"
 import { AxiosResponse } from "axios";
 
 export const getAllPtk = async (): Promise<AxiosResponse> => {

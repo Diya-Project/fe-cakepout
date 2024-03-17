@@ -1,8 +1,16 @@
+import { SelectAttributes } from '@/type';
 import Select from 'react-select'
-import { SelectorAttributes } from './TypeFields';
+
+type SelectorAttributes = {
+    title: string;
+    options: Array<SelectAttributes>
+    value: SelectAttributes
+    onChange: (e: any) => void;
+    defaultValue?: SelectAttributes;
+}
 
 
-function Selector({ title,onChange, options, value }: SelectorAttributes) {
+function Selector({ title, onChange, options, value }: SelectorAttributes) {
     return (
         <div className='w-60 font-montserrat font-light'>
             <Select

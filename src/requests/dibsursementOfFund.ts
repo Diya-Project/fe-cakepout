@@ -1,5 +1,5 @@
 import { AxiosResponse } from "axios";
-import ApiDisbursementOfFund from "../app/api/services/disbursementOfFund"
+import ApiDisbursementOfFund from "../app/api/fetch/disbursementOfFund"
 
 export async function getAllDisbursementOfFund(): Promise<AxiosResponse> {
     const res = await ApiDisbursementOfFund.getAllDisbursementOfFund();

@@ -1,4 +1,4 @@
-import ApiDetailOfActiviy from "@/app/api/services/detailOfActivity";
+import ApiDetailOfActiviy from "@/app/api/fetch/detailOfActivity";
 import { AxiosResponse } from "axios";
 
 export async function getAllDetailOfActivity(): Promise<AxiosResponse> {

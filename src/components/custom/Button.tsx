@@ -1,7 +1,7 @@
 import React from 'react'
 
 type ButtonAttributes = {
-    click: (e: any) => void;
+    click: (e:{}) => void;
     title: string;
 }
 

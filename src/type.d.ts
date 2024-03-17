@@ -3,6 +3,13 @@ export type SelectAttributes = {
     label: string | number | null
 }
 
+export type InputType = 'text' | 'number' | 'password' | 'date' | 'datetime-local'
+
+export type AuthenticationAttributes = {
+    username: string | undefined;
+    password: string | undefined;
+}
+
 export type DetailOfActivityAttributes = {
     uuid: string;
     uraian: string;
@@ -63,8 +70,8 @@ export type AccountAttributes = {
     activity_id: string;
 }
 
-export type JournalReferenceNumberAttributes ={
-    uuid:string;
-    number:number;
-    accounting_year:string
+export type JournalReferenceNumberAttributes = {
+    uuid: string;
+    number: number;
+    accounting_year: string
 }

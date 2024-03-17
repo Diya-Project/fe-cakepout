@@ -1,10 +1,27 @@
 'use client'
 import { Controller } from "react-hook-form"
 import Select from 'react-select';
-import { SelectFormAttributes } from './TypeFields';
+import { FocusEventHandler } from "react";
+import { SelectAttributes } from "@/type";
+
+type SelectFormAttributes = {
+    instanceId: string;
+    method: any;
+    methodName: string;
+    className?: string;
+    title: string;
+    defaultValue?: { value: string | number | boolean | undefined; label: string | number | boolean | undefined };
+    placeholder?: string;
+    options: SelectAttributes[]
+    isMulti?: boolean;
+    blur?: FocusEventHandler<HTMLInputElement> | undefined;
+    change?: (e: any) => void;
+    disabled?: boolean;
+    val?: { value: string | number | boolean | undefined; label: string | number | boolean | undefined }
+}
 
 function SelectForm
-    ({ method, methodName, options, title, val, className, defaultValue, disabled, isMulti, blur, change, placeholder,instanceId }: SelectFormAttributes) {
+    ({ method, methodName, options, title, val, className, defaultValue, disabled, isMulti, blur, change, placeholder, instanceId }: SelectFormAttributes) {
     const { error } = method.getFieldState(methodName)
     return (
         <div className={`w-full space-y-1 ${className}`}>

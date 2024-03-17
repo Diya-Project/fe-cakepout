@@ -1,4 +1,4 @@
-import ApiMonthlyAccountCalculation from "@/app/api/services/monthlyAccountCalculation";
+import ApiMonthlyAccountCalculation from "@/app/api/fetch/monthlyAccountCalculation";
 import { AxiosResponse } from "axios";
 
 export async function getAllMonthlyAccountCalculation(): Promise<AxiosResponse> {

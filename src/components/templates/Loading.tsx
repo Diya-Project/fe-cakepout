@@ -7,7 +7,7 @@ type LoadingAttributes = {
 
 export default function Loading({ show }: LoadingAttributes) {
     return (
-        <div className={`w-[100%] h-[90%] mt-[4%] absolute top-0 left-0 p-4  justify-center items-center z-10 ${show ? 'flex' : 'hidden'}`}>
+        <div className={`w-[100%] h-[100%] absolute top-0 left-0 p-4  justify-center items-center z-50 ${show ? 'flex bg-white bg-opacity-40' : 'hidden'}`}>
             <Image src={loadingImage} alt="" className='w-12 h-12 animate-spin' />
         </div>
     )

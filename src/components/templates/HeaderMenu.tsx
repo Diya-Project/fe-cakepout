@@ -1,5 +1,5 @@
 'use client'
-import React, { SetStateAction, useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { menu } from '../constants/HeadMenu'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -15,7 +15,7 @@ function HeadMenu() {
   const pathName = usePathname()
   const [activeMenu, setActiveMenu] = useState<string>(pathName)
   return menu.map((e, i) => (
-    <Link key={i} onClick={() => setActiveMenu(e.link)} className={`text-white font-montserrat cursor-pointer h-[99%] flex items-center uppercase text-sm ${activeMenu === e.link ? 'border-b-2 border-white' : ''}`} href={e.link}>{e.title}</Link>
+    <Link key={i} onClick={() => setActiveMenu(e.link)} className={`text-white font-montserrat cursor-pointer h-[100%] flex items-center uppercase text-sm ${activeMenu === e.link ? 'border-b-2 border-white' : ''}`} href={e.link}>{e.title}</Link>
   ))
 }
 

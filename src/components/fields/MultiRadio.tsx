@@ -1,6 +1,14 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import RadioForm from './RadioForm'
-import { MultiRadioAttributes } from './TypeFields'
+
+type MultiRadioAttributes = {
+    header: string
+    method: any;
+    methodName: string;
+    value: Array<string>;
+    title: Array<string>;
+    children?: ReactNode;
+}
 
 
 export default function MultiRadio({ header, method, methodName, value, title, children }: MultiRadioAttributes) {

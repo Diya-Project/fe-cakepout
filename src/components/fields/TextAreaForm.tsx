@@ -1,5 +1,11 @@
 import React from 'react'
-import { TextAreaFormAttributes } from './TypeFields'
+
+type TextAreaFormAttributes = {
+    method: any;
+    methodName: string;
+    className?: string;
+    title: string;
+}
 
 function TextAreaForm({method,methodName,title,className}:TextAreaFormAttributes) {
     const { error } = method.getFieldState(methodName)

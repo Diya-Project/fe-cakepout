@@ -7,6 +7,7 @@ import { useForm } from 'react-hook-form'
 import * as yup from "yup"
 import Form from '../templates/Form'
 import Modal from '../templates/Modal'
+import useDetailOfActivityOptions from '@/options/activityOptions'
 
 
 
@@ -24,14 +25,15 @@ export default function FormAccountAction({ submit, show, close }: { show: boole
             })
         )
     })
+    const detailOfActiviyOptions = useDetailOfActivityOptions()
     return (
         <Modal title='Tambah Akun' show={show} close={close}>
             <Form submit={method.handleSubmit(submit)}>
                 <InputForm title='Nama' method={method} methodName='name' />
-                <InputForm title='Grup Akun' method={method} methodName='group_account' />
-                <InputForm title='Grup Akun Label' method={method} methodName='group_account_label' />
+                <InputForm type='number' title='Grup Akun' method={method} methodName='group_account' />
+                <InputForm type='number' title='Grup Akun Label' method={method} methodName='group_account_label' />
                 <InputForm title='Nomor Akun' method={method} methodName='account_number' />
-                <InputForm title='Kegiatan' method={method} methodName='activity_id' />
+                <SelectForm instanceId='select-detailOfActivity' title='Kegiatan' method={method} methodName='activity_id' options={detailOfActiviyOptions} />
             </Form>
         </Modal>
     )
