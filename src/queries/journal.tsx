@@ -1,11 +1,11 @@
-import { getAllJournal, getJournalByAccountId, getJournalByStatus, getJournalByTransactionDate, getJournalByUuid, getJournalByYear } from "@/requests/journal";
+import api from "@/queries/api";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
 
 export function useGetAllJournal() {
     const journal = useQuery({
         queryKey: ['get_all_journal'],
-        queryFn: () => getAllJournal()
+        queryFn: () => api.get(`/journal`)
     })
     useEffect(() => {
         journal.refetch()
@@ -17,7 +17,7 @@ export function useGetAllJournal() {
 export function useGetJournalByUuid(uuid: string) {
     const journal = useQuery({
         queryKey: ['get_journal_by_uuid'],
-        queryFn: () => getJournalByUuid(uuid),
+        queryFn: () => api.get(`/journal/${uuid}`),
         enabled: uuid !== null ? true:false
     })
     useEffect(()=>{
@@ -32,7 +32,7 @@ export function useGetJournalByUuid(uuid: string) {
 export function useGetJournalByAccountId(accountId:string){
     const journal = useQuery({
         queryKey:['get_journal_by_account_id'],
-        queryFn:()=>getJournalByAccountId(accountId),
+        queryFn:()=>api.get(`/journal/account_id/${accountId}`),
         enabled:accountId!==null ? true:false
     })
     useEffect(()=>{
@@ -47,7 +47,7 @@ export function useGetJournalByAccountId(accountId:string){
 export function useGetJournalByTransactionDate(start:string,end:string){
     const journal = useQuery({
         queryKey:['get_journal_by_transaction_date'],
-        queryFn:()=>getJournalByTransactionDate(start,end),
+        queryFn:()=>api.get(`/journal/transaction_date/${start}/${end}`),
         enabled:start !== null && end !== null ? true:false
     })
     useEffect(()=>{
@@ -62,7 +62,7 @@ export function useGetJournalByTransactionDate(start:string,end:string){
 export function useGetJournalByStatus(status:string){
     const journal = useQuery({
         queryKey:['get_journal_by_status'],
-        queryFn:()=>getJournalByStatus(status),
+        queryFn:()=>api.get(`/journal/status/${status}`),
         enabled:status !== null ? true:false
     })
     useEffect(()=>{
@@ -77,7 +77,7 @@ export function useGetJournalByStatus(status:string){
 export function useGetJournalByYear(year:string){
     const journal = useQuery({
         queryKey:['get_journal_by_year'],
-        queryFn:()=>getJournalByYear(year),
+        queryFn:()=>api.get(`/journal/year/${year}`),
         enabled:year!== null ? true:false
     })
     useEffect(()=>{

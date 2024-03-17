@@ -1,4 +1,4 @@
-import { deleteAccount, getAccountByAccountNumber, getAccountByActivity, getAccountByGroupAccount, getAccountByUuid, getAllAccount, postAccount, updateAccount } from "@/requests/account";
+import api from "@/queries/api";
 import { AccountAttributes } from "@/type";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
@@ -7,7 +7,7 @@ import { useEffect } from "react";
 export function useGetAllAccount() {
     const account = useQuery({
         queryKey: ['get_all_account'],
-        queryFn: () => getAllAccount()
+        queryFn: () => api.get(`/`)
     })
     useEffect(() => {
         account.refetch()
@@ -19,7 +19,7 @@ export function useGetAllAccount() {
 export function useGetAccountByUuid(uuid: string) {
     const account = useQuery({
         queryKey: ['get_account_by_uuid'],
-        queryFn: () => getAccountByUuid(uuid),
+        queryFn: () => api.get(`/account/${uuid}`),
         enabled: uuid !== null ? true : false
     })
     useEffect(() => {
@@ -34,7 +34,7 @@ export function useGetAccountByUuid(uuid: string) {
 export function useGetAccountByActivity(activityId: string) {
     const account = useQuery({
         queryKey: ['get_account_by_activity'],
-        queryFn: () => getAccountByActivity(activityId),
+        queryFn: () => api.get(`/account/activity/${activityId}`),
         enabled: activityId !== null ? true : false
     })
     useEffect(() => {
@@ -49,7 +49,7 @@ export function useGetAccountByActivity(activityId: string) {
 export function useGetAccountByGroupAccount(groupAccount: string) {
     const account = useQuery({
         queryKey: ['get_account_by_group_account'],
-        queryFn: () => getAccountByGroupAccount(groupAccount),
+        queryFn: () => api.get(`/account/group_account/${groupAccount}`),
         enabled: groupAccount !== null ? true : false
     })
     useEffect(() => {
@@ -63,7 +63,7 @@ export function useGetAccountByGroupAccount(groupAccount: string) {
 export function useGetAccountByAccountNumber(accountNumber: string) {
     const account = useQuery({
         queryKey: ["get_account_by_account_number"],
-        queryFn: () => getAccountByAccountNumber(accountNumber),
+        queryFn: () => api.get(`/account/account_number/${accountNumber}`),
         enabled: accountNumber !== null ? true : false
     })
     useEffect(() => {
@@ -77,7 +77,7 @@ export function useGetAccountByAccountNumber(accountNumber: string) {
 export function useAddAccount() {
     const account = useMutation({
         mutationKey: ['post_account'],
-        mutationFn: (e: Omit<AccountAttributes, 'uuid'>) => postAccount(e),
+        mutationFn: (e: Omit<AccountAttributes, 'uuid'>) => api.post(`/account`, e),
         onSuccess: (e) => {
             return e
         },
@@ -91,7 +91,7 @@ export function useAddAccount() {
 export function useUpdateAccount() {
     const account = useMutation({
         mutationKey: ['update_account'],
-        mutationFn: (e: { uuid: string, data: Omit<AccountAttributes, 'uuid'> }) => updateAccount(e.uuid, e.data),
+        mutationFn: (e: { uuid: string, data: Omit<AccountAttributes, 'uuid'> }) => api.put(`/account/${e.uuid}`, e.data),
         onSuccess: (e) => {
             return e
         },
@@ -102,10 +102,10 @@ export function useUpdateAccount() {
     return account
 }
 
-export function useDeleteAccount(uuid: string) {
+export function useDeleteAccount() {
     const account = useMutation({
         mutationKey: ['delete_account'],
-        mutationFn: (e: string) => deleteAccount(e),
+        mutationFn: (uuid: string) => api.delete(`/account/${uuid}`),
         onSuccess: (e) => {
             return e
         },

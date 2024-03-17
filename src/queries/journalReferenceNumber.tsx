@@ -1,5 +1,4 @@
-import { getJournalByUuid, getJournalByYear } from "@/requests/journal";
-import { deleteJournalReferenceNumber, getAllJournalReferenceNumber, postJorunalReferenceNumber, updateJournalReferenceNumber } from "@/requests/journalReferenceNumber";
+import api from "@/queries/api";
 import { JournalReferenceNumberAttributes } from "@/type";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
@@ -7,7 +6,7 @@ import { useEffect } from "react";
 export function useGetAllJournalReferenceNumber() {
     const journalReferenceNumber = useQuery({
         queryKey: ['get_all_journal_reference_number'],
-        queryFn: () => getAllJournalReferenceNumber(),
+        queryFn: () => api.get(`/journal_reference_number`),
     })
     useEffect(() => {
         journalReferenceNumber.refetch()
@@ -19,7 +18,7 @@ export function useGetAllJournalReferenceNumber() {
 export function useGetJournalReferenceNumberByUuid(uuid: string) {
     const journalReferenceNumber = useQuery({
         queryKey: ['get_journal_reference_number_by_uuid'],
-        queryFn: () => getJournalByUuid(uuid),
+        queryFn: () => api.get(`/journal_reference_number/${uuid}`),
     })
     useEffect(() => {
         journalReferenceNumber.refetch()
@@ -31,7 +30,7 @@ export function useGetJournalReferenceNumberByUuid(uuid: string) {
 export function useGetJournalReferenceNumberByYear(year: string) {
     const journalReferenceNumber = useQuery({
         queryKey: ['get_journal_reference_number_by_year'],
-        queryFn: () => getJournalByYear(year),
+        queryFn: () => api.get(`/journal_reference_number/year/${year}`),
     })
     useEffect(() => {
         journalReferenceNumber.refetch()
@@ -43,7 +42,7 @@ export function useGetJournalReferenceNumberByYear(year: string) {
 export function useAddJournalReferenceNumber() {
     const journalReferenceNumber = useMutation({
         mutationKey: ['post_journal_reference_number'],
-        mutationFn: (e: Omit<JournalReferenceNumberAttributes, 'uuid'>) => postJorunalReferenceNumber(e),
+        mutationFn: (e: Omit<JournalReferenceNumberAttributes, 'uuid'>) => api.post(`/journal_reference_number`, e),
         onSuccess: (e) => {
             return e
         },
@@ -57,7 +56,7 @@ export function useAddJournalReferenceNumber() {
 export function useUpdateJournalReferenceNumber() {
     const journalReferenceNumber = useMutation({
         mutationKey: ['update_journal_reference_number'],
-        mutationFn: (e: { uuid: string, data: Omit<JournalReferenceNumberAttributes, 'uuid'> }) => updateJournalReferenceNumber(e.uuid,e.data),
+        mutationFn: (e: { uuid: string, data: Omit<JournalReferenceNumberAttributes, 'uuid'> }) => api.put(`/journal_reference_number/${e.uuid}`, e.data),
         onSuccess: (e) => {
             return e
         },
@@ -71,7 +70,7 @@ export function useUpdateJournalReferenceNumber() {
 export function useDeleteJournalReferenceNumber() {
     const journalReferenceNumber = useMutation({
         mutationKey: ['delete_journal_reference_number'],
-        mutationFn: (e:string) => deleteJournalReferenceNumber(e),
+        mutationFn: (uuid: string) => api.delete(`/journalReferenceNumber/${uuid}`),
         onSuccess: (e) => {
             return e
         },

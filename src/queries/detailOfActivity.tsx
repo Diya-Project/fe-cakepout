@@ -1,4 +1,4 @@
-import { getAllDetailOfActivity, getDetailOfActivityByUuid } from "@/requests/detailOfActivity";
+import api from "@/queries/api";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
 
@@ -6,7 +6,7 @@ import { useEffect } from "react";
 export function useGetAllDetailOfActivity() {
     const detailOfActivity = useQuery({
         queryKey: ['get_detail_of_activity'],
-        queryFn: () => getAllDetailOfActivity(),
+        queryFn: () => api.get(`/detail_of_activity`),
     })
     useEffect(() => {
         detailOfActivity.refetch()
@@ -18,7 +18,7 @@ export function useGetAllDetailOfActivity() {
 export function useGetDetailOfActivityByUuid(uuid: string) {
     const detailOfActivity = useQuery({
         queryKey: ['get_detail_of_activity_by_uuid'],
-        queryFn: () => getDetailOfActivityByUuid(uuid),
+        queryFn: () => api.get(`/detail_of_activity/${uuid}`),
         enabled: uuid !== null ? true : false
     })
     useEffect(() => {

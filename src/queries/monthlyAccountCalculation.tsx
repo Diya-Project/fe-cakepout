@@ -1,11 +1,11 @@
-import { getAllMonthlyAccountCalculation, getMonthlyAccountCalculationByMonthIndex, getMonthlyAccountCalculationByUuid, getMonthlyAccountCalculationByYear } from "@/requests/monthlAccountCalculation";
+import api from "@/queries/api";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
 
 export function useGetAllMonthlyAccountCalculation() {
     const monthlyAccountCalculation = useQuery({
         queryKey: ['get_all_monthly_account_calculation'],
-        queryFn: () => getAllMonthlyAccountCalculation(),
+        queryFn: () => api.get(`/monthly_account_calculation`),
     })
     useEffect(() => {
         monthlyAccountCalculation.refetch()
@@ -17,7 +17,7 @@ export function useGetAllMonthlyAccountCalculation() {
 export function useGetMonthlyAccountCalculationByUuid(uuid: string) {
     const monthlyAccountCalculation = useQuery({
         queryKey: ['get_monthly_account_calculation_by_uuid'],
-        queryFn: () => getMonthlyAccountCalculationByUuid(uuid),
+        queryFn: () => api.get(`/monthly_account_calculation/${uuid}`),
     })
     useEffect(() => {
         if (uuid) {
@@ -29,17 +29,17 @@ export function useGetMonthlyAccountCalculationByUuid(uuid: string) {
 
 }
 
-export function useGetMonthlyAccountCalculationByAccount(account: string) {
+export function useGetMonthlyAccountCalculationByAccount(accountId: string) {
     const monthlyAccountCalculation = useQuery({
         queryKey: ['get_monthly_account_calculation_by_account'],
-        queryFn: () => getMonthlyAccountCalculationByUuid(account),
+        queryFn: () => api.get(`/monthl_account_calculation/account_id/${accountId}`),
     })
     useEffect(() => {
-        if (account) {
+        if (accountId) {
             monthlyAccountCalculation.refetch()
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [account])
+    }, [accountId])
     return monthlyAccountCalculation
 
 }
@@ -47,7 +47,7 @@ export function useGetMonthlyAccountCalculationByAccount(account: string) {
 export function useGetMonthlyAccountCalculationByMonthIndex(monthIndex: string) {
     const monthlyAccountCalculation = useQuery({
         queryKey: ['get_monthly_account_calculation_by_month_index'],
-        queryFn: () => getMonthlyAccountCalculationByMonthIndex(monthIndex),
+        queryFn: () => api.get(`/monthly_account_calculation/month_index/${monthIndex}`),
     })
     useEffect(() => {
         if (monthIndex) {
@@ -62,7 +62,7 @@ export function useGetMonthlyAccountCalculationByMonthIndex(monthIndex: string) 
 export function useGetMonthlyAccountCalculationByYear(year: string) {
     const monthlyAccountCalculation = useQuery({
         queryKey: ['get_monthly_account_calculation_by_year'],
-        queryFn: () => getMonthlyAccountCalculationByYear(year),
+        queryFn: () => api.get(`/monthly_account_calculation/year/${year}`),
     })
     useEffect(() => {
         if (year) {

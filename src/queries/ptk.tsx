@@ -1,10 +1,10 @@
-import { getAllPtk } from "@/requests/ptk";
+import api from "@/queries/api";
 import { useQuery } from "@tanstack/react-query";
 
 export function useGetAllPtk() {
     const ptk = useQuery({
         queryKey: ['get_all_ptk'],
-        queryFn: () => getAllPtk()
+        queryFn: () => api.get('/ptk')
     })
     return ptk
 }

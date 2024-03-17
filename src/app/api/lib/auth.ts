@@ -1,7 +1,6 @@
-import { Awaitable, NextAuthOptions } from "next-auth";
+import {  NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import ApiAuthentication from "../fetch/authentication";
-import { NextApiRequest } from "next";
+import api from "../../../queries/api";
 
 interface User {
     token: string;
@@ -31,7 +30,7 @@ export const authOptions: NextAuthOptions = {
             },
             async authorize(credentials): Promise<any> {
                 try {
-                    const res = await ApiAuthentication.login({ username: credentials?.username, password: credentials?.password })
+                    const res = await api.post(`/authentication/login`, { username: credentials?.username, password: credentials?.password })
                     if (res.status === 200) {
                         return {
                             token: res.data?.token,
