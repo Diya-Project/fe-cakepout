@@ -5,7 +5,7 @@ type MessageAttributes = {
     succes: boolean;
 }
 
-export default function Message({ message, show, succes }: MessageAttributes) {
+export default function Message({ message, show, succes }: MessageAttributes):ReactNode {
     return (
         <div className={`fixed top-4  md:w-[25vw] border border-sky-700 bg-white rounded-md z-50 p-2 flex flex-col justify-between transition-all ease-in-out duration-300 ${show ? 'right-4 ' : '-right-[30vw]'}`}>
             <div className='flex w-[100%] gap-3 items-center'>

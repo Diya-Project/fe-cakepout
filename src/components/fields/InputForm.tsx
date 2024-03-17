@@ -13,7 +13,7 @@ type InputFormAttributes = {
     method: any;
     whiteText?: boolean
 }
-function InputForm({ max, step, type, title, className, read, icon, method, methodName,whiteText }: InputFormAttributes) {
+function InputForm({ max, step, type, title, className, read, icon, method, methodName,whiteText }: InputFormAttributes):ReactNode {
     const { error } = method.getFieldState(methodName)
     return (
         <div className={`flex flex-col relative w-[100%] items-center`}>

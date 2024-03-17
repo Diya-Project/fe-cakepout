@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import Modal from '../templates/Modal'
 import Text from '../custom/Text';
 import nextArrow from "@/assets/icons/rightArrow.png"
@@ -9,7 +9,7 @@ type FormDetailUserAttributes = {
     setShow: (e: boolean) => void;
 }
 
-export default function FormDetailUser({ show, setShow }: FormDetailUserAttributes) {
+export default function FormDetailUser({ show, setShow }: FormDetailUserAttributes):ReactNode {
     return (
         <Modal title='Pengaturan' show={show} close={() => setShow(!show)}>
             <div className='flex flex-col gap-3 font-montserrat'>

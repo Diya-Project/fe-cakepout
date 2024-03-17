@@ -6,13 +6,13 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup"
 import InputForm from "@/components/fields/InputForm";
 import { useLogin } from "@/hooks/react-query/useLogin";
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 import { useRouter } from "next/navigation";
 import Loading from "@/components/templates/Loading";
 import UseCheckHasLogin from "@/hooks/useCheckHasLogin";
 import { AuthenticationAttributes } from "@/type";
 
-export default function Login() {
+export default function Login():ReactNode {
     UseCheckHasLogin()
     const navigation = useRouter()
     const [showLoading, setShowLoading] = useState(false)

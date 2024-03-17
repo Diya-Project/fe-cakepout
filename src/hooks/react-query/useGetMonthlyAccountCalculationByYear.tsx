@@ -1,10 +1,11 @@
 'use client'
 import api from "@/app/api/lib/axios";
-import { useQuery } from "@tanstack/react-query";
+import { UseQueryResult, useQuery } from "@tanstack/react-query";
+import { AxiosResponse } from "axios";
 import { useEffect } from "react";
 
 
-export function useGetMonthlyAccountCalculationByYear(year: string) {
+export function useGetMonthlyAccountCalculationByYear(year: string): UseQueryResult<AxiosResponse<any, any>, Error> {
     const monthlyAccountCalculation = useQuery({
         queryKey: ['get_monthly_account_calculation_by_year'],
         queryFn: () => api.get(`/monthly_account_calculation/year/${year}`),

@@ -1,10 +1,11 @@
 'use client'
-import { useQuery } from "@tanstack/react-query";
+import { UseQueryResult, useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
 import api from "@/app/api/lib/axios";
+import { AxiosResponse } from "axios";
 
 
-export function useGetDisbursementOfFundByUuid(uuid: string, trigger: boolean) {
+export function useGetDisbursementOfFundByUuid(uuid: string, trigger: boolean): UseQueryResult<AxiosResponse<any, any>, Error> {
     const disbursementOfFund = useQuery({
         queryKey: ["get_disbursement_of_fund_by_uuid"],
         queryFn: () => api.get(`/disbursement_of_fund/${uuid}`),

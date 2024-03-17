@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import Menu from '@/components/templates/Menu'
 import { MdOutlinePointOfSale } from "react-icons/md";
 import { GiReturnArrow } from "react-icons/gi";
@@ -13,7 +13,7 @@ const menuData = [
     { icon: <RiSecurePaymentFill className='w-36 h-36 text-white' />, link: '/home/laporan/anggaran/disetujui', color: 'bg-[#888997] hover:bg-[#6b6c76]', title: "Pembayaran Piutang Usaha" },
 ]
 
-export default function Page() {
+export default function Page():ReactNode {
     return (
         <div className='flex flex-wrap gap-x-[1%] gap-y-5'>
             {menuData.map((e, i) => (

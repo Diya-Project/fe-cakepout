@@ -1,9 +1,9 @@
 'use client'
 import { AuthenticationAttributes } from "@/type";
-import { signIn } from "next-auth/react";
+import { SignInResponse, signIn } from "next-auth/react";
 
 
-export async function useLogin(data: AuthenticationAttributes) {
+export async function useLogin(data: AuthenticationAttributes): Promise<SignInResponse | undefined> {
     // const [loading, setLoading] = useState(true)
     // let [message, setMessage] = useState('')
     // const navigation = useRouter()

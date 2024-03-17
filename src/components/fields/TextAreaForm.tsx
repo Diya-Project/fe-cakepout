@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 
 type TextAreaFormAttributes = {
     method: any;
@@ -7,7 +7,7 @@ type TextAreaFormAttributes = {
     title: string;
 }
 
-function TextAreaForm({method,methodName,title,className}:TextAreaFormAttributes) {
+function TextAreaForm({method,methodName,title,className}:TextAreaFormAttributes):ReactNode {
     const { error } = method.getFieldState(methodName)
     return (
         <div className={`flex flex-col ${className}`}>

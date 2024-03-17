@@ -8,7 +8,7 @@ type FormAttributes = {
 }
 
 
-export default function Form({ children, submit, noButton }: FormAttributes) {
+export default function Form({ children, submit, noButton }: FormAttributes):ReactNode {
   return (
     <form className='flex flex-col gap-3' onSubmit={submit}>
       {children}

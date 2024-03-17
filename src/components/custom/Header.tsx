@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import { TbListDetails } from 'react-icons/tb'
 
-export default function Header({ title }: { title: string }) {
+export default function Header({ title }: { title: string }):ReactNode {
     return (
         <div className='p-4 border rounded-md shadow-md h-[10%] flex'>
             <TbListDetails className='w-6 h-6 my-auto mr-2' />

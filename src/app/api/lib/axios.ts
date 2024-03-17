@@ -6,7 +6,7 @@ const api = axios.create({
     baseURL: 'http://localhost:9191'
 })
 
-api.interceptors.request.use(async (req: InternalAxiosRequestConfig) => {
+api.interceptors.request.use(async (req: InternalAxiosRequestConfig): Promise<InternalAxiosRequestConfig<any>> => {
     if (req.url !== "/authentication/login" && req.headers) {
         const session = await getSession()
         req.headers['Authorization'] = `Bearer ${session?.user?.token}`

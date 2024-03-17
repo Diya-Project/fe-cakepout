@@ -11,7 +11,7 @@ type MultiRadioAttributes = {
 }
 
 
-export default function MultiRadio({ header, method, methodName, value, title, children }: MultiRadioAttributes) {
+export default function MultiRadio({ header, method, methodName, value, title, children }: MultiRadioAttributes):ReactNode {
     return (
         <div>
             <h1 className='font-light mb-2'>{header}</h1>

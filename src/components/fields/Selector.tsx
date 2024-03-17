@@ -1,4 +1,5 @@
 import { SelectAttributes } from '@/type';
+import { ReactNode } from 'react';
 import Select from 'react-select'
 
 type SelectorAttributes = {
@@ -10,7 +11,7 @@ type SelectorAttributes = {
 }
 
 
-function Selector({ title, onChange, options, value }: SelectorAttributes) {
+function Selector({ title, onChange, options, value }: SelectorAttributes):ReactNode {
     return (
         <div className='w-60 font-montserrat font-light'>
             <Select

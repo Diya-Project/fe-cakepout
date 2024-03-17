@@ -2,7 +2,7 @@ import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import React, { useEffect } from 'react'
 
-export default function UseCheckHasLogin() {
+export default function UseCheckHasLogin():void {
     const session = useSession()
     const navigate = useRouter()
     useEffect(() => {
@@ -12,5 +12,4 @@ export default function UseCheckHasLogin() {
             navigate.push('/')
         }
     }, [session?.data?.user?.token,navigate])
-    return session
 }

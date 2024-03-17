@@ -1,10 +1,14 @@
 'use client'
 import api from "@/app/api/lib/axios";
 import { JournalReferenceNumberAttributes } from "@/type";
-import { useMutation } from "@tanstack/react-query";
+import { UseMutationResult, useMutation } from "@tanstack/react-query";
+import { AxiosResponse } from "axios";
 
 
-export function useUpdateJournalReferenceNumber() {
+export function useUpdateJournalReferenceNumber(): UseMutationResult<AxiosResponse<any, any>, Error, {
+    uuid: string;
+    data: Omit<JournalReferenceNumberAttributes, 'uuid'>;
+}, unknown> {
     const journalReferenceNumber = useMutation({
         mutationKey: ['update_journal_reference_number'],
         mutationFn: (e: { uuid: string, data: Omit<JournalReferenceNumberAttributes, 'uuid'> }) => api.put(`/journal_reference_number/${e.uuid}`, e.data),

@@ -3,7 +3,7 @@ import Header from '@/components/custom/Header'
 import Loading from '@/components/templates/Loading'
 import { useGetDisbursementOfFundByStatus } from '@/hooks/react-query/useGetDisbursementOfFundByStatus'
 import { DisbursementOfFundAttributes } from '@/type'
-import React, { useState } from 'react'
+import React, { ReactNode, useState } from 'react'
 
 type AntrianAttributes = {
     clickDisbursementOfFund: (e: DisbursementOfFundAttributes) => void;
@@ -11,7 +11,7 @@ type AntrianAttributes = {
     status: number;
 }
 
-function ListCard({ click, value, activeValue }: { click: () => void, value: DisbursementOfFundAttributes, activeValue: string }) {
+function ListCard({ click, value, activeValue }: { click: () => void, value: DisbursementOfFundAttributes, activeValue: string }):ReactNode {
     return (
         <div onClick={click} className={`${value.uuid === activeValue ? 'bg-sky-600 text-white' : 'bg-white'} border p-3 cursor-pointer active:bg-sky-600 hover:bg-sky-600 text-slate-800 hover:text-white rounded-md shadow-md`}>
             <h1 className='font-montserrat font-semibold'>{value.rincian_kegiatan?.uraian}</h1>
@@ -19,7 +19,7 @@ function ListCard({ click, value, activeValue }: { click: () => void, value: Dis
     )
 }
 
-export default function Antrian({ clickDisbursementOfFund, render, status }: AntrianAttributes) {
+export default function Antrian({ clickDisbursementOfFund, render, status }: AntrianAttributes):ReactNode {
     const disbursementOfFund = useGetDisbursementOfFundByStatus(status, render)
     const [activeColor, setActiveColor] = useState<string>('')
     return (

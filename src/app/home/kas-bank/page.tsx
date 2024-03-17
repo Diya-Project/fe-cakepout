@@ -1,5 +1,5 @@
 import Menu from '@/components/templates/Menu'
-import React from 'react'
+import React, { ReactNode } from 'react'
 import { GiPayMoney } from "react-icons/gi";
 import { GiReceiveMoney } from "react-icons/gi";
 import { GiTakeMyMoney } from "react-icons/gi";
@@ -15,7 +15,7 @@ const menuData = [
 
 ]
 
-export default function Page() {
+export default function Page():ReactNode {
     return (
         <div className='flex flex-wrap gap-x-[1%] gap-y-4'>
             {menuData.map((e, i) => (

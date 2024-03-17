@@ -1,3 +1,3 @@
-export const currency = (num: any) => {
+export const currency = (num: number):string => {
     return 'Rp ' + num.toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
 }

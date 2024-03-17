@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 
 type TableAttributes = {
     head: string[],
     children: React.ReactNode,
 }
 
-function Table({ head, children }: TableAttributes) {
+function Table({ head, children }: TableAttributes):ReactNode {
     return (
         <div className='overflow-y-auto h-[90%] scrollbar-hide'>
             <table className="w-full text-sm text-left text-gray-700 ">

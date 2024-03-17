@@ -1,12 +1,12 @@
 
 import HeaderMenu from '@/components/templates/HeaderMenu';
-import React from 'react'
+import React, { ReactNode } from 'react'
 
 export default function HomeLayout({
     children,
 }: Readonly<{
     children: React.ReactNode;
-}>) {
+}>):ReactNode {
     return (
         <>
             <HeaderMenu />

@@ -1,10 +1,11 @@
 'use client'
 import api from "@/app/api/lib/axios";
-import { useQuery } from "@tanstack/react-query";
+import { UseQueryResult, useQuery } from "@tanstack/react-query";
+import { AxiosResponse } from "axios";
 import { useEffect } from "react";
 
 
-export function useGetDetailOfActivityByUuid(uuid: string) {
+export function useGetDetailOfActivityByUuid(uuid: string): UseQueryResult<AxiosResponse<any, any>, Error> {
     const detailOfActivity = useQuery({
         queryKey: ['get_detail_of_activity_by_uuid'],
         queryFn: () => api.get(`/detail_of_activity/${uuid}`),

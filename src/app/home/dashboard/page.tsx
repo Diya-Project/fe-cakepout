@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 
-export default function Page() {
+export default function Page():ReactNode {
   return (
     <div>page</div>
   )

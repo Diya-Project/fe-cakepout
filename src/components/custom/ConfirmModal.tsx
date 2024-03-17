@@ -1,4 +1,4 @@
-import React, { MouseEventHandler } from 'react'
+import React, { MouseEventHandler, ReactNode } from 'react'
 import Modal from '../templates/Modal'
 
 type ConfrimModalAttributes = {
@@ -8,7 +8,7 @@ type ConfrimModalAttributes = {
     onClick: () => void;
 }
 
-export default function ConfirmModal({ show, close, msg, onClick }: ConfrimModalAttributes) {
+export default function ConfirmModal({ show, close, msg, onClick }: ConfrimModalAttributes):ReactNode {
     return (
         <Modal title='Konfirmasi' show={show} close={close}>
             <div className='bg-white rounded-b-xl'>

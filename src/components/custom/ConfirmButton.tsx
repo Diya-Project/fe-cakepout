@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 
 type ButtonAttributes = {
     click: (e:string|number|undefined) => void;
@@ -6,7 +6,7 @@ type ButtonAttributes = {
     title: string;
 }
 
-export default function ConfirmButton({ click, value, title }: ButtonAttributes) {
+export default function ConfirmButton({ click, value, title }: ButtonAttributes):ReactNode {
     return (
         <button
             onClick={() => click(value)}

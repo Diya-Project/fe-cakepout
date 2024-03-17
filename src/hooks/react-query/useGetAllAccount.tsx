@@ -1,10 +1,11 @@
 'use client'
 import api from "@/app/api/lib/axios";
-import { useQuery } from "@tanstack/react-query";
+import { UseQueryResult, useQuery } from "@tanstack/react-query";
+import { AxiosResponse } from "axios";
 import { useEffect } from "react";
 
 
-export default function useGetAllAccount() {
+export default function useGetAllAccount(): UseQueryResult<AxiosResponse<any, any>, Error> {
     const account = useQuery({
         queryKey: ['get_all_account'],
         queryFn: () => api.get(`/`)

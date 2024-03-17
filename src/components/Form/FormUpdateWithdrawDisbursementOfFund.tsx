@@ -2,7 +2,7 @@ import InputForm from '@/components/fields/InputForm'
 import SelectForm from '@/components/fields/SelectForm'
 import { usePtkOptions } from '@/options/ptkOptions'
 import { yupResolver } from '@hookform/resolvers/yup'
-import React from 'react'
+import React, { ReactNode } from 'react'
 import { useForm } from 'react-hook-form'
 import * as yup from "yup"
 import Form from '../templates/Form'
@@ -10,7 +10,7 @@ import Modal from '../templates/Modal'
 
 
 
-export default function FormUpdateWithdrawDisbursementOfFund({ submit, show, close }: { show: boolean, close: () => void, submit: (e: any) => void }) {
+export default function FormUpdateWithdrawDisbursementOfFund({ submit, show, close }: { show: boolean, close: () => void, submit: (e: any) => void }):ReactNode {
     const method = useForm({
         mode: 'all',
         resolver: yupResolver(

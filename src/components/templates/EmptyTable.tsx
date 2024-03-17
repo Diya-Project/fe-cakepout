@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import { FcSurvey } from "react-icons/fc";
 
 
-export default function EmptyTable() {
+export default function EmptyTable():ReactNode {
     return (
         <div className='flex flex-col justify-center items-center w-[100%] h-[90%]'>
             <FcSurvey className='w-36 h-36' />

@@ -1,9 +1,9 @@
-import { useGetAllDetailOfActivity } from "@/hooks/react-query/detailOfActivity";
-import { DetailOfActivityAttributes } from "@/type";
+import { useGetAllDetailOfActivity } from "@/hooks/react-query/useGetAllDetailOfActivity";
+import { DetailOfActivityAttributes, SelectAttributes } from "@/type";
 import { useEffect, useState } from "react";
 
 
-export default function useDetailOfActivityOptions() {
+export default function useDetailOfActivityOptions(): Array<SelectAttributes> {
     const detailOfActivity = useGetAllDetailOfActivity()
     const [detailOfActivityOptions, setDetailOfActivityOptions] = useState([])
     useEffect(() => {

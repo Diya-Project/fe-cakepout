@@ -1,16 +1,12 @@
 'use client'
 import TableData from '@/app/TableData'
 import FormAccountAction from '@/components/Form/FormAccount'
-import Button from '@/components/custom/Button'
-import TitleTable from '@/components/custom/TitleTable'
-import EmptyTable from '@/components/templates/EmptyTable'
 import Message from '@/components/templates/Message'
-import Table from '@/components/templates/Table'
 import useShowMessage from '@/hooks/useShowMessage'
 import { AccountAttributes } from '@/type'
-import React, { useState } from 'react'
+import React, { ReactNode, useState } from 'react'
 
-export default function Page() {
+export default function Page():ReactNode {
     const head = ['No', 'Nama', 'Status']
     const data = [
         { value: 'A', label: 'Aku' },

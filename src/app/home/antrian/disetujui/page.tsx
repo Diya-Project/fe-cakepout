@@ -1,14 +1,14 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React, { ReactNode, useEffect, useState } from 'react'
 import { DisbursementOfFundAttributes } from '@/type'
 import Detail from '../Detail'
 import Message from '@/components/templates/Message'
 import Antrian from '../Antrian'
-import { useUpdateWithDrawDisbursementOfFund } from '@/hooks/react-query/dibursementOfFund'
+import { useUpdateWithDrawDisbursementOfFund } from '@/hooks/react-query/useUpdateWithDrawDisbursementOfFund'
 import FormUpdateWithdrawDisbursementOfFund from '@/components/Form/FormUpdateWithdrawDisbursementOfFund'
 import useShowMessage from '@/hooks/useShowMessage'
 
-export default function Page() {
+export default function Page():ReactNode {
     const [oneDisbursementOfFund, setOneDisbursementOfFund] = useState<DisbursementOfFundAttributes>()
     const [showModalApproveWithdrawDisbursementOfFund, setShowModalApproveWithdrawDisbursementOfFund] = useState<boolean>(false)
     const [oneUuidDisbursementOfFund, setOneUuidDisbursementOfFund] = useState<string>('')

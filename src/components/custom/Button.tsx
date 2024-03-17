@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { MouseEventHandler, ReactNode } from 'react'
 
 type ButtonAttributes = {
-    click: (e:{}) => void;
+    click: MouseEventHandler<HTMLButtonElement>;
     title: string;
 }
 
-export default function Button({ click, title }: ButtonAttributes) {
+export default function Button({ click, title }: ButtonAttributes):ReactNode {
     return (
         <button
             onClick={click}

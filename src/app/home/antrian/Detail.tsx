@@ -9,6 +9,7 @@ import { FaUserGroup } from "react-icons/fa6";
 import Header from '@/components/custom/Header';
 import DetailCard from '@/components/custom/DetailCard';
 import ConfirmButton from '@/components/custom/ConfirmButton';
+import { ReactNode } from 'react';
 
 
 type DetailAttributes = {
@@ -17,7 +18,7 @@ type DetailAttributes = {
 }
 
 
-export default function Detail({ anggaran, confirm }: DetailAttributes) {
+export default function Detail({ anggaran, confirm }: DetailAttributes):ReactNode {
     const listDetail = [
         { icon: <MdOutlineDescription className='w-20 h-20 text-sky-800 my-auto' />, title: 'Uraian', value: anggaran?.rincian_kegiatan?.uraian || '-' },
         { icon: <IoCalendarNumberOutline className='w-20 h-20 text-sky-800 my-auto' />, title: 'Tahun Ajar', value: anggaran?.accounting_year || '-' },

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import { Controller } from 'react-hook-form'
 
 type RadioFormAttributes = {
@@ -10,7 +10,7 @@ type RadioFormAttributes = {
     title?: string
 }
 
-function RadioForm({ id, method, methodName, title, val, change }: RadioFormAttributes) {
+function RadioForm({ id, method, methodName, title, val, change }: RadioFormAttributes):ReactNode {
     return (
         <div>
             <div className='flex w-full md:px-2'>

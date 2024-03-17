@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react'
 
-function DetailText({ title, value }: { title: string, value: string | number | undefined }) {
+function DetailText({ title, value }: { title: string, value: string | number | undefined }):ReactNode {
     return (
         <div className='ml-4 text-slate-800 my-auto'>
             <h1 className='font-montserrat font-bold mt-[2px] text-xl'>{title}</h1>
@@ -17,7 +17,7 @@ function DetailText({ title, value }: { title: string, value: string | number | 
     )
 }
 
-export default function DetailCard({ icon, title, value }: { icon: ReactNode, title: string, value: string | number | undefined }) {
+export default function DetailCard({ icon, title, value }: { icon: ReactNode, title: string, value: string | number | undefined }):ReactNode {
     return (
         <div className='md:w-[49%] w-[100%] bg-white p-3 shadow-lg border rounded-md flex'>
             {icon}

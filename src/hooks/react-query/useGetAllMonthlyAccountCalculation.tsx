@@ -4,18 +4,14 @@ import { UseQueryResult, useQuery } from "@tanstack/react-query";
 import { AxiosResponse } from "axios";
 import { useEffect } from "react";
 
-
-export function useGetMonthlyAccountCalculationByUuid(uuid: string): UseQueryResult<AxiosResponse<any, any>, Error> {
+export function useGetAllMonthlyAccountCalculation(): UseQueryResult<AxiosResponse<any, any>, Error> {
     const monthlyAccountCalculation = useQuery({
-        queryKey: ['get_monthly_account_calculation_by_uuid'],
-        queryFn: () => api.get(`/monthly_account_calculation/${uuid}`),
+        queryKey: ['get_all_monthly_account_calculation'],
+        queryFn: () => api.get(`/monthly_account_calculation`),
     })
     useEffect(() => {
-        if (uuid) {
-            monthlyAccountCalculation.refetch()
-        }
+        monthlyAccountCalculation.refetch()
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [uuid])
+    }, [])
     return monthlyAccountCalculation
-
 }

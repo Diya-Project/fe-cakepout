@@ -1,6 +1,6 @@
 'use client'
 import Menu from '@/components/templates/Menu'
-import React from 'react'
+import React, { ReactNode } from 'react'
 import { FaAddressBook } from 'react-icons/fa';
 import { RiContactsBookFill } from "react-icons/ri";
 import { MdMargin, MdProductionQuantityLimits } from "react-icons/md";
@@ -26,7 +26,7 @@ const menuData = [
     { icon: <LuListStart className='w-36 h-36 text-white' />, color: 'bg-[#6aa84f] hover:bg-[#568940]', title: "Data Lain" },
 ]
 
-export default function Page() {
+export default function Page():ReactNode {
     return (
         <div className='flex flex-wrap gap-x-[1%] gap-y-5'>
             {menuData.map((e, i) => (

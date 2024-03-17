@@ -1,5 +1,5 @@
 'use client'
-import React, { useRef, useState } from 'react'
+import React, { ReactNode, useRef, useState } from 'react'
 import { menu } from '../constants/HeadMenu'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -11,7 +11,7 @@ import { usePathname } from 'next/navigation'
 import Text from "@/components/custom/Text"
 
 
-function HeadMenu() {
+function HeadMenu(): ReactNode {
   const pathName = usePathname()
   const [activeMenu, setActiveMenu] = useState<string>(pathName)
   return menu.map((e, i) => (
@@ -19,11 +19,11 @@ function HeadMenu() {
   ))
 }
 
-function ProfileMenu({ title, click }: { title: string, click: () => void }) {
+function ProfileMenu({ title, click }: { title: string, click: () => void }): ReactNode {
   return <div className='font-semibold font-montserrat text-slate-800 hover:text-sky-600 cursor-pointer' onClick={click}>{title}</div>
 }
 
-function SideMenu({ profileMenu, setProfileMenu, setShowFormDetailUser }: { profileMenu: boolean, setProfileMenu: (e: boolean) => void, setShowFormDetailUser: (e: boolean) => void }) {
+function SideMenu({ profileMenu, setProfileMenu, setShowFormDetailUser }: { profileMenu: boolean, setProfileMenu: (e: boolean) => void, setShowFormDetailUser: (e: boolean) => void }): ReactNode {
   return (
     <div className={`absolute p-6 right-0 top-20 w-72 bg-white shadow-lg border border-slate-200 transition-all ease-in-out duration-300 flex flex-col gap-6 ${profileMenu ? 'block' : 'hidden'}`}>
       <Text title='User' value='Muhammad' />
@@ -40,7 +40,7 @@ function SideMenu({ profileMenu, setProfileMenu, setShowFormDetailUser }: { prof
   )
 }
 
-export default function HeaderMenu() {
+export default function HeaderMenu(): ReactNode {
   const [profileMenu, setProfileMenu] = useState(false)
   const [showFormDetailUser, setShowFormDetailUser] = useState(false)
   const profileRef = useRef<any>()
