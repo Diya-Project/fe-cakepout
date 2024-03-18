@@ -8,7 +8,7 @@ import { useEffect } from "react";
 export function useGetDetailOfActivityByUuid(uuid: string): UseQueryResult<AxiosResponse<any, any>, Error> {
     const detailOfActivity = useQuery({
         queryKey: ['get_detail_of_activity_by_uuid'],
-        queryFn: () => api.get(`/detail_of_activity/${uuid}`),
+        queryFn: () => api.get(`/detail-of-activity/${uuid}`),
         enabled: uuid !== null ? true : false
     })
     useEffect(() => {

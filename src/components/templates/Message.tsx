@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 
 type MessageAttributes = {
     show: boolean;

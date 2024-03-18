@@ -9,7 +9,7 @@ import { AxiosResponse } from "axios";
 export function useGetDisbursementOfFundByStatus(status: number, trigger: boolean): UseQueryResult<AxiosResponse<any, any>, Error> {
     const disbursementOfFund = useQuery({
         queryKey: ['get_disbursement_of_fund_by_status'],
-        queryFn: () => api.get(`/disbursement_of_fund/status/${status}`),
+        queryFn: () => api.get(`/disbursement-of-fund/status/${status}`),
         enabled: status !== null ? true : false
     })
     useEffect(() => {

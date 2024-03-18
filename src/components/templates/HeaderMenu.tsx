@@ -46,7 +46,7 @@ export default function HeaderMenu(): ReactNode {
   const profileRef = useRef<any>()
   useClickOutside(profileRef, () => setProfileMenu(false))
   return (
-    <header className='w-[100vw] h-[10vh] bg-sky-700 flex md:justify-between justify-end items-center fixed top-0'>
+    <header className='w-[100vw] h-[10vh] bg-sky-600 flex md:justify-between justify-end items-center fixed top-0'>
       <div className='md:flex hidden gap-8 h-[100%]'>
         <Image className='w-14 h-14 m-3' src={LogoPAH} alt='LogoPAH' />
         <ul className='flex gap-8'>

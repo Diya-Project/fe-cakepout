@@ -9,7 +9,7 @@ import { useEffect } from "react";
 export function useGetMonthlyAccountCalculationByAccount(accountId: string): UseQueryResult<AxiosResponse<any, any>, Error> {
     const monthlyAccountCalculation = useQuery({
         queryKey: ['get_monthly_account_calculation_by_account'],
-        queryFn: () => api.get(`/monthl_account_calculation/account_id/${accountId}`),
+        queryFn: () => api.get(`/monthl-account-calculation/account_id/${accountId}`),
     })
     useEffect(() => {
         if (accountId) {

@@ -8,7 +8,7 @@ import { useEffect } from "react";
 export function useGetMonthlyAccountCalculationByYear(year: string): UseQueryResult<AxiosResponse<any, any>, Error> {
     const monthlyAccountCalculation = useQuery({
         queryKey: ['get_monthly_account_calculation_by_year'],
-        queryFn: () => api.get(`/monthly_account_calculation/year/${year}`),
+        queryFn: () => api.get(`/monthly-account-calculation/year/${year}`),
     })
     useEffect(() => {
         if (year) {

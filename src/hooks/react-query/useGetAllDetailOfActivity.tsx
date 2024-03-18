@@ -5,14 +5,17 @@ import { AxiosResponse } from "axios";
 import { useEffect } from "react";
 
 
-export function useGetAllDetailOfActivity(): UseQueryResult<AxiosResponse<any, any>, Error> {
+export function useGetAllDetailOfActivity(status: boolean): UseQueryResult<AxiosResponse<any, any>, Error> {
     const detailOfActivity = useQuery({
         queryKey: ['get_detail_of_activity'],
-        queryFn: () => api.get(`/detail_of_activity`),
+        queryFn: () => api.get(`/detail-of-activity`),
+        enabled: status
     })
     useEffect(() => {
-        detailOfActivity.refetch()
+        if (status) {
+            detailOfActivity.refetch()
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, [status])
     return detailOfActivity
 }

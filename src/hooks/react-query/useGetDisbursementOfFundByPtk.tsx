@@ -9,7 +9,7 @@ import { AxiosResponse } from "axios";
 export function useGetDisbursementOfFundByPtk(ptk_id: string, trigger: boolean): UseQueryResult<AxiosResponse<any, any>, Error> {
     const disbursementOfFund = useQuery({
         queryKey: ['get_disbursement_of_fund_by_ptk'],
-        queryFn: () => api.get(`/disbursement_of_fund/ptk/${ptk_id}`),
+        queryFn: () => api.get(`/disbursement-of-fund/ptk/${ptk_id}`),
         enabled: ptk_id !== null ? true : false
     })
     useEffect(() => {

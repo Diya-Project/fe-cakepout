@@ -13,7 +13,7 @@ export function useUpdateWithDrawDisbursementOfFund(): UseMutationResult<AxiosRe
 }, unknown> {
     const disbursementOfFund = useMutation({
         mutationKey: ['update_withdraw_disbursement_of_fund'],
-        mutationFn: (e: { uuid: string, data: { ptk_id: string | null, receipient: string | null } }) => api.put(`/disbursementOfFund/withdraw/${e.uuid}`, e.data),
+        mutationFn: (e: { uuid: string, data: { ptk_id: string | null, receipient: string | null } }) => api.put(`/disbursement-of-fund/withdraw/${e.uuid}`, e.data),
         onSuccess: (e) => {
             return e
         },

@@ -13,14 +13,14 @@ type TableData = {
     children: ReactNode;
 }
 
-export default function TableData({ title, clickAdd, children, data, head }: TableData):ReactNode {
+export default function TableData({ title, clickAdd, children, data, head }: TableData): ReactNode {
     return (
         <div className='border bg-white px-7 py-10 h-[75vh] rounded-sm shadow-md'>
             <div className='flex justify-between mb-5'>
                 <TitleTable title={title} />
                 <Button title='Buat Baru' click={clickAdd} />
             </div>
-            {data.length < 0 ?
+            {data?.length > 0 ?
                 <Table head={head}>
                     {children}
                 </Table>

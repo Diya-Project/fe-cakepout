@@ -7,7 +7,7 @@ import { AxiosResponse } from "axios";
 export function useGetAllDisbursementOfFund(trigger: boolean): UseQueryResult<AxiosResponse<any, any>, Error> {
     const disbursementOfFund = useQuery({
         queryKey: ['get_all_disbursement_of_fund'],
-        queryFn: () => api.get('/disbursement_of_fund')
+        queryFn: () => api.get('/disbursement-of-fund')
     })
     useEffect(() => {
         disbursementOfFund.refetch()

@@ -14,11 +14,3 @@ declare module "next-auth" {
     } & DefaultSession["user"]
   }
 }
-
-interface Authorization {
-    Authorization: string;
-}
-
-declare module 'axios' {
-    export interface AxiosHeader extends Authorization { }
-}

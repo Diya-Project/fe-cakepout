@@ -3,7 +3,7 @@ export type SelectAttributes = {
     label: string | number | null
 }
 
-export type InputType = 'text' | 'number' | 'password' | 'date' | 'datetime-local'
+export type InputType = 'text' | 'number' | 'password' | 'date' | 'datetime-local' | 'radio' | 'checkbox'
 
 export type AuthenticationAttributes = {
     username: string | undefined;
@@ -25,7 +25,8 @@ export type DetailOfActivityAttributes = {
     tahun_ajar: string;
     no_pendapatan: string;
     sharing_program: boolean;
-    total_realisasi: number
+    total_realisasi: number;
+    list_kegiatan: ActivityAttributes;
 }
 
 export type DisbursementOfFundAttributes = {
@@ -64,14 +65,54 @@ export type PtkAttributes = {
 export type AccountAttributes = {
     uuid: string;
     name: string;
-    group_account: number;
-    group_account_label: number;
     account_number: string;
     activity_id: string;
+    detail_of_activity: DetailOfActivityAttributes;
+    group_account: GroupAccountAttributes;
 }
 
 export type JournalReferenceNumberAttributes = {
     uuid: string;
     number: number;
     accounting_year: string
+}
+
+export type GroupAccountAttributes = {
+    uuid: string;
+    group_account: number;
+    group_account_label: number;
+    name: string;
+}
+
+export type ProgramAttributes = {
+    no_program: string;
+    item_program: string;
+    modifiable: boolean;
+    no_lembaga: number;
+    list_lembaga: InstitutionAttributes;
+}
+
+export type InstitutionAttributes = {
+    no_lembaga: number;
+    nama_lembaga: string;
+}
+
+export type ComponentAttributes = {
+    no_komponen: string;
+    item_komponen: string;
+    modifiable: boolean;
+    no_program: string;
+    list_program: ProgramAttributes;
+}
+
+type statusActivity = 'Ditunda' | 'Disetujui' | 'Ditolak'
+
+export type ActivityAttributes = {
+    no_kegiatan: string;
+    item_kegiatan: string;
+    status: statusActivity;
+    no_komponen: string;
+    continue: boolean;
+    list_komponen: ComponentAttributes;
+
 }

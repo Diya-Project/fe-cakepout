@@ -25,7 +25,7 @@ function SelectForm
     const { error } = method.getFieldState(methodName)
     return (
         <div className={`w-full space-y-1 ${className}`}>
-            <label className="md:mx-0 text-md font-light text-gray-600">{title}</label>
+            <label className="md:mx-0 text-md font-montserrat font-semibold text-gray-700">{title}</label>
             <Controller
                 control={method.control}
                 name={methodName}
@@ -44,7 +44,6 @@ function SelectForm
                                 borderRadius: "0px",
                                 paddingTop: "1px",
                                 paddingBottom: "1px",
-                                borderColor: state.isTouched ? "#624d4d" : "#624d4d",
                                 borderWidth: "2px",
                             }),
                         }}
