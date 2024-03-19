@@ -7,7 +7,7 @@ export default function UseCheckHasLogin():void {
     const navigate = useRouter()
     useEffect(() => {
         if (session?.data?.user?.token !== null) {
-            navigate.push('/home/data-master')
+            navigate.push('/home/master-data')
         } else {
             navigate.push('/')
         }

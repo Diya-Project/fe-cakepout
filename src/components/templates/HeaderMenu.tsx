@@ -9,11 +9,14 @@ import userCircle from "@/assets/icons/userCircle.png"
 import FormDetailUser from '../Form/FormDetailUser'
 import { usePathname } from 'next/navigation'
 import Text from "@/components/custom/Text"
+import { signOut } from 'next-auth/react'
+import UseCheckHasLogin from '@/hooks/useCheckHasLogin'
 
 
 function HeadMenu(): ReactNode {
   const pathName = usePathname()
   const [activeMenu, setActiveMenu] = useState<string>(pathName)
+  UseCheckHasLogin()
   return menu.map((e, i) => (
     <Link key={i} onClick={() => setActiveMenu(e.link)} className={`text-white font-montserrat cursor-pointer h-[100%] flex items-center uppercase text-sm ${activeMenu === e.link ? 'border-b-2 border-white' : ''}`} href={e.link}>{e.title}</Link>
   ))
@@ -35,7 +38,7 @@ function SideMenu({ profileMenu, setProfileMenu, setShowFormDetailUser }: { prof
         setProfileMenu(false)
         setShowFormDetailUser(true)
       }} title='Pengaturan' />
-      <ProfileMenu click={() => console.log("hello")} title='Keluar' />
+      <ProfileMenu click={() => signOut()} title='Keluar' />
     </div>
   )
 }
