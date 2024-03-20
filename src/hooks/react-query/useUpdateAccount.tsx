@@ -8,11 +8,11 @@ import { AxiosResponse } from "axios";
 
 export function useUpdateAccount(): UseMutationResult<AxiosResponse<any, any>, Error, {
     uuid: string;
-    data: Omit<AccountAttributes, 'uuid'>;
+    data: EditAccountAttributes;
 }, unknown> {
     const account = useMutation({
         mutationKey: ['update_account'],
-        mutationFn: (e: { uuid: string, data: Omit<AccountAttributes, 'uuid'> }) => api.put(`/account/${e.uuid}`, e.data),
+        mutationFn: (e: { uuid: string, data: EditAccountAttributes }) => api.put(`/account/${e.uuid}`, e.data),
         onSuccess: (e) => {
             return e
         },

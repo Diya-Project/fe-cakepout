@@ -11,7 +11,6 @@ export function useGetGroupAccountByGroup(groupAccount: number, main: boolean): 
         enabled: groupAccount && groupAccount !== null ? true : false
     })
     useEffect(() => {
-        console.log(groupAccount)
         if (main && groupAccount && groupAccount !== null) {
             groupAccount_.refetch()
         }

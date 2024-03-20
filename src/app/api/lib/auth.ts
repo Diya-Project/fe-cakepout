@@ -6,6 +6,9 @@ interface User {
     token: string;
     username: string;
     name: string;
+    generalUser: boolean;
+    role: string;
+    sistem: string;
     superAdmin: boolean
 }
 
@@ -36,7 +39,10 @@ export const authOptions: NextAuthOptions = {
                             token: res.data?.token,
                             username: res.data.user?.username,
                             name: res.data?.user?.nama,
-                            superAdmin: res.data?.user?.superAdmin
+                            generalUser: res.data?.user?.generalUser,
+                            role: res.data?.user?.sistem?.role?.nama_role,
+                            sistem: res.data?.user?.sistem?.sistem?.nama_sistem,
+                            superAdmin: res.data?.user?.sistem?.super_admin
                         }
                     }
                 } catch (e: unknown) {
@@ -54,6 +60,9 @@ export const authOptions: NextAuthOptions = {
                     token: token.token,
                     username: token.username,
                     name: token.name,
+                    geeneralUser: token.generalUser,
+                    role: token.role,
+                    sistem: token.sistem,
                     superAdmin: token.superAdmin
                 }
             }
@@ -66,6 +75,9 @@ export const authOptions: NextAuthOptions = {
                     token: e.token,
                     username: e.username,
                     name: e.name,
+                    generalUser: e.generalUser,
+                    role: e.role,
+                    sistem: e.sistem,
                     superAdmin: e.superAdmin
 
                 }

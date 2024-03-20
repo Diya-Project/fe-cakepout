@@ -116,3 +116,8 @@ export type ActivityAttributes = {
     list_komponen: ComponentAttributes;
 
 }
+
+export type InstitutionAttributes = {
+    no_lembaga: number;
+    nama_lembaga: string;
+}

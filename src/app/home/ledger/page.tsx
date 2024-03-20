@@ -6,9 +6,9 @@ import { ImBook } from "react-icons/im";
 
 
 const menuData = [
-    { link: '/home/ledger/account-list', icon: <FaAddressBook className='w-36 h-36 text-white' />, color: 'bg-[#f44336] hover:bg-[#c9382d]', title: "Daftar Akun" },
-    { link: '/home/ledger/', icon: <ImBooks className='w-36 h-36 text-white' />, color: 'bg-[#000033] hover:bg-[#01011e]', title: "Buku Besar" },
-    { link: '/home/ledger/', icon: <ImBook className='w-36 h-36 text-white' />, color: 'bg-[#f6b26b] hover:bg-[#cf9559]', title: "Jurnal Umum" },
+    { link: '/home/ledger/account-list', icon: <FaAddressBook className='w-36 h-36 text-white' />, color: 'bg-[#6978d6] hover:bg-[#5b68b9]', title: "Daftar Akun" },
+    { link: '/home/ledger/', icon: <ImBooks className='w-36 h-36 text-white' />, color: 'bg-[#57575e] hover:bg-[#414146]', title: "Buku Besar" },
+    { link: '/home/ledger/', icon: <ImBook className='w-36 h-36 text-white' />, color: 'bg-[#bf7c58] hover:bg-[#a2694a]', title: "Jurnal Umum" },
 
 ]
 

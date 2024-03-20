@@ -29,9 +29,7 @@ export default function Login():ReactNode {
         setShowLoading(true)
         const isLogin = await useLogin(e)
         if (isLogin?.status === 200 && isLogin?.url) {
-            console.log('hello')
             navigation.push(isLogin?.url)
-            console.log(isLogin)
         }
         setShowLoading(false)
     }

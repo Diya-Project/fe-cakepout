@@ -17,7 +17,6 @@ api.interceptors.response.use((res: AxiosResponse) => {
     return res;
 
 }, (err) => {
-    console.log(err)
     if (err.response.status === 401) {
         signOut()
     }

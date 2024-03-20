@@ -8,8 +8,6 @@ import * as yup from "yup"
 import Form from '../templates/Form'
 import Modal from '../templates/Modal'
 
-
-
 export default function FormUpdateWithdrawDisbursementOfFund({ submit, show, close }: { show: boolean, close: () => void, submit: (e: any) => void }):ReactNode {
     const method = useForm({
         mode: 'all',

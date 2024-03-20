@@ -13,7 +13,6 @@ export function useGetDisbursementOfFundByStatus(status: number, trigger: boolea
         enabled: status !== null ? true : false
     })
     useEffect(() => {
-        console.log(trigger)
         if (status !== null) {
             disbursementOfFund.refetch()
         }
