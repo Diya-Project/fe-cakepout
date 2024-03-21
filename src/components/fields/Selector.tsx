@@ -14,7 +14,7 @@ type SelectorAttributes = {
 function Selector({ title, onChange, options, value }: SelectorAttributes): ReactNode {
     return (
         <div className='w-full font-montserrat font-light'>
-            <label className="md:mx-0 text-md font-montserrat font-semibold text-gray-700">{title}</label>
+            <h1 className="md:mx-0 text-md font-montserrat font-semibold text-gray-700">{title}</h1>
             <Select
                 styles={{
                     control: (baseStyles: any) => ({

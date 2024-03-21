@@ -3,7 +3,8 @@ import { getSession, signOut } from "next-auth/react";
 
 
 const api = axios.create({
-    baseURL: 'http://localhost:9191'
+    baseURL: 'http://192.168.1.11:9191'
+    // baseURL: 'http://localhost:9191'
 })
 
 api.interceptors.request.use(async (req: InternalAxiosRequestConfig): Promise<InternalAxiosRequestConfig<any>> => {

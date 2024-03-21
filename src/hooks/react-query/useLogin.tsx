@@ -3,7 +3,7 @@ import { AuthenticationAttributes } from "@/type";
 import { SignInResponse, signIn } from "next-auth/react";
 
 
-export async function useLogin(data: AuthenticationAttributes): Promise<SignInResponse | undefined> {
+export async function UseLogin(data: AuthenticationAttributes): Promise<SignInResponse | undefined> {
     // const [loading, setLoading] = useState(true)
     // let [message, setMessage] = useState('')
     // const navigation = useRouter()

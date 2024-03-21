@@ -6,5 +6,5 @@ export default function useSetValueForm(method: UseFormReturn<any, any, undefine
         form.map((e) => {
             method.setValue(e, null)
         })
-    }, [method, trigger])
+    }, [method, trigger, form])
 }

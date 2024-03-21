@@ -1,8 +1,8 @@
 import React, { ReactNode } from 'react'
-import { Controller } from 'react-hook-form'
+import { Controller, UseFormReturn } from 'react-hook-form'
 
 type RadioFormAttributes = {
-    method: any;
+    method: UseFormReturn<any, any, undefined>;
     methodName: string;
     change?: (e: string | number) => void;
     id?: string | undefined;
@@ -10,7 +10,7 @@ type RadioFormAttributes = {
     title?: string
 }
 
-function RadioForm({ id, method, methodName, title, val, change }: RadioFormAttributes):ReactNode {
+function RadioForm({ id, method, methodName, title, val, change }: RadioFormAttributes): ReactNode {
     return (
         <div>
             <div className='flex w-full md:px-2'>
@@ -24,6 +24,7 @@ function RadioForm({ id, method, methodName, title, val, change }: RadioFormAttr
                     }) => {
                         return (
                             < input
+                                name='radioForm'
                                 onChange={(e) => {
                                     onChange(e.target.value)
                                     if (change) {
@@ -41,7 +42,7 @@ function RadioForm({ id, method, methodName, title, val, change }: RadioFormAttr
                     }}
 
                 />
-                < label className='ml-2 text-md font-light'>{title}</label>
+                <label htmlFor='radioForm' className='ml-2 text-md font-light'>{title}</label>
             </div>
         </div>)
 }

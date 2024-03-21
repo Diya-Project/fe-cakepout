@@ -1,5 +1,5 @@
 'use client'
-import React, { ReactNode, useRef, useState } from 'react'
+import React, { LegacyRef, ReactNode, useRef, useState } from 'react'
 import { menu } from '../constants/HeadMenu'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -10,14 +10,23 @@ import FormDetailUser from '../Form/FormDetailUser'
 import { usePathname } from 'next/navigation'
 import Text from "@/components/custom/Text"
 import { signOut, useSession } from 'next-auth/react'
+import { HiListBullet } from 'react-icons/hi2'
 
 
 function HeadMenu(): ReactNode {
   const pathName = usePathname()
   const [activeMenu, setActiveMenu] = useState<string>(pathName)
   return menu.map((e, i) => (
-    <Link key={i} onClick={() => setActiveMenu(e.link)} className={`text-white font-montserrat cursor-pointer h-[100%] flex items-center uppercase text-sm ${activeMenu === e.link || activeMenu?.split('/')[2] === e.link?.split('/')[2] ? 'border-b-2 border-white' : ''}`} href={e.link}>{e.title}</Link>
+    <Link key={i} onClick={() => setActiveMenu(e.link)} className={`text-white font-montserrat cursor-pointer h-[100%] flex items-center uppercase md:text-sm text-[7px] ${activeMenu === e.link || activeMenu?.split('/')[2] === e.link?.split('/')[2] ? 'border-b-2 border-white' : ''}`} href={e.link}>{e.title}</Link>
   ))
+}
+
+function MobileMenu({ show }: { show: boolean}): ReactNode {
+  return (
+    <div className={`fixed top-[10vh] w-[90vw] h-[90vh] bg-white ${show ? 'left-0' : '-left-[95vh]'} transition-all ease-in-out duration-300`}>
+
+    </div>
+  )
 }
 
 function ProfileMenu({ title, click }: { title: string, click: () => void }): ReactNode {
@@ -41,21 +50,30 @@ function SideMenu({ profileMenu, setProfileMenu, setShowFormDetailUser }: { prof
 export default function HeaderMenu(): ReactNode {
   const [profileMenu, setProfileMenu] = useState(false)
   const [showFormDetailUser, setShowFormDetailUser] = useState(false)
+  const [showMenuMobile, setShowMenuMobile] = useState(false)
   const profileRef = useRef<any>()
+  const mobileMenuRef = useRef<any>()
   useClickOutside(profileRef, () => setProfileMenu(false))
+  useClickOutside(mobileMenuRef, () => setShowMenuMobile(false))
   return (
-    <header className='w-[100vw] h-[10vh] bg-sky-600 flex md:justify-between justify-end items-center fixed top-0'>
+    <header className='w-[100vw] h-[10vh] bg-sky-600 flex md:justify-between items-center fixed top-0'>
       <div className='md:flex hidden gap-8 h-[100%]'>
         <Image className='w-14 h-14 m-3' src={LogoPAH} alt='LogoPAH' />
       </div>
-      <ul className='flex gap-8 h-[100%]'>
+      <ul className='md:flex gap-8 h-[100%] hidden'>
         <HeadMenu />
       </ul>
+      <div ref={mobileMenuRef} className='w-[50%] md:hidden block pl-2'>
+        <HiListBullet className='w-8 h-8 text-white' onClick={() => setShowMenuMobile(!showMenuMobile)} />
+        <MobileMenu  show={showMenuMobile} />
+      </div>
+      <div className='w-[50%] flex justify-end'>
+        <FormDetailUser show={showFormDetailUser} setShow={setShowFormDetailUser} />
+      </div>
       <div ref={profileRef} className='relative'>
         <Image src={userCircle} alt='' className='w-10 h-10 fill-white m-3' onClick={() => setProfileMenu(!profileMenu)} />
         <SideMenu profileMenu={profileMenu} setProfileMenu={setProfileMenu} setShowFormDetailUser={setShowFormDetailUser} />
       </div>
-      <FormDetailUser show={showFormDetailUser} setShow={setShowFormDetailUser} />
     </header>
   )
 }

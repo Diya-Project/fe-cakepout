@@ -1,12 +1,12 @@
 'use client'
-import { Controller } from "react-hook-form"
+import { Controller, UseFormReturn } from "react-hook-form"
 import Select from 'react-select';
 import { FocusEventHandler, ReactNode } from "react";
 import { SelectAttributes } from "@/type";
 
 type SelectFormAttributes = {
     instanceId: string;
-    method: any;
+    method: UseFormReturn<any, any, undefined>;
     methodName: string;
     className?: string;
     title: string;
@@ -25,7 +25,7 @@ function SelectForm
     const { error } = method.getFieldState(methodName)
     return (
         <div className={`w-full space-y-1 ${className}`}>
-            <label className="md:mx-0 text-md font-montserrat font-semibold text-gray-700">{title}</label>
+            <h1 className="md:mx-0 text-md font-montserrat font-semibold text-gray-700">{title}</h1>
             <Controller
                 control={method.control}
                 name={methodName}

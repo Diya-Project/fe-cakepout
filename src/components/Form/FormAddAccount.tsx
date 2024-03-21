@@ -48,8 +48,8 @@ export default function FormAddAccount({ submit, show, close }: FormAddAccountAt
             <Form submit={method.handleSubmit(submit)}>
                 <SelectForm instanceId='select-grup-akun' title='Klasifikasi Akun' method={method} methodName='group_account' options={grupAkun} />
                 <div className='flex flex-col justify-start items-start gap-2'>
-                    <label className='font-montserrat font-semibold'>Main/Opsional</label>
-                    <input className='w-4 h-4' type='checkbox' checked={statusGroupAccounLabel} onChange={(e) => {
+                    <h1 className='font-montserrat font-semibold'>Main/Opsional</h1>
+                    <input name='checkbox' className='w-4 h-4' type='checkbox' checked={statusGroupAccounLabel} onChange={(e) => {
                         setStatusGroupAccountLabel(e.currentTarget.checked)
                         method.setValue('group_account_label', 0)
                         method.setValue('group_account_name', undefined)

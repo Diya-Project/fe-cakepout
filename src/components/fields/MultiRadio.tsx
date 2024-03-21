@@ -1,9 +1,10 @@
 import React, { ReactNode } from 'react'
 import RadioForm from './RadioForm'
+import { FieldValues, UseFormReturn } from 'react-hook-form';
 
 type MultiRadioAttributes = {
     header: string
-    method: any;
+    method: UseFormReturn<any, any>;
     methodName: string;
     value: Array<string>;
     title: Array<string>;
@@ -11,7 +12,8 @@ type MultiRadioAttributes = {
 }
 
 
-export default function MultiRadio({ header, method, methodName, value, title, children }: MultiRadioAttributes):ReactNode {
+export default function MultiRadio({ header, method, methodName, value, title, children }: MultiRadioAttributes): ReactNode {
+    const errorMessage = method.formState.errors[methodName]?.message
     return (
         <div>
             <h1 className='font-light mb-2'>{header}</h1>
@@ -22,7 +24,7 @@ export default function MultiRadio({ header, method, methodName, value, title, c
             </div>
             {method.formState.errors[methodName] && (
                 <p className="text-red-600 mt-1 mx-1">
-                    {method.formState.errors[methodName].message}
+                    {`${errorMessage}`}
                 </p>
             )}
         </div>
