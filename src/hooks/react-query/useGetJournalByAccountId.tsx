@@ -8,7 +8,7 @@ import { useEffect } from "react";
 export function useGetJournalByAccountId(accountId: string): UseQueryResult<AxiosResponse<any, any>, Error> {
     const journal = useQuery({
         queryKey: ['get_journal_by_account_id'],
-        queryFn: () => api.get(`/journal/account_id/${accountId}`),
+        queryFn: () => api.get(`/journal/account-id/${accountId}`),
         enabled: accountId !== null ? true : false
     })
     useEffect(() => {

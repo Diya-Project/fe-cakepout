@@ -7,7 +7,7 @@ import { useEffect } from "react";
 export function useGetAccountByAccountNumber(accountNumber: string): UseQueryResult<AxiosResponse<any, any>, Error> {
     const account = useQuery({
         queryKey: ["get_account_by_account_number"],
-        queryFn: () => api.get(`/account/account_number/${accountNumber}`),
+        queryFn: () => api.get(`/account/account-number/${accountNumber}`),
         enabled: accountNumber !== null ? true : false
     })
     useEffect(() => {
