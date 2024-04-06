@@ -21,7 +21,7 @@ export default function FormDetailUser({ show, setShow }: FormDetailUserAttribut
                 <Text title='Status' value='Aktif' />
                 <div className='w-full h-[2px] bg-slate-300'></div>
                 <div className='flex cursor-pointer py-1 hover:bg-slate-100'>
-                    <Image src={nextArrow} alt='' className='w-7 h-7' />
+                    <Image loading='lazy' placeholder='blur' src={nextArrow} alt='' className='w-7 h-7' />
                     <h1 className='mt-[3px] text-sky-700'>Edit</h1>
                 </div>
             </div>

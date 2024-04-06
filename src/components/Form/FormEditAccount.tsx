@@ -24,7 +24,7 @@ export default function FormEditAccount({ submit, show, close, oneAccount }: For
     return (
         <Modal title='Edit Akun' show={show} close={close}>
             <Form submit={method.handleSubmit(submit)}>
-                <InputForm title='Nama' method={method} methodName='name' />
+                <InputForm id="input-edit-name-account" title='Nama' method={method} methodName='name' />
             </Form>
         </Modal>
     )

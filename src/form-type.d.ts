@@ -11,3 +11,13 @@ type AddAccountAttributes = {
 type EditAccountAttributes = {
     name: string
 }
+
+type StatusJournalAttributes = 'K' | 'D'
+
+type AddJournalAttributes = {
+    transactionDate: string;
+    amount: number;
+    status: StatusJournalAttributes;
+    accountId: string;
+    accountingYear: string;
+}

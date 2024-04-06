@@ -1,5 +1,5 @@
 'use client'
-import React, { ReactNode, useEffect, useState } from 'react'
+import React, { ReactNode, useState } from 'react'
 import { DisbursementOfFundAttributes } from '@/type'
 import Detail from '../Detail'
 import Message from '@/components/templates/Message'

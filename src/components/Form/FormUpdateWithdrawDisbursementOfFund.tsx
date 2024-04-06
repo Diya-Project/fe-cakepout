@@ -1,6 +1,6 @@
 import InputForm from '@/components/fields/InputForm'
 import SelectForm from '@/components/fields/SelectForm'
-import { usePtkOptions } from '@/options/ptkOptions'
+import { usePtkOptions } from '@/options/usePtkOptions'
 import { yupResolver } from '@hookform/resolvers/yup'
 import React, { ReactNode } from 'react'
 import { useForm } from 'react-hook-form'
@@ -23,7 +23,7 @@ export default function FormUpdateWithdrawDisbursementOfFund({ submit, show, clo
         <Modal title='Update Withdraw Anggaran' show={show} close={close}>
             <Form submit={method.handleSubmit(submit)}>
                 <SelectForm instanceId='select_ptk' title='Penerima' method={method} methodName='ptk_id' options={ptkOptions} />
-                <InputForm title='Pihak Ketiga (di isi jika yang menerima selain ptk)' method={method} methodName='receipient' />
+                <InputForm id='input-receipent' title='Pihak Ketiga (di isi jika yang menerima selain ptk)' method={method} methodName='receipient' />
             </Form>
         </Modal>
     )

@@ -5,14 +5,16 @@ import { AxiosResponse } from "axios";
 import { useEffect } from "react";
 
 
-export default function useGetAllAccount(trigger: boolean): UseQueryResult<AxiosResponse<any, any>, Error> {
+export default function useGetAllAccountByPage(trigger: boolean, page: number, size: number): UseQueryResult<AxiosResponse<any, any>, Error> {
     const account = useQuery({
         queryKey: ['get_all_account'],
-        queryFn: () => api.get(`/account`)
+        queryFn: () => api.get(`/account/page?page=${page}&size=${size}`)
     })
     useEffect(() => {
-        account.refetch()
+        if (page && size) {
+            account.refetch()
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [trigger,])
+    }, [trigger, page, size])
     return account
 }

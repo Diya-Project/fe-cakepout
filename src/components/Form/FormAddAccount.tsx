@@ -1,17 +1,16 @@
 import InputForm from '@/components/fields/InputForm'
 import SelectForm from '@/components/fields/SelectForm'
+import React, { ReactNode, useState } from 'react'
 import { yupResolver } from '@hookform/resolvers/yup'
-import React, { ReactNode, useEffect, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import * as yup from "yup"
 import Form from '../templates/Form'
 import Modal from '../templates/Modal'
-import useDetailOfActivityOptions from '@/options/activityOptions'
+import useDetailOfActivityOptions from '@/options/useActivityOptions'
 import { grupAkun } from '../constants/GrupAkun'
-import useGroupAccountLabelOptions from '@/options/groupAccount'
+import useGroupAccountLabelOptions from '@/options/useGroupAccountByGroupOptions'
 import useResetForm from '@/hooks/useResetForm'
-import useSetValueForm from '@/hooks/useSetValueForm'
-import useInstitutionOptions from '@/options/institution'
+import useInstitutionOptions from '@/options/useInstitutionOptions'
 import Selector from '../fields/Selector'
 import { SelectAttributes } from '@/type'
 
@@ -41,7 +40,6 @@ export default function FormAddAccount({ submit, show, close }: FormAddAccountAt
     const detailOfActiviyOptions = useDetailOfActivityOptions(institutionValue.value)
     const institutionOptions = useInstitutionOptions()
 
-    // useSetValueForm(method, ['group_account_label', 'group_account_name', 'activity_id', 'name'], watchGroupAccount)
     useResetForm(method, show, null)
     return (
         <Modal title='Tambah Akun' show={show} close={close}>
@@ -58,9 +56,9 @@ export default function FormAddAccount({ submit, show, close }: FormAddAccountAt
                 {!statusGroupAccounLabel ?
                     <SelectForm instanceId='select-group-account-label' title='Grup Akun Label' method={method} methodName='group_account_label' options={groupAccountLabelOptions} />
                     :
-                    <InputForm title='Grup Akun' method={method} methodName='group_account_name' />
+                    <InputForm id='iput-group-account-name' title='Grup Akun' method={method} methodName='group_account_name' />
                 }
-                <InputForm title='Nama' method={method} methodName='name' />
+                <InputForm id='input-name-account' title='Nama' method={method} methodName='name' />
                 {activityCode.includes(watchGroupAccount) && <Selector title='Lembaga' options={institutionOptions} value={institutionValue} onChange={(e) => setInstitutionValue(e)} />}
                 {activityCode.includes(watchGroupAccount) && <SelectForm instanceId='select-detailOfActivity' title='Kegiatan' method={method} methodName='activity_id' options={detailOfActiviyOptions} />}
             </Form>

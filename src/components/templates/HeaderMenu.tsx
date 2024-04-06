@@ -21,7 +21,7 @@ function HeadMenu(): ReactNode {
   ))
 }
 
-function MobileMenu({ show }: { show: boolean}): ReactNode {
+function MobileMenu({ show }: { show: boolean }): ReactNode {
   return (
     <div className={`fixed top-[10vh] w-[90vw] h-[90vh] bg-white ${show ? 'left-0' : '-left-[95vh]'} transition-all ease-in-out duration-300`}>
 
@@ -56,24 +56,22 @@ export default function HeaderMenu(): ReactNode {
   useClickOutside(profileRef, () => setProfileMenu(false))
   useClickOutside(mobileMenuRef, () => setShowMenuMobile(false))
   return (
-    <header className='w-[100vw] h-[10vh] bg-sky-600 flex md:justify-between items-center fixed top-0'>
+    <header className='w-[100vw] h-[10vh] bg-sky-600 flex justify-between items-center fixed top-0'>
       <div className='md:flex hidden gap-8 h-[100%]'>
-        <Image className='w-14 h-14 m-3' src={LogoPAH} alt='LogoPAH' />
+        <Image loading='lazy' placeholder='blur' className='w-14 h-14 m-3' src={LogoPAH} alt='LogoPAH' />
       </div>
-      <ul className='md:flex gap-8 h-[100%] hidden'>
+      <div className='md:flex gap-8 h-[100%] hidden'>
         <HeadMenu />
-      </ul>
-      <div ref={mobileMenuRef} className='w-[50%] md:hidden block pl-2'>
-        <HiListBullet className='w-8 h-8 text-white' onClick={() => setShowMenuMobile(!showMenuMobile)} />
-        <MobileMenu  show={showMenuMobile} />
       </div>
-      <div className='w-[50%] flex justify-end'>
-        <FormDetailUser show={showFormDetailUser} setShow={setShowFormDetailUser} />
+      <div ref={mobileMenuRef} className='md:w-[0%] w-[50%] md:hidden block pl-2'>
+        <HiListBullet className='w-8 h-8 text-white' onClick={() => setShowMenuMobile(!showMenuMobile)} />
+        <MobileMenu show={showMenuMobile} />
       </div>
       <div ref={profileRef} className='relative'>
-        <Image src={userCircle} alt='' className='w-10 h-10 fill-white m-3' onClick={() => setProfileMenu(!profileMenu)} />
+        <Image loading='lazy' placeholder='blur' src={userCircle} alt='' className='w-10 h-10 fill-white m-3' onClick={() => setProfileMenu(!profileMenu)} />
         <SideMenu profileMenu={profileMenu} setProfileMenu={setProfileMenu} setShowFormDetailUser={setShowFormDetailUser} />
       </div>
+      <FormDetailUser show={showFormDetailUser} setShow={setShowFormDetailUser} />
     </header>
   )
 }

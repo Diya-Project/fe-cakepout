@@ -121,3 +121,19 @@ export type InstitutionAttributes = {
     no_lembaga: number;
     nama_lembaga: string;
 }
+
+export type JournalAttributes = {
+    uuid: string,
+    reference: string;
+    transaction_date: Date;
+    amount: number;
+    status: string;
+    accounting_year: string;
+    account_id: string;
+    account?: AccountAttributes;
+}
+
+export type AccountingYearAttributes = {
+    tahun: string;
+    active: boolean;
+}

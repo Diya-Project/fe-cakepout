@@ -8,10 +8,10 @@ export function useGetAccountByUuid(uuid: string): UseQueryResult<AxiosResponse<
     const account = useQuery({
         queryKey: ['get_account_by_uuid'],
         queryFn: () => api.get(`/account/${uuid}`),
-        enabled: uuid !== null ? true : false
+        enabled: uuid && uuid !== null ? true : false
     })
     useEffect(() => {
-        if (uuid) {
+        if (uuid && uuid !== null) {
             account.refetch()
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 
-export default function useShowLoading(data: any): { show: boolean, message: string, status: boolean } {
+export default function useShowLoading(data:any): { show: boolean, message: string, status: boolean } {
     const [showMessage, setShowMessage] = useState(false)
     const [message, setMessage] = useState('')
     useEffect(() => {
