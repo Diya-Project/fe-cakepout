@@ -30,7 +30,7 @@ export default function Detail({ anggaran, confirm }: DetailAttributes):ReactNod
     return (
         <div className='md:w-[70%] w-[100%] bg-white p-2'>
             <Header title='Detail Anggaran' />
-            <div className='h-[80%] py-3 flex flex-wrap md:gap-5 gap-3'>
+            <div className='h-[80%] py-3 flex flex-wrap md:gap-4 gap-3'>
                 {listDetail.map((e, i) => (
                     <DetailCard key={i} icon={e.icon} title={e.title} value={e.value} />
                 ))}

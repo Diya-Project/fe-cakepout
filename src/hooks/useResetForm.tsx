@@ -8,5 +8,5 @@ export default function useResetForm(method: UseFormReturn<any, any, undefined>,
         } else {
             method.reset()
         }
-    }, [method, trigger, value])
+    }, [trigger, value])
 }

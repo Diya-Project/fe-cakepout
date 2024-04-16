@@ -1,9 +1,9 @@
 import { ReactNode } from "react";
 import { InputType } from "@/type";
-import { FieldValues, UseFormReturn } from "react-hook-form";
+import { UseFormReturn } from "react-hook-form";
 
 type InputFormAttributes = {
-    id:string;
+    id: string;
     max?: number;
     step?: number;
     type?: InputType;

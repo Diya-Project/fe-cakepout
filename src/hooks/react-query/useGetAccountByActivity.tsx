@@ -8,10 +8,10 @@ export function useGetAccountByActivity(activityId: string): UseQueryResult<Axio
     const account = useQuery({
         queryKey: ['get_account_by_activity'],
         queryFn: () => api.get(`/account/activity/${activityId}`),
-        enabled: activityId !== null ? true : false
+        enabled: activityId !== null && activityId !== '' ? true : false
     })
     useEffect(() => {
-        if (activityId) {
+        if (activityId !== null && activityId !== '') {
             account.refetch()
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps

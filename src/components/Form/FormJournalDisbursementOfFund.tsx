@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { SubmitHandler, useFieldArray, useForm } from 'react-hook-form'
 import * as yup from "yup"
@@ -8,11 +8,10 @@ import InputForm from '../fields/InputForm'
 import useAllAccountOptions from '@/options/useAllAccountOptions'
 import SelectForm from '../fields/SelectForm'
 import { HiTrash } from 'react-icons/hi2'
-import { useGetAccountByUuid } from '@/hooks/react-query/useGetAccountByUuid'
 import useAccountByGroupOptions from '@/options/useAccountByGroupOptions'
-import useResetForm from '@/hooks/useResetForm'
+import { useGetAccountByActivity } from '@/hooks/react-query/useGetAccountByActivity'
 
-export default function FormAddJournal({ show, close, submit }: { show: boolean, close: () => void, submit: SubmitHandler<AddJournalAttributes> }) {
+export default function FormJournalDisbursementOfFund({ show, close, submit, fromAccount }: { show: boolean, close: () => void, submit: SubmitHandler<AddJournalAttributes>, fromAccount: string }) {
     const method = useForm({
         mode: 'all',
         resolver: yupResolver(
@@ -30,18 +29,21 @@ export default function FormAddJournal({ show, close, submit }: { show: boolean,
         control: method.control,
         name: 'to_account'
     })
-    const watchFromAccount = method.watch('from_account')
-    const getAccountGroup = useGetAccountByUuid(watchFromAccount)
+    const getAccountGroup = useGetAccountByActivity(fromAccount)
 
-    const toAccountOptions = useAccountByGroupOptions(getAccountGroup?.data?.data?.group_account?.group_account === 1 ? 4 : 1, show)
     const fromAccountOptions = useAllAccountOptions(show)
+    const toAccountOptions = useAccountByGroupOptions(getAccountGroup?.data?.data?.group_account?.group_account === 1 ? 4 : 1, show)
 
-    useResetForm(method, show, null)
+    useEffect(() => {
+        if (fromAccount !== null && fromAccount !== '' && getAccountGroup.data?.data?.length > 0) {
+            method.reset({ from_account: getAccountGroup.data?.data[0]?.uuid })
+        }
+    }, [fromAccount, getAccountGroup?.data?.data])
     return (
         <Modal title='Tambah Jurnal' show={show} close={close} scroll>
             <Form submit={method.handleSubmit(submit)}>
                 <div className='border-b border-b-slate-500 pb-5 space-y-1'>
-                    <SelectForm instanceId='select-akun-options' title='Dari akun' method={method} methodName='from_account' options={fromAccountOptions} />
+                    <SelectForm instanceId='select-akun-options' title='Dari akun' method={method} methodName='from_account' options={fromAccountOptions} disabled />
                 </div>
                 {fields.map((e, i: number) => (
                     <div key={e.id} className='border-b border-b-slate-400 pb-3'>

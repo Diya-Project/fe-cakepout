@@ -10,7 +10,7 @@ type TableData = {
     title: string;
     clickAdd: MouseEventHandler<HTMLButtonElement>;
     data: Array<AccountAttributes | { value: string, label: string }>;
-    head: Array<string>;
+    head: Array<string|false>;
     children: ReactNode;
     pages?: ReactNode;
 }

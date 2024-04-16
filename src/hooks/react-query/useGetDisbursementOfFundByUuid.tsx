@@ -9,10 +9,10 @@ export function useGetDisbursementOfFundByUuid(uuid: string, trigger: boolean): 
     const disbursementOfFund = useQuery({
         queryKey: ["get_disbursement_of_fund_by_uuid"],
         queryFn: () => api.get(`/disbursement-of-fund/${uuid}`),
-        enabled: uuid !== null ? true : false
+        enabled: uuid !== null && uuid !== "" ? true : false
     })
     useEffect(() => {
-        if (uuid) {
+        if (uuid !== null && uuid !== "") {
             disbursementOfFund.refetch()
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps

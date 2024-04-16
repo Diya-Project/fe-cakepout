@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react'
 
 type TableAttributes = {
-    head: string[],
+    head: (string|false)[],
     children: React.ReactNode,
 }
 

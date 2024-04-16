@@ -13,7 +13,7 @@ export default function Page():ReactNode {
     const [showModalApproveStatusDisbursementOfFund, setShowModalApproveStatusDisbursementOfFund] = useState<boolean>(false)
     const [oneUuidDisbursementOfFund, setOneUuidDisbursementOfFund] = useState<string>('')
     const updateDisbursementOfFund = useUpdateStatusDisbursementOfFund()
-    const showMessage = useShowMessage(updateDisbursementOfFund?.data)
+    const showMessage = useShowMessage(updateDisbursementOfFund)
     const getOneDisbursementOfFund = (e: DisbursementOfFundAttributes) => {
         setOneDisbursementOfFund(e)
     }
@@ -28,7 +28,7 @@ export default function Page():ReactNode {
     return (
         <>
             <Message message={showMessage.message} show={showMessage.show} succes={showMessage.status} />
-            <div className='flex md:flex-row flex-col gap-7 -m-14'>
+            <div className='flex md:flex-row flex-col gap-7'>
                 <Antrian
                     clickDisbursementOfFund={getOneDisbursementOfFund}
                     render={showMessage.show}

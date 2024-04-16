@@ -5,7 +5,6 @@ import { useGetAllJournal } from '@/hooks/react-query/useGetAllJournal'
 import Pagination from '@/components/templates/Pagination'
 import { JournalAttributes } from '@/type'
 import { currency } from '@/helper/currency'
-import { HiPencil, HiTrash } from 'react-icons/hi2'
 import FormAddJournal from '@/components/Form/FormAddJournal'
 import { useAddJournal } from '@/hooks/react-query/useAddJournal'
 import useShowMessage from '@/hooks/useShowMessage'
@@ -21,7 +20,7 @@ export default function Page() {
 
     const saveJournal = useAddJournal()
 
-    const showMessage = useShowMessage(saveJournal?.data)
+    const showMessage = useShowMessage(saveJournal)
     const listJournal = useGetAllJournal(showMessage?.show, page !== null ? page : 1, size !== null ? size : 1)
 
     const addJournal = (e: AddJournalAttributes) => {

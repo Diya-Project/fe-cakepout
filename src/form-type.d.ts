@@ -14,10 +14,20 @@ type EditAccountAttributes = {
 
 type StatusJournalAttributes = 'K' | 'D'
 
-type AddJournalAttributes = {
-    transactionDate: string;
+type ToAccountJournalAttributes = {
+    account_id: string;
     amount: number;
-    status: StatusJournalAttributes;
-    accountId: string;
-    accountingYear: string;
+    transaction_date: string;
+}
+
+type AddJournalAttributes = {
+    from_account: string;
+    to_account?: Array<ToAccountJournalAttributes>
+}
+
+type AddMonthlyAccountCalculation = {
+    month_index: number;
+    accounting_year: string;
+    account_id: string;
+    open: boolean | string
 }

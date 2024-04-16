@@ -29,7 +29,7 @@ export default function Page(): ReactNode {
     const editAccount = useUpdateAccount()
     const removeAccount = useDeleteAccount()
 
-    const showMessage = useShowMessage(saveAccount?.data || editAccount?.data || removeAccount.data)
+    const showMessage = useShowMessage(saveAccount || editAccount || removeAccount)
     const listAccount = useGetAllAccountByPage(showMessage.show, page !== null ? page : 1, size !== null ? size : 1)
 
     const addAccount = (e: AddAccountAttributes) => {
@@ -50,7 +50,7 @@ export default function Page(): ReactNode {
             <TableData title='Daftar Akun' clickAdd={() => setShowFormAddAccount(true)} data={listAccount?.data?.data?.data} head={head}
                 pages={<Pagination page={page} allPage={listAccount?.data?.data?.totalPages} setPage={setPage} value={size} setValue={(e) => setSize(parseInt(e.target?.value))} />}
             >
-                {listAccount?.data?.data?.data.map((e: AccountAttributes, i: number) => (
+                {listAccount?.data?.data?.data?.map((e: AccountAttributes, i: number) => (
                     <tr key={i} className="bg-white border-b border-slate-100 hover:bg-gray-100 overflow-y-auto">
                         <td className='px-6 py-3'>{`${e.group_account.group_account}.${e.group_account.group_account_label}.${e.account_number}`}</td>
                         <td className='px-6 py-3'>{e.name}</td>
