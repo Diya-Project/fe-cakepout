@@ -12,13 +12,15 @@ import { useAddJournal } from '@/hooks/react-query/useAddJournal'
 
 export default function Page(): ReactNode {
     const [oneDisbursementOfFund, setOneDisbursementOfFund] = useState<DisbursementOfFundAttributes | null>()
+    const [idAccount, setIdAccount] = useState<string>('')
+    
     const [showModalApproveWithdrawDisbursementOfFund, setShowModalApproveWithdrawDisbursementOfFund] = useState<boolean>(false)
     const [showFormJournal, setShowFormJournal] = useState<boolean>(false)
-    const [idAccount, setIdAccount] = useState<string>('')
-    const [oneUuidDisbursementOfFund, setOneUuidDisbursementOfFund] = useState<string>('')
+
     const updateWithdrawDisbursementOfFund = useUpdateWithDrawDisbursementOfFund()
     const saveJournal = useAddJournal()
-    const showMessageDisbursementOfFund = useShowMessage(updateWithdrawDisbursementOfFund || saveJournal)
+
+    const showMessageDisbursementOfFund = useShowMessage(updateWithdrawDisbursementOfFund)
     const showMessageJournal = useShowMessage(saveJournal)
 
     const getAnggaranDisbursementOfFund = (e: DisbursementOfFundAttributes) => {
@@ -26,7 +28,7 @@ export default function Page(): ReactNode {
         setIdAccount(e.activity_id)
     }
     const onUpdateWithdrawDisbursementOfFund = (e: { ptk_id: string | null, receipient: string | null }) => {
-        updateWithdrawDisbursementOfFund.mutate({ uuid: oneUuidDisbursementOfFund, data: { ptk_id: e.ptk_id, receipient: e.receipient } })
+        updateWithdrawDisbursementOfFund.mutate({ uuid: oneDisbursementOfFund?.uuid!, data: { ptk_id: e.ptk_id, receipient: e.receipient } })
         setShowModalApproveWithdrawDisbursementOfFund(false)
     }
     const createJournal = (e: AddJournalAttributes) => {
@@ -54,10 +56,10 @@ export default function Page(): ReactNode {
                     status={1} />
                 <Detail
                     anggaran={oneDisbursementOfFund!}
-                    confirm={(e: string | number | undefined) => {
-                        e && typeof e === 'string' && setOneUuidDisbursementOfFund(e)
+                    confirm={() => {
                         setShowModalApproveWithdrawDisbursementOfFund(true)
                     }}
+                    titleButton='Realisasikan'
                 />
                 <FormUpdateWithdrawDisbursementOfFund
                     show={showModalApproveWithdrawDisbursementOfFund}

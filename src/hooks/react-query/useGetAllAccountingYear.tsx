@@ -8,7 +8,8 @@ import { useEffect } from "react";
 export default function useGetAllAccountingYear(trigger: boolean): UseQueryResult<AxiosResponse<any, any>, Error> {
     const accountingYear = useQuery({
         queryKey: ['get_all_accounting_year'],
-        queryFn: () => api.get(`/accounting-year`)
+        queryFn: () => api.get(`/accounting-year`),
+        enabled: trigger ? true : false
     })
     useEffect(() => {
         accountingYear.refetch()

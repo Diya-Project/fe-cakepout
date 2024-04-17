@@ -15,10 +15,11 @@ import { ReactNode } from 'react';
 type DetailAttributes = {
     anggaran?: DisbursementOfFundAttributes;
     confirm: (e: string | number | undefined) => void;
+    titleButton:string;
 }
 
 
-export default function Detail({ anggaran, confirm }: DetailAttributes):ReactNode {
+export default function Detail({ anggaran, confirm,titleButton }: DetailAttributes):ReactNode {
     const listDetail = [
         { icon: <MdOutlineDescription className='w-20 h-20 text-sky-800 my-auto' />, title: 'Uraian', value: anggaran?.rincian_kegiatan?.uraian || '-' },
         { icon: <IoCalendarNumberOutline className='w-20 h-20 text-sky-800 my-auto' />, title: 'Tahun Ajar', value: anggaran?.accounting_year || '-' },
@@ -36,7 +37,7 @@ export default function Detail({ anggaran, confirm }: DetailAttributes):ReactNod
                 ))}
             </div>
             <div className='flex justify-end borderrounded-md shadow-md'>
-                <ConfirmButton title='Setujui' click={() => confirm(anggaran?.uuid)} value={anggaran?.uuid} />
+                <ConfirmButton title={titleButton} click={() => confirm(anggaran?.uuid)} value={anggaran?.uuid} />
             </div>
         </div>
     )

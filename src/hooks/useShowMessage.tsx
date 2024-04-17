@@ -4,7 +4,6 @@ export default function useShowMessage(data: any): { show: boolean, message: str
     const [showMessage, setShowMessage] = useState(false)
     const [message, setMessage] = useState('')
     useEffect(() => {
-        console.log(data)
         if (data?.data?.status === 200) {
             setMessage(data?.data?.data?.msg)
             setShowMessage(true)

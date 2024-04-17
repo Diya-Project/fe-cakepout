@@ -37,6 +37,7 @@ export default function Page():ReactNode {
                 <Detail
                     anggaran={oneDisbursementOfFund}
                     confirm={approveStatusDisbursementOfFund}
+                    titleButton='Setujui'
                 />
                 <ConfirmModal
                     show={showModalApproveStatusDisbursementOfFund}

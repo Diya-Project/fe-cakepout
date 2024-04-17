@@ -8,7 +8,8 @@ import { useEffect } from "react";
 export default function useGetAllAccount(trigger: boolean): UseQueryResult<AxiosResponse<any, any>, Error> {
     const account = useQuery({
         queryKey: ['get_all_account'],
-        queryFn: () => api.get(`/account`)
+        queryFn: () => api.get(`/account`),
+        enabled: trigger ? true : false
     })
     useEffect(() => {
         account.refetch()

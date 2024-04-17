@@ -31,3 +31,13 @@ type AddMonthlyAccountCalculation = {
     account_id: string;
     open: boolean | string
 }
+
+type UpdateWithdrawDisbursementOfFundAttributes = {
+    uuid: string;
+    data: {
+        ptk_id: string | null;
+        receipient: string | null;
+        // transaction_date: string;
+        // accounting_year: string;
+    }
+}

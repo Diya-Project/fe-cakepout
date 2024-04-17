@@ -29,8 +29,11 @@ export default function Page(): ReactNode {
     const editAccount = useUpdateAccount()
     const removeAccount = useDeleteAccount()
 
-    const showMessage = useShowMessage(saveAccount || editAccount || removeAccount)
-    const listAccount = useGetAllAccountByPage(showMessage.show, page !== null ? page : 1, size !== null ? size : 1)
+    const showMessageAdd = useShowMessage(saveAccount)
+    const showMessageUpdate = useShowMessage(editAccount)
+    const showMessageDelete = useShowMessage(removeAccount)
+
+    const listAccount = useGetAllAccountByPage(showMessageAdd.show || showMessageUpdate.show || showMessageDelete.show, page !== null ? page : 1, size !== null ? size : 1)
 
     const addAccount = (e: AddAccountAttributes) => {
         saveAccount.mutate(e)
@@ -46,7 +49,9 @@ export default function Page(): ReactNode {
     }
     return (
         <>
-            <Message show={showMessage.show} message={showMessage.message} succes={showMessage.status} />
+            <Message show={showMessageAdd.show} message={showMessageAdd.message} succes={showMessageAdd.status} />
+            <Message show={showMessageUpdate.show} message={showMessageUpdate.message} succes={showMessageUpdate.status} />
+            <Message show={showMessageDelete.show} message={showMessageDelete.message} succes={showMessageDelete.status} />
             <TableData title='Daftar Akun' clickAdd={() => setShowFormAddAccount(true)} data={listAccount?.data?.data?.data} head={head}
                 pages={<Pagination page={page} allPage={listAccount?.data?.data?.totalPages} setPage={setPage} value={size} setValue={(e) => setSize(parseInt(e.target?.value))} />}
             >

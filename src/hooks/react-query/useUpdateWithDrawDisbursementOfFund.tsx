@@ -4,16 +4,11 @@ import api from "@/app/api/lib/axios";
 import { AxiosResponse } from "axios";
 
 
-export function useUpdateWithDrawDisbursementOfFund(): UseMutationResult<AxiosResponse<any, any>, Error, {
-    uuid: string;
-    data: {
-        ptk_id: string | null;
-        receipient: string | null;
-    };
-}, unknown> {
+
+export function useUpdateWithDrawDisbursementOfFund(): UseMutationResult<AxiosResponse<any, any>, Error, UpdateWithdrawDisbursementOfFundAttributes, unknown> {
     const disbursementOfFund = useMutation({
         mutationKey: ['update_withdraw_disbursement_of_fund'],
-        mutationFn: (e: { uuid: string, data: { ptk_id: string | null, receipient: string | null } }) => api.put(`/disbursement-of-fund/withdraw/${e.uuid}`, e.data),
+        mutationFn: (e: UpdateWithdrawDisbursementOfFundAttributes) => api.put(`/disbursement-of-fund/withdraw/${e.uuid}`, e.data),
         onSuccess: (e) => {
             return e
         },

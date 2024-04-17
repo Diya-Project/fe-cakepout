@@ -19,9 +19,11 @@ import { useUpdateStatusMonthyAccountCalculation } from '@/hooks/react-query/use
 export default function page() {
     const session = useSession()
     const head = ['Nomor Akun', 'Nama Akun', 'Tahun', 'Bulan', 'Status', 'Total', session.data?.user.role === 'superAdmin' && 'Edit Status']
+
     const [showFormAddCalculationJournal, setShowFormAddCalculationJournal] = useState<boolean>(false)
     const [showFormUpdateStatusCalculationJournal, setShowFormUpdateStatusCalculationJournal] = useState<boolean>(false)
     const [oneMonthlyAccountCalculatin, setOneMonthlyAccountCalculation] = useState({ uuid: '', open: 'tidak' })
+
     const [page, setPage] = useState<number>(1)
     const [size, setSize] = useState<number>(5)
 
@@ -30,7 +32,9 @@ export default function page() {
 
     const showMessageAdd = useShowMessage(saveMonthlyAccountCalculation)
     const showMessageUpdate = useShowMessage(updateMonthlyAccountCalculation)
+
     const listMonthlyAccountCalculation = useGetAllMonthlyAccountCalculation(showMessageAdd.show || showMessageUpdate.show, page !== null ? page : 1, size !== null ? size : 1)
+
     const addMonthlyAccountCalculation = (e: AddMonthlyAccountCalculation) => {
         e.open = e.open === 'iya' ? true : false
         saveMonthlyAccountCalculation.mutate(e)
@@ -41,14 +45,17 @@ export default function page() {
         updateMonthlyAccountCalculation.mutate({ uuid: oneMonthlyAccountCalculatin.uuid, data: e })
         setShowFormUpdateStatusCalculationJournal(false)
     }
+
     return (
         <>
             <Message show={showMessageAdd.show || showMessageUpdate.show} message={showMessageAdd.message || showMessageUpdate.message} succes={showMessageAdd.status || showMessageUpdate.status} />
             <TableData title='List Kalkulasi Jurnal' clickAdd={() => setShowFormAddCalculationJournal(true)} data={listMonthlyAccountCalculation?.data?.data?.data} head={head}
-                pages={<Pagination page={page} allPage={listMonthlyAccountCalculation?.data?.data?.totalPages} setPage={setPage} value={size} setValue={(e) => {
-                    setSize(parseInt(e.target.value))
-                    setPage(1)
-                }} />}
+                pages={
+                    <Pagination page={page} allPage={listMonthlyAccountCalculation?.data?.data?.totalPages} setPage={setPage} value={size} setValue={(e) => {
+                        setSize(parseInt(e.target.value))
+                        setPage(1)
+                    }} />
+                }
             >
                 {listMonthlyAccountCalculation?.data?.data?.data?.map((e: MonthlyAccountCalculationAttributes, i: number) => (
                     <tr key={i} className="bg-white border-b border-slate-100 hover:bg-gray-100 overflow-y-auto">
