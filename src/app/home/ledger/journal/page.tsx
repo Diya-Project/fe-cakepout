@@ -11,17 +11,21 @@ import useShowMessage from '@/hooks/useShowMessage'
 import Loading from '@/components/templates/Loading'
 import Message from '@/components/templates/Message'
 import { formatTime } from '@/helper/time'
+import Selector from '@/components/fields/Selector'
+import Input from '@/components/fields/Input'
 
 export default function Page() {
-    const head = ['Nomor Akun', 'Nama Akun', 'Jumlah', 'Status', 'Tanggal Transaksi', 'Referensi', 'Tahun']
+    const head = ['Nomor Akun', 'Nama Akun', 'Tanggal Transaksi', 'Referensi', 'D', 'K']
     const [showFormAddJournal, setShowFormAddJournal] = useState<boolean>(false)
     const [page, setPage] = useState<number>(1)
     const [size, setSize] = useState<number>(5)
+    const [fromDate, setFromDate] = useState("-")
+    const [toDate, setToDate] = useState("-")
 
     const saveJournal = useAddJournal()
 
     const showMessage = useShowMessage(saveJournal)
-    const listJournal = useGetAllJournal(showMessage?.show, page !== null ? page : 1, size !== null ? size : 1)
+    const listJournal = useGetAllJournal(showMessage?.show, page !== null ? page : 1, size !== null ? size : 1,fromDate,toDate)
 
     const addJournal = (e: AddJournalAttributes) => {
         saveJournal.mutate(e)
@@ -30,21 +34,32 @@ export default function Page() {
     return (
         <>
             <Message show={showMessage.show} message={showMessage.message} succes={showMessage.status} />
-            <TableData title='List Jurnal' clickAdd={() => setShowFormAddJournal(true)} data={listJournal?.data?.data?.data} head={head}
-                pages={<Pagination page={page} allPage={listJournal?.data?.data?.totalPages} setPage={setPage} value={size} setValue={(e) => {
-                    setSize(parseInt(e.target.value))
+            <TableData title='Jurnal' clickAdd={() => setShowFormAddJournal(true)} data={listJournal?.data?.data?.data} head={head}
+                pages={<Pagination page={page} allPage={listJournal?.data?.data?.totalPages} setPage={setPage} value={size} setValue={(e:any) => {
+                    setSize(parseInt(e.value))
                     setPage(1)
                 }} />}
+                calculate={
+                    <div className='bg-slate-800 w-[100%] h-[2px] flex justify-end gap-10 mt-5'>
+                        <h1 className='font-montserrat my-3 font-semibold text-slate-700'>Debit : {listJournal?.data?.data?.debit ? currency(listJournal?.data?.data?.debit) : currency(0)}</h1>
+                        <h1 className='font-montserrat my-3 font-semibold text-slate-700'>Kredit : {listJournal?.data?.data?.kredit ? currency(listJournal?.data?.data?.kredit) : currency(0)}</h1>
+                    </div>
+                }
+                filters={
+                    <div className='flex gap-3 -mt-2'>
+                        <Input id='dari-tanggal-journal' title="Dari" type="date" value={fromDate} setValue={(e) => setFromDate(e.target.value)} />
+                        <Input id='sampai-tanggal-journal' title="Sampai" type="date" value={toDate} setValue={(e) => setToDate(e.target.value)} />
+                    </div>
+                }
             >
                 {listJournal?.data?.data?.data?.map((e: JournalAttributes, i: number) => (
                     <tr key={i} className="bg-white border-b border-slate-100 hover:bg-gray-100 overflow-y-auto">
                         <td className='px-6 py-3'>{`${e.account?.group_account?.group_account}.${e.account?.group_account?.group_account_label}.${e.account?.account_number}`}</td>
                         <td className='px-6 py-3'>{e.account?.name}</td>
-                        <td className='px-6 py-3'>{e.amount ? currency(e.amount) : currency(0)}</td>
-                        <td className='px-6 py-3'>{e.status === 'D' ? 'Debit' : 'Kredit'}</td>
                         <td className='px-6 py-3'>{e.transaction_date ? formatTime(e.transaction_date) : '-'}</td>
                         <td className='px-6 py-3'>{e.reference}</td>
-                        <td className='px-6 py-3'>{e.accounting_year}</td>
+                        <td className='px-6 py-3'>{e.status === 'D' ? currency(e.amount) : "-"}</td>
+                        <td className='px-6 py-3'>{e.status === 'K' ? currency(e.amount) : "-"}</td>
                     </tr>
                 ))}
             </TableData >

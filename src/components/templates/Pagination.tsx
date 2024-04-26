@@ -2,6 +2,7 @@
 import React, { ChangeEventHandler, Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { IoMdArrowDropright, IoMdArrowDropleft } from "react-icons/io";
 import Input from '../fields/Input';
+import Selector from '../fields/Selector';
 
 
 export default function Pagination({ page, allPage, setPage, value, setValue }: { page: number, allPage: number, setPage: Dispatch<SetStateAction<number>>, value: number, setValue: ChangeEventHandler<HTMLInputElement> }) {
@@ -22,10 +23,19 @@ export default function Pagination({ page, allPage, setPage, value, setValue }: 
     useEffect(() => {
         setPageNow(1)
     }, [value])
+    const paginationOptions = [
+        { value: 5, label: 5 },
+        { value: 10, label: 10 },
+        { value: 20, label: 20 },
+        { value: 50, label: 50 },
+        { value: 100, label: 100 },
+        { value: 500, label: 500 },
+    ]
     return (
         <div className='h-[100%] flex justify-end items-end w-[100%]'>
             <div className='flex md:flex-row flex-col gap-3 items-end'>
-                <Input id='ditampilkan' title='Ditampilkan / halaman' type='number' value={value} setValue={setValue} />
+                <Selector value={{value,label:value}} title='Ditampilkan' options={paginationOptions} onChange={setValue} />
+                {/* <Input id='ditampilkan' title='Ditampilkan / halaman' type='number' value={value} setValue={setValue} /> */}
                 <div className='flex gap-3 items-end justify-end'>
                     <IoMdArrowDropleft className='w-8 h-8 text-sky-600 cursor-pointer border border-sky-600 rounded-full hover:bg-sky-100' onClick={previousPage} />
                     <div className='flex gap-1 my-auto font-montserrat text-sm text-gray-800'>

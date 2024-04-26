@@ -17,11 +17,11 @@ type StatusJournalAttributes = 'K' | 'D'
 type ToAccountJournalAttributes = {
     account_id: string;
     amount: number;
-    transaction_date: string;
 }
 
 type AddJournalAttributes = {
     from_account: string;
+    transaction_date: string;
     to_account?: Array<ToAccountJournalAttributes>
 }
 

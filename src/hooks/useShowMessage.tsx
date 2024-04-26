@@ -4,15 +4,16 @@ export default function useShowMessage(data: any): { show: boolean, message: str
     const [showMessage, setShowMessage] = useState(false)
     const [message, setMessage] = useState('')
     useEffect(() => {
+        let errorStatus = [403, 400, 404]
         if (data?.data?.status === 200) {
-            setMessage(data?.data?.data?.msg)
+            setMessage(data?.data?.data?.message)
             setShowMessage(true)
             setTimeout(() => {
                 setShowMessage(false)
             }, 3000)
         }
-        else if (data?.error?.response?.status === 400) {
-            setMessage(data?.error?.response?.data?.msg)
+        else if (errorStatus.includes(data?.error?.response?.status)) {
+            setMessage(data?.error?.response?.data?.message)
             setShowMessage(true)
             setTimeout(() => {
                 setShowMessage(false)

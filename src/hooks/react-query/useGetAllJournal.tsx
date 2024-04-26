@@ -5,10 +5,10 @@ import { AxiosResponse } from "axios";
 import { useEffect } from "react";
 import { number } from "yup";
 
-export function useGetAllJournal(trigger: boolean, page: number | string, size: number | string): UseQueryResult<AxiosResponse<any, any>, Error> {
+export function useGetAllJournal(trigger: boolean, page: number | string, size: number | string,fromDate:string,toDate:string): UseQueryResult<AxiosResponse<any, any>, Error> {
     const journal = useQuery({
         queryKey: ['get_all_journal'],
-        queryFn: () => api.get(`/journal?page=${page}&size=${size}`),
+        queryFn: () => api.get(`/journal/${fromDate}/${toDate}/?page=${page}&size=${size}`),
         enabled: page && size && page !== null && size !== null ? true : false
     })
     useEffect(() => {
@@ -16,7 +16,7 @@ export function useGetAllJournal(trigger: boolean, page: number | string, size: 
             journal.refetch()
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [trigger, page, size])
+    }, [trigger, page, size,fromDate,toDate])
     return journal
 }
 

@@ -10,9 +10,11 @@ type TableData = {
     title: string;
     clickAdd: MouseEventHandler<HTMLButtonElement>;
     data: Array<AccountAttributes | { value: string, label: string }>;
-    head: Array<string|false>;
+    head: Array<string | false>;
     children: ReactNode;
     pages?: ReactNode;
+    calculate?: ReactNode;
+    filters?: ReactNode;
 }
 
 function Location() {
@@ -37,14 +39,28 @@ function Location() {
     )
 }
 
-export default function TableData({ title, clickAdd, children, data, head, pages }: TableData): ReactNode {
+export default function TableData({ title, clickAdd, children, data, head, pages, calculate, filters }: TableData): ReactNode {
     return (
         <>
             <Location />
-            <div className='border bg-white px-7 py-10 md:h-[73vh] full rounded-sm shadow-md mt-[2vh]'>
+            <div className='border bg-white px-7 py-10 full rounded-sm shadow-md mt-[2vh]'>
                 <div className='flex justify-between mb-5 h-[10%]'>
-                    <TitleTable title={title} />
-                    <Button title='Buat Baru' click={clickAdd} />
+                    <div className='flex gap-5'>
+                        <TitleTable title={title} />
+                        {filters}
+                    </div>
+                    <div className='flex gap-2 items-end'>
+                        <Button title='Buat Baru' click={clickAdd} />
+                        <div className='bg-white h-[10%] mb-1'>
+                            {data?.length > 0 ?
+                                <>
+                                    {pages}
+                                </>
+                                :
+                                <></>
+                            }
+                        </div>
+                    </div>
                 </div>
                 <div className='h-[80%]'>
                     {data?.length > 0 ?
@@ -55,15 +71,7 @@ export default function TableData({ title, clickAdd, children, data, head, pages
                         <EmptyTable />
                     }
                 </div>
-                <div className='bg-white h-[10%] md:mt-0 mt-[5%]'>
-                    {data?.length > 0 ?
-                        <>
-                            {pages}
-                        </>
-                        :
-                        <></>
-                    }
-                </div>
+                {calculate}
             </div>
         </>
     )

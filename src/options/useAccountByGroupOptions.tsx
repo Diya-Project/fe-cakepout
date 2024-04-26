@@ -2,7 +2,7 @@ import { useGetAccountByGroupAccount } from '@/hooks/react-query/useGetAccountBy
 import { AccountAttributes, SelectAttributes } from '@/type'
 import { useEffect, useState } from 'react'
 
-export default function useAccountByGroupOptions(group: number, status: boolean): Array<SelectAttributes> {
+export default function useAccountByGroupOptions(group: number|string, status: boolean): Array<SelectAttributes> {
     const account = useGetAccountByGroupAccount(group)
     const [accountOptions, setAccountOptions] = useState<Array<SelectAttributes>>([])
     useEffect(() => {

@@ -10,7 +10,7 @@ import { FaCalculator } from "react-icons/fa";
 const menuData = [
     { link: '/home/ledger/account-list', icon: <FaAddressBook className='w-36 h-36 text-white' />, color: 'bg-[#6978d6] hover:bg-[#5b68b9]', title: "Daftar Akun" },
     { link: '/home/ledger/book', icon: <ImBooks className='w-36 h-36 text-white' />, color: 'bg-[#57575e] hover:bg-[#414146]', title: "Buku Besar" },
-    { link: '/home/ledger/journal-list', icon: <ImBook className='w-36 h-36 text-white' />, color: 'bg-[#bf7c58] hover:bg-[#a2694a]', title: "Jurnal Umum" },
+    { link: '/home/ledger/journal', icon: <ImBook className='w-36 h-36 text-white' />, color: 'bg-[#bf7c58] hover:bg-[#a2694a]', title: "Jurnal Umum" },
     { link: '/home/ledger/journal-calculation', icon: <FaCalculator className='w-36 h-36 text-white' />, color: 'bg-[#145b80] hover:bg-[#104a67]', title: "Kalkulasi Jurnal" },
 
 ]
