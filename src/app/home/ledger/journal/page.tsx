@@ -11,8 +11,8 @@ import useShowMessage from '@/hooks/useShowMessage'
 import Loading from '@/components/templates/Loading'
 import Message from '@/components/templates/Message'
 import { formatTime } from '@/helper/time'
-import Selector from '@/components/fields/Selector'
 import Input from '@/components/fields/Input'
+import { AddJournalAttributes } from '@/form-type'
 
 export default function Page() {
     const head = ['Nomor Akun', 'Nama Akun', 'Tanggal Transaksi', 'Referensi', 'D', 'K']
@@ -25,18 +25,18 @@ export default function Page() {
     const saveJournal = useAddJournal()
 
     const showMessage = useShowMessage(saveJournal)
-    const listJournal = useGetAllJournal(showMessage?.show, page !== null ? page : 1, size !== null ? size : 1,fromDate,toDate)
+    const listJournal = useGetAllJournal(showMessage?.show, page !== null ? page : 1, size !== null ? size : 1, fromDate, toDate)
 
-    const addJournal = (e: AddJournalAttributes) => {
-        saveJournal.mutate(e)
+    const addJournal = (data: AddJournalAttributes) => {
+        saveJournal.mutate(data)
         setShowFormAddJournal(false)
     }
     return (
         <>
             <Message show={showMessage.show} message={showMessage.message} succes={showMessage.status} />
             <TableData title='Jurnal' clickAdd={() => setShowFormAddJournal(true)} data={listJournal?.data?.data?.data} head={head}
-                pages={<Pagination page={page} allPage={listJournal?.data?.data?.totalPages} setPage={setPage} value={size} setValue={(e:any) => {
-                    setSize(parseInt(e.value))
+                pages={<Pagination page={page} allPage={listJournal?.data?.data?.totalPages} setPage={setPage} value={size} setValue={(data) => {
+                    setSize(parseInt(data.value as string))
                     setPage(1)
                 }} />}
                 calculate={
@@ -46,7 +46,7 @@ export default function Page() {
                     </div>
                 }
                 filters={
-                    <div className='flex gap-3 -mt-2'>
+                    <div className='flex gap-3'>
                         <Input id='dari-tanggal-journal' title="Dari" type="date" value={fromDate} setValue={(e) => setFromDate(e.target.value)} />
                         <Input id='sampai-tanggal-journal' title="Sampai" type="date" value={toDate} setValue={(e) => setToDate(e.target.value)} />
                     </div>
@@ -54,7 +54,7 @@ export default function Page() {
             >
                 {listJournal?.data?.data?.data?.map((e: JournalAttributes, i: number) => (
                     <tr key={i} className="bg-white border-b border-slate-100 hover:bg-gray-100 overflow-y-auto">
-                        <td className='px-6 py-3'>{`${e.account?.group_account?.group_account}.${e.account?.group_account?.group_account_label}.${e.account?.account_number}`}</td>
+                        <td className='px-6 py-3'>{e.account?.account_number}</td>
                         <td className='px-6 py-3'>{e.account?.name}</td>
                         <td className='px-6 py-3'>{e.transaction_date ? formatTime(e.transaction_date) : '-'}</td>
                         <td className='px-6 py-3'>{e.reference}</td>

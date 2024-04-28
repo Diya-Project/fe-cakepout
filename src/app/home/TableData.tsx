@@ -8,16 +8,17 @@ import React, { MouseEventHandler, ReactNode } from 'react'
 
 type TableData = {
     title: string;
-    clickAdd: MouseEventHandler<HTMLButtonElement>;
-    data: Array<AccountAttributes | { value: string, label: string }>;
-    head: Array<string | false>;
+    clickAdd?: MouseEventHandler<HTMLButtonElement>;
+    data?: Array<AccountAttributes | { value: string, label: string }>;
+    head?: Array<string | false>;
     children: ReactNode;
     pages?: ReactNode;
     calculate?: ReactNode;
     filters?: ReactNode;
+    noButton?: boolean;
 }
 
-function Location() {
+export function Location() {
     const pathname = usePathname()
     const pathanamePart = pathname.split('/')
     pathanamePart.shift()
@@ -39,7 +40,7 @@ function Location() {
     )
 }
 
-export default function TableData({ title, clickAdd, children, data, head, pages, calculate, filters }: TableData): ReactNode {
+export default function TableData({ title, clickAdd, children, data, head, pages, calculate, filters, noButton }: TableData): ReactNode {
     return (
         <>
             <Location />
@@ -50,9 +51,9 @@ export default function TableData({ title, clickAdd, children, data, head, pages
                         {filters}
                     </div>
                     <div className='flex gap-2 items-end'>
-                        <Button title='Buat Baru' click={clickAdd} />
+                        {noButton ? <></> : <Button title='Buat Baru' click={clickAdd!} />}
                         <div className='bg-white h-[10%] mb-1'>
-                            {data?.length > 0 ?
+                            {data?.length! > 0 ?
                                 <>
                                     {pages}
                                 </>
@@ -63,8 +64,8 @@ export default function TableData({ title, clickAdd, children, data, head, pages
                     </div>
                 </div>
                 <div className='h-[80%]'>
-                    {data?.length > 0 ?
-                        <Table head={head}>
+                    {data?.length! > 0 ?
+                        <Table head={head!}>
                             {children}
                         </Table>
                         :

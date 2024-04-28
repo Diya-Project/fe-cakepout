@@ -148,3 +148,22 @@ export type MonthlyAccountCalculationAttributes = {
     account?: AccountAttributes;
 
 }
+
+export type AccountsBalancing = {
+    account_number: string;
+    name: string;
+    uuid: string
+}
+
+export type BalancingAttributes = {
+    accounts: Array<AccountsBalancing>,
+    group_account: string;
+    group_account_label: string;
+    name: string
+}
+
+export type AccountBalancingBeginingAttributes = {
+    harta: Array<BalancingAttributes>
+    kewajiban: Array<BalancingAttributes>
+    modal: Array<BalancingAttributes>
+}

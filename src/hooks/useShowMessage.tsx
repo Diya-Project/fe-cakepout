@@ -1,8 +1,32 @@
 import { useEffect, useState } from "react"
 
-export default function useShowMessage(data: any): { show: boolean, message: string, status: boolean } {
+export type OutputMessageAttributes = {
+    show: boolean;
+    message: string;
+    status: boolean;
+}
+
+type InputDataAttributes = {
+    data: {
+        status: number;
+        data: {
+            message: string;
+        }
+    };
+    error: {
+        response: {
+            status: number;
+            data: {
+                message: string;
+            }
+        }
+    }
+}
+
+export default function useShowMessage<T>(axiosResponse: T): OutputMessageAttributes {
     const [showMessage, setShowMessage] = useState(false)
     const [message, setMessage] = useState('')
+    const data = axiosResponse as InputDataAttributes
     useEffect(() => {
         let errorStatus = [403, 400, 404]
         if (data?.data?.status === 200) {

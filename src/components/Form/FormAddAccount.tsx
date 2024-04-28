@@ -13,6 +13,7 @@ import useResetForm from '@/hooks/useResetForm'
 import useInstitutionOptions from '@/options/useInstitutionOptions'
 import Selector from '../fields/Selector'
 import { SelectAttributes } from '@/type'
+import { AddAccountAttributes } from '@/form-type'
 
 const activityCode = [4, 5]
 
@@ -25,10 +26,10 @@ export default function FormAddAccount({ submit, show, close }: FormAddAccountAt
         mode: 'all',
         resolver: yupResolver(
             yup.object().shape({
-                group_account: yup.number().typeError('group_account field required').min(0, 'min 0').required(),
-                group_account_label: yup.number().nullable().typeError('group_account_label field required').min(0, 'min 0').required(),
-                group_account_name: yup.string().when('group_account_label', (group_account_label, fields) => group_account_label[0] === null ? fields.required() : fields.nullable()),
-                name: yup.string().required(),
+                group_account: yup.number().typeError('group akun tidak boleh kosong').min(0, 'min 0').required(),
+                group_account_label: yup.number().nullable().typeError('grup label akun tidak boleh kosong').min(0, 'min 0').required(),
+                group_account_name: yup.string().when('group_account_label', (group_account_label, fields) => group_account_label[0] === null ? fields.required("grup nama akun tidak boleh kosong") : fields.nullable()),
+                name: yup.string().required("nama akun tidak boleh kosong"),
                 activity_id: yup.string().nullable()
 
             })
@@ -59,8 +60,8 @@ export default function FormAddAccount({ submit, show, close }: FormAddAccountAt
                     <InputForm id='iput-group-account-name' title='Grup Akun' method={method} methodName='group_account_name' />
                 }
                 <InputForm id='input-name-account' title='Nama' method={method} methodName='name' />
-                {activityCode.includes(watchGroupAccount) && <Selector title='Lembaga' options={institutionOptions} value={institutionValue} onChange={(e) => setInstitutionValue(e)} />}
-                {activityCode.includes(watchGroupAccount) && <SelectForm instanceId='select-detailOfActivity' title='Kegiatan' method={method} methodName='activity_id' options={detailOfActiviyOptions} />}
+                {activityCode.includes(watchGroupAccount) ? <Selector title='Lembaga' options={institutionOptions} value={institutionValue} onChange={(e) => setInstitutionValue(e)} /> : <></>}
+                {activityCode.includes(watchGroupAccount) ? <SelectForm instanceId='select-detailOfActivity' title='Kegiatan' method={method} methodName='activity_id' options={detailOfActiviyOptions} /> : <></>}
             </Form>
         </Modal>
     )

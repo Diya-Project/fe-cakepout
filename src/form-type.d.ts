@@ -1,3 +1,4 @@
+import { AccountBalancingBeginingAttributes } from "./type";
 
 
 type AddAccountAttributes = {
@@ -40,4 +41,17 @@ type UpdateWithdrawDisbursementOfFundAttributes = {
         // transaction_date: string;
         // accounting_year: string;
     }
+}
+
+export type BeginingBalanceAttributes = {
+    value: number;
+    id: string;
+}
+
+
+export type FormSaldoAwal = {
+    harta?: BeginingBalanceAttributes[] | undefined;
+    kewajiban?: BeginingBalanceAttributes[] | undefined;
+    modal?: BeginingBalanceAttributes[] | undefined;
+    account_balancing?: number | undefined;
 }

@@ -6,6 +6,7 @@ import ConfirmModal from '@/components/custom/ConfirmModal'
 import Loading from '@/components/templates/Loading'
 import Message from '@/components/templates/Message'
 import Pagination from '@/components/templates/Pagination'
+import { AddAccountAttributes, EditAccountAttributes } from '@/form-type'
 import { useAddAccount } from '@/hooks/react-query/useAddAccount'
 import { useDeleteAccount } from '@/hooks/react-query/useDeleteAccount'
 import useGetAllAccountByPage from '@/hooks/react-query/useGetAllAccountByPage'
@@ -35,12 +36,12 @@ export default function Page(): ReactNode {
 
     const listAccount = useGetAllAccountByPage(showMessageAdd.show || showMessageUpdate.show || showMessageDelete.show, page !== null ? page : 1, size !== null ? size : 1)
 
-    const addAccount = (e: AddAccountAttributes) => {
-        saveAccount.mutate(e)
+    const addAccount = (data: AddAccountAttributes) => {
+        saveAccount.mutate(data)
         setShowFormAddAccount(false)
     }
-    const updateAccount = (e: EditAccountAttributes) => {
-        editAccount.mutate({ uuid: oneIdAccount, data: e })
+    const updateAccount = (data: EditAccountAttributes) => {
+        editAccount.mutate({ uuid: oneIdAccount, data: data })
         setShowFormEditAccount(false)
     }
     const deleteAccount = () => {
@@ -53,21 +54,21 @@ export default function Page(): ReactNode {
             <Message show={showMessageUpdate.show} message={showMessageUpdate.message} succes={showMessageUpdate.status} />
             <Message show={showMessageDelete.show} message={showMessageDelete.message} succes={showMessageDelete.status} />
             <TableData title='Daftar Akun' clickAdd={() => setShowFormAddAccount(true)} data={listAccount?.data?.data?.data} head={head}
-                pages={<Pagination page={page} allPage={listAccount?.data?.data?.totalPages} setPage={setPage} value={size} setValue={(e) => setSize(parseInt(e.target?.value))} />}
+                pages={<Pagination page={page} allPage={listAccount?.data?.data?.totalPages} setPage={setPage} value={size} setValue={(data) => setSize(parseInt(data.value as string))} />}
             >
-                {listAccount?.data?.data?.data?.map((e: AccountAttributes, i: number) => (
-                    <tr key={i} className="bg-white border-b border-slate-100 hover:bg-gray-100 overflow-y-auto">
-                        <td className='px-6 py-3'>{`${e.group_account.group_account}.${e.group_account.group_account_label}.${e.account_number}`}</td>
-                        <td className='px-6 py-3'>{e.name}</td>
-                        <td className='px-6 py-3'>{e.detail_of_activity ? `${e.detail_of_activity.uraian}` : '-'}</td>
+                {listAccount?.data?.data?.data?.map((data: AccountAttributes, index: number) => (
+                    <tr key={index} className="bg-white border-b border-slate-100 hover:bg-gray-100 overflow-y-auto">
+                        <td className='px-6 py-3'>{data.account_number}</td>
+                        <td className='px-6 py-3'>{data.name}</td>
+                        <td className='px-6 py-3'>{data.detail_of_activity ? `${data.detail_of_activity.uraian}` : '-'}</td>
                         <td className='px-6 py-3 flex gap-2'>
                             <HiPencil className='w-8 h-8 bg-sky-400 hover:bg-sky-500 rounded-full p-2 cursor-pointer text-white' onClick={() => {
-                                setOneDataAccount({ name: e.name })
-                                setOneIdAccount(e.uuid)
+                                setOneDataAccount({ name: data.name })
+                                setOneIdAccount(data.uuid)
                                 setShowFormEditAccount(true)
                             }} />
                             <HiTrash className='w-8 h-8 bg-red-400 hover:bg-red-500 rounded-full p-2 cursor-pointer text-white' onClick={() => {
-                                setOneIdAccount(e.uuid)
+                                setOneIdAccount(data.uuid)
                                 setShowFormDeleteAccount(true)
                             }} />
                         </td>
@@ -75,8 +76,8 @@ export default function Page(): ReactNode {
                 ))}
             </TableData>
             <Loading show={listAccount.isLoading} />
-            <FormAddAccount show={showFormAddAccount} close={() => setShowFormAddAccount(false)} submit={(e) => addAccount(e)} />
-            <FormEditAccount show={showFormEditAccount} close={() => setShowFormEditAccount(false)} oneAccount={oneDataAccount} submit={(e) => updateAccount(e)} />
+            <FormAddAccount show={showFormAddAccount} close={() => setShowFormAddAccount(false)} submit={(data) => addAccount(data)} />
+            <FormEditAccount show={showFormEditAccount} close={() => setShowFormEditAccount(false)} oneAccount={oneDataAccount} submit={(data) => updateAccount(data)} />
             <ConfirmModal msg='Anda yakin  untuk menghapus akun ini?' show={showFormDeleteAccount} close={() => setShowFormDeleteAccount(false)} onClick={deleteAccount} />
         </>
     )
