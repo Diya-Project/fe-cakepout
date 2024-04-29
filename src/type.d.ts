@@ -29,6 +29,11 @@ export type DetailOfActivityAttributes = {
     list_kegiatan: ActivityAttributes;
 }
 
+export type SharingProgramsAttributes = {
+    uuid: string;
+    name: string;
+}
+
 export type DisbursementOfFundAttributes = {
     uuid: string;
     amount: number;
@@ -42,6 +47,7 @@ export type DisbursementOfFundAttributes = {
     activity_id: string;
     reference_of_jurnal: string | null;
     rincian_kegiatan: DetailOfActivityAttributes;
+    sharing_programs: SharingProgramsAttributes;
 }
 
 export type PtkAttributes = {
@@ -166,4 +172,20 @@ export type AccountBalancingBeginingAttributes = {
     harta: Array<BalancingAttributes>
     kewajiban: Array<BalancingAttributes>
     modal: Array<BalancingAttributes>
+}
+
+export type GroupingDisbursementOfFund = {
+    uuid: string;
+    amount: number;
+    sharing_program_id: string | null;
+    sharing_program_name: string | null;
+    status: boolean;
+    withdraw: boolean;
+    accounting_year: string;
+    ptk_id: string | null;
+    receipient: string | null;
+    reference_of_journal: string | null;
+    uraian: string;
+    no_kegiatan: string;
+    activity: DisbursementOfFundAttributes[]
 }

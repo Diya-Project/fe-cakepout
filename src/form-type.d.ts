@@ -38,8 +38,6 @@ type UpdateWithdrawDisbursementOfFundAttributes = {
     data: {
         ptk_id: string | null;
         receipient: string | null;
-        // transaction_date: string;
-        // accounting_year: string;
     }
 }
 
@@ -54,4 +52,10 @@ export type FormSaldoAwal = {
     kewajiban?: BeginingBalanceAttributes[] | undefined;
     modal?: BeginingBalanceAttributes[] | undefined;
     account_balancing?: number | undefined;
+}
+
+export type AddJournalDisbursementOfFundAttributes={
+    from_account:string;
+    transaction_date:string;
+    id:string
 }

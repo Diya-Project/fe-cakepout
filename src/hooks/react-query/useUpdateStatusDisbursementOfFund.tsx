@@ -4,10 +4,10 @@ import api from "@/app/api/lib/axios";
 import { AxiosResponse } from "axios";
 
 
-export function useUpdateStatusDisbursementOfFund(): UseMutationResult<AxiosResponse<any, any>, Error, string, unknown> {
+export function useUpdateStatusDisbursementOfFund(): UseMutationResult<AxiosResponse<any, any>, Error, { antrian: Array<string> }, unknown> {
     const disbursementOfFund = useMutation({
         mutationKey: ['update_status_disbursement_of_fund'],
-        mutationFn: (e: string) => api.put(`/disbursement-of-fund/status/${e}`),
+        mutationFn: (data: { antrian: Array<string> }) => api.put(`/disbursement-of-fund/status`, data),
         onSuccess: (e) => {
             return e
         },

@@ -26,7 +26,7 @@ export default function Detail({ anggaran, confirm,titleButton }: DetailAttribut
         { icon: <TbMoneybag className='w-20 h-20 text-sky-800 my-auto' />, title: 'Total Anggaran', value: anggaran?.rincian_kegiatan?.total ? currency(anggaran?.rincian_kegiatan?.total) : currency(0) },
         { icon: <BsGraphUpArrow className='w-20 h-20 text-sky-800 my-auto' />, title: 'Total Realisasi', value: anggaran?.rincian_kegiatan?.total_realisasi && anggaran?.amount ? anggaran?.withdraw ? currency(anggaran?.rincian_kegiatan?.total_realisasi) : currency(anggaran?.rincian_kegiatan?.total_realisasi - anggaran?.amount) : currency(0) },
         { icon: <GiMoneyStack className='w-20 h-20 text-sky-800 my-auto' />, title: 'Permintaan', value: anggaran?.amount ? currency(anggaran?.amount) : currency(0) },
-        { icon: <FaUserGroup className='w-20 h-20 text-sky-800 my-auto' />, title: 'Program Bersama', value: anggaran?.sharing_program ? "Program Bersama" : "-" },
+        { icon: <FaUserGroup className='w-20 h-20 text-sky-800 my-auto' />, title: 'Program Bersama', value: anggaran?.sharing_program ? `Program Bersama - ${anggaran?.sharing_programs?.name}` : "-" },
     ]
     return (
         <div className='md:w-[70%] w-[100%] bg-white p-2'>

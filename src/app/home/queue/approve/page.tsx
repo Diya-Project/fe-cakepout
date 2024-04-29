@@ -1,73 +1,82 @@
 'use client'
-import React, { ReactNode, useEffect, useState } from 'react'
-import { DisbursementOfFundAttributes } from '@/type'
-import Detail from '../Detail'
-import Message from '@/components/templates/Message'
-import Antrian from '../Antrian'
-import { useUpdateWithDrawDisbursementOfFund } from '@/hooks/react-query/useUpdateWithDrawDisbursementOfFund'
-import FormUpdateWithdrawDisbursementOfFund from '@/components/Form/FormUpdateWithdrawDisbursementOfFund'
-import useShowMessage from '@/hooks/useShowMessage'
+import React, { ReactNode, useState } from 'react'
+import TableData from '../../TableData'
+import { useGetDisbursementOfFundByStatus } from '@/hooks/react-query/useGetDisbursementOfFundByStatus'
+import { DisbursementOfFundAttributes, GroupingDisbursementOfFund, SelectAttributes } from '@/type'
+import { currency } from '@/helper/currency'
+import Pagination from '@/components/templates/Pagination'
+import { TbMoneybag } from "react-icons/tb";
+import Selector from '@/components/fields/Selector'
+import { useSharingProgramOptions } from '@/options/useSharingProgramOptions'
+import Loading from '@/components/templates/Loading'
 import FormJournalDisbursementOfFund from '@/components/Form/FormJournalDisbursementOfFund'
-import { useAddJournal } from '@/hooks/react-query/useAddJournal'
+import { AddJournalDisbursementOfFundAttributes } from '@/form-type'
+import { FaChevronDown } from "react-icons/fa";
+import DetailModal from '@/components/custom/DetailModal'
+import Table from '@/components/templates/Table'
+import { useAddJournalDisbursementOfFund } from '@/hooks/react-query/useAddJournalDisbursementOfFund'
+import useShowMessage from '@/hooks/useShowMessage'
+import Message from '@/components/templates/Message'
+
+
 
 export default function Page(): ReactNode {
-    const [oneDisbursementOfFund, setOneDisbursementOfFund] = useState<DisbursementOfFundAttributes | null>()
-    const [idAccount, setIdAccount] = useState<string>('')
-    
-    const [showModalApproveWithdrawDisbursementOfFund, setShowModalApproveWithdrawDisbursementOfFund] = useState<boolean>(false)
-    const [showFormJournal, setShowFormJournal] = useState<boolean>(false)
+    const head = ["Rincian", 'No Kegiatan', 'Nama', 'Jumlah', 'Pilih']
+    const [showFormUpdateDisbursementOfFund, setShowFormUpdateDisbursementOfFund] = useState(false)
+    const [showFormJournal, setShowFormJournal] = useState(false)
+    const [showModalListGroup, setShowModalListGroup] = useState(false)
+    const [idGroup, setIdGroup] = useState("")
+    const [saveListGroupDisbursementOfFund, setSaveListDisbursementOfFund] = useState<DisbursementOfFundAttributes[]>([])
+    const [page, setPage] = useState<number>(1)
+    const [size, setSize] = useState<number>(5)
 
-    const updateWithdrawDisbursementOfFund = useUpdateWithDrawDisbursementOfFund()
-    const saveJournal = useAddJournal()
+    const [selectedDisbursementOfFund, setSelectedDsibursementOfFund] = useState<Array<string>>([])
+    const disbursementOfFund = useGetDisbursementOfFundByStatus(1, true, page !== null ? page : 1, size !== null ? size : 1)
 
-    const showMessageDisbursementOfFund = useShowMessage(updateWithdrawDisbursementOfFund)
-    const showMessageJournal = useShowMessage(saveJournal)
-
-    const getAnggaranDisbursementOfFund = (e: DisbursementOfFundAttributes) => {
-        setOneDisbursementOfFund(e)
-        setIdAccount(e.activity_id)
-    }
-    const onUpdateWithdrawDisbursementOfFund = (e: { ptk_id: string | null, receipient: string | null }) => {
-        updateWithdrawDisbursementOfFund.mutate({ uuid: oneDisbursementOfFund?.uuid!, data: { ptk_id: e.ptk_id, receipient: e.receipient } })
-        setShowModalApproveWithdrawDisbursementOfFund(false)
-    }
-    const createJournal = (e: AddJournalAttributes) => {
-        saveJournal.mutate(e)
+    const addJournalDisbursementOfFundAttributes = useAddJournalDisbursementOfFund()
+    const showMessage = useShowMessage(addJournalDisbursementOfFundAttributes)
+    const sendJournal = (value: AddJournalDisbursementOfFundAttributes) => {
+        console.log(value)
+        addJournalDisbursementOfFundAttributes.mutate(value)
         setShowFormJournal(false)
-        setOneDisbursementOfFund(null)
     }
-    useEffect(() => {
-        if (updateWithdrawDisbursementOfFund.data?.status === 200) {
-            setShowFormJournal(true)
-        }
-    }, [updateWithdrawDisbursementOfFund.data])
     return (
         <>
-            <Message
-                message={showMessageDisbursementOfFund.message} show={showMessageDisbursementOfFund.show} succes={showMessageDisbursementOfFund.status}
-            />
-            <Message
-                message={showMessageJournal.message} show={showMessageJournal.show} succes={showMessageJournal.status}
-            />
-            <div className='flex md:flex-row flex-col gap-7'>
-                <Antrian
-                    render={showMessageDisbursementOfFund.show}
-                    clickDisbursementOfFund={getAnggaranDisbursementOfFund}
-                    status={1} />
-                <Detail
-                    anggaran={oneDisbursementOfFund!}
-                    confirm={() => {
-                        setShowModalApproveWithdrawDisbursementOfFund(true)
-                    }}
-                    titleButton='Realisasikan'
-                />
-                <FormUpdateWithdrawDisbursementOfFund
-                    show={showModalApproveWithdrawDisbursementOfFund}
-                    close={() => setShowModalApproveWithdrawDisbursementOfFund(false)}
-                    submit={onUpdateWithdrawDisbursementOfFund}
-                />
-                <FormJournalDisbursementOfFund show={showFormJournal} close={() => setShowFormJournal(false)} fromAccount={idAccount} submit={createJournal} />
-            </div>
+            <Loading show={disbursementOfFund.isLoading} />
+            <Message message={showMessage.message} show={showMessage.show} succes={showMessage.status} />
+            <TableData title='Pengambilan Dana' head={head} data={disbursementOfFund?.data?.data?.data} noButton={selectedDisbursementOfFund.length === 0 ? true : false} buttonName='Setujui' clickAdd={() => setShowFormUpdateDisbursementOfFund(true)}
+                pages={<Pagination page={page} allPage={disbursementOfFund?.data?.data?.totalPages} setPage={setPage} value={size} setValue={(data) => setSize(parseInt(data.value as string))} />}
+            >
+                {disbursementOfFund?.data?.data?.data?.map((value: GroupingDisbursementOfFund, index: number) => (
+                    <tr key={index} className="bg-white border-b border-slate-100 hover:bg-gray-100 overflow-y-auto">
+                        <td className='px-6 py-3'>{value.sharing_program_id ? <FaChevronDown onClick={() => {
+                            setSaveListDisbursementOfFund(value.activity)
+                            setShowModalListGroup(true)
+                        }} /> : <>-</>}</td>
+                        <td className='px-6 py-3'>{value.sharing_program_id ? "-" : value.no_kegiatan}</td>
+                        <td className='px-6 py-3'>{value.sharing_program_name ? value.sharing_program_name : value.uraian}</td>
+                        <td className='px-6 py-3'>{value.amount ? currency(value.amount) : currency(0)}</td>
+                        <td className='px-6 py-3'>
+                            <TbMoneybag className='w-6 h-6 cursor-pointer' onClick={() => {
+                                setShowFormJournal(true)
+                                setIdGroup(value.sharing_program_id ? value.sharing_program_id : value.uuid)
+                            }} />
+                        </td>
+                    </tr>
+                ))}
+            </TableData>
+            <DetailModal show={showModalListGroup} close={() => setShowModalListGroup(false)}>
+                <Table head={["No Kegiatan", "Kegiatan", "Nilai"]}>
+                    {saveListGroupDisbursementOfFund?.map((value, id) => (
+                        <tr>
+                            <td className='font-montserrat uppercase px-6 py-3'>{value.rincian_kegiatan.no_kegiatan}</td>
+                            <td className='font-montserrat uppercase px-6 py-3'>{value.rincian_kegiatan.uraian}</td>
+                            <td className='font-montserrat uppercase px-6 py-3'>{value.amount ? currency(value.amount) : currency(0)}</td>
+                        </tr>
+                    ))}
+                </Table>
+            </DetailModal>
+            <FormJournalDisbursementOfFund show={showFormJournal} close={() => setShowFormJournal(false)} groupId={idGroup} submit={sendJournal} />
         </>
     )
 }

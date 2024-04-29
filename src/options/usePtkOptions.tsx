@@ -3,7 +3,7 @@ import { PtkAttributes, SelectAttributes } from "@/type";
 import { useEffect, useState } from "react";
 
 export function usePtkOptions(): Array<SelectAttributes> {
-    const ptk = useGetAllPtk()
+    const ptk = useGetAllPtk(true)
     const [ptkOptions, setPtkOptions] = useState([])
     useEffect(() => {
         if (ptk?.data?.data) {

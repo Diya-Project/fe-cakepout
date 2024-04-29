@@ -17,7 +17,7 @@ import { AxiosResponse } from 'axios'
 function useCalculate(group: Array<BeginingBalanceAttributes>): number {
     let result = 0
     for (let i in group) {
-        result += group[i].value!
+        result += parseInt(group[i].value! as unknown as string)
     }
     return result
 }
@@ -44,7 +44,7 @@ function ColumnSaldoAwal({ data, indexing, method, methodName }: { data: Array<B
 function ColumnResult({ title, value, children, minus }: { title: string, value: number, children?: ReactNode, minus?: boolean }) {
     return (
         <div className='w-full mt-3 pt-2 border-t border-t-slate-700'>
-            <h1 className='font-montserrat font-semibold text-slate-800'>{title} : {minus ? `(${currency(value)})` : currency(value)}</h1>
+            <h1 className='font-montserrat font-semibold text-slate-800'>{title} : {value as number ? minus ? `(${currency(value)})` : currency(value) : 0}</h1>
             {children}
         </div>
     )
@@ -95,6 +95,7 @@ export default function FormBeginingBalance({ data, loading }: { data: AccountBa
     }
     const calculate = () => {
         const values = method.getValues() as FormSaldoAwal
+        console.log(values)
         setHartaResult(useCalculate(values.harta!) || 0)
         setKewajibanResult(useCalculate(values.kewajiban!) || 0)
         setModalResult(useCalculate(values.modal!) || 0)
@@ -105,7 +106,7 @@ export default function FormBeginingBalance({ data, loading }: { data: AccountBa
     UseMoveToJournal(addBeginingBalance, showMessage)
     return (
         <>
-            <Loading show={loading} />
+            <Loading show={addBeginingBalance.isPending} />
             <Message message={showMessage.message} show={showMessage.show} succes={showMessage.status} />
             <form onSubmit={method.handleSubmit(submit)}>
                 <div className='flex gap-3'>

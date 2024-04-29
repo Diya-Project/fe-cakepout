@@ -16,6 +16,7 @@ type TableData = {
     calculate?: ReactNode;
     filters?: ReactNode;
     noButton?: boolean;
+    buttonName?: string;
 }
 
 export function Location() {
@@ -40,7 +41,7 @@ export function Location() {
     )
 }
 
-export default function TableData({ title, clickAdd, children, data, head, pages, calculate, filters, noButton }: TableData): ReactNode {
+export default function TableData({ title, clickAdd, children, data, head, pages, calculate, filters, noButton, buttonName }: TableData): ReactNode {
     return (
         <>
             <Location />
@@ -51,7 +52,7 @@ export default function TableData({ title, clickAdd, children, data, head, pages
                         {filters}
                     </div>
                     <div className='flex gap-2 items-end'>
-                        {noButton ? <></> : <Button title='Buat Baru' click={clickAdd!} />}
+                        {noButton ? <></> : <Button title={buttonName ? buttonName : 'Buat Baru'} click={clickAdd!} />}
                         <div className='bg-white h-[10%] mb-1'>
                             {data?.length! > 0 ?
                                 <>
