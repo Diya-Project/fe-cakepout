@@ -19,8 +19,8 @@ export default function Page() {
     const [showFormAddJournal, setShowFormAddJournal] = useState<boolean>(false)
     const [page, setPage] = useState<number>(1)
     const [size, setSize] = useState<number>(5)
-    const [fromDate, setFromDate] = useState("-")
-    const [toDate, setToDate] = useState("-")
+    const [fromDate, setFromDate] = useState("")
+    const [toDate, setToDate] = useState("")
 
     const saveJournal = useAddJournal()
 
@@ -33,7 +33,6 @@ export default function Page() {
     }
     return (
         <>
-            <Message show={showMessage.show} message={showMessage.message} succes={showMessage.status} />
             <TableData title='Jurnal' clickAdd={() => setShowFormAddJournal(true)} data={listJournal?.data?.data?.data} head={head}
                 pages={<Pagination page={page} allPage={listJournal?.data?.data?.totalPages} setPage={setPage} value={size} setValue={(data) => {
                     setSize(parseInt(data.value as string))
@@ -63,6 +62,7 @@ export default function Page() {
                     </tr>
                 ))}
             </TableData >
+            <Message show={showMessage.show} message={showMessage.message} succes={showMessage.status} />
             <Loading show={listJournal.isLoading} />
             <FormAddJournal show={showFormAddJournal} close={() => setShowFormAddJournal(false)} submit={addJournal} />
         </>

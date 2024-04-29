@@ -95,7 +95,6 @@ export default function FormBeginingBalance({ data, loading }: { data: AccountBa
     }
     const calculate = () => {
         const values = method.getValues() as FormSaldoAwal
-        console.log(values)
         setHartaResult(useCalculate(values.harta!) || 0)
         setKewajibanResult(useCalculate(values.kewajiban!) || 0)
         setModalResult(useCalculate(values.modal!) || 0)

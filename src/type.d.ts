@@ -158,14 +158,16 @@ export type MonthlyAccountCalculationAttributes = {
 export type AccountsBalancing = {
     account_number: string;
     name: string;
-    uuid: string
+    uuid: string;
+    monthly_account_calculations: MonthlyAccountCalculationAttributes[]
 }
 
 export type BalancingAttributes = {
     accounts: Array<AccountsBalancing>,
     group_account: string;
     group_account_label: string;
-    name: string
+    name: string;
+
 }
 
 export type AccountBalancingBeginingAttributes = {
