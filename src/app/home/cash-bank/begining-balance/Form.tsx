@@ -29,7 +29,7 @@ function ColumnSaldoAwal({ data, indexing, method, methodName }: { data: Array<B
             {data?.map((value: BalancingAttributes, idx: number) => (
                 <div key={idx}>
                     <h1 className='text-lg font-montserrat font-semibold text-sky-700 my-2'>{value?.name}</h1>
-                    {value?.accounts?.map((account: AccountsBalancing) => {
+                    {value?.account?.map((account: AccountsBalancing) => {
                         indexing++
                         method?.setValue(`${methodName}.${indexing}.id`, account?.uuid)
                         return <div key={indexing} className='grid grid-cols-1 gap-5'>
@@ -106,6 +106,7 @@ export default function FormBeginingBalance({ data, loading }: { data: AccountBa
     const showMessage = useShowMessage(addBeginingBalance)
 
     UseMoveToJournal(addBeginingBalance, showMessage)
+    console.log(data)
     return (
         <>
             <Loading show={addBeginingBalance.isPending} />

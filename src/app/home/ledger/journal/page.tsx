@@ -22,7 +22,7 @@ export default function Page() {
 
     return (
         <>
-            <TableData title='Jurnal' data={listJournal?.data?.data?.data} head={head} clickAdd={() => useGeneratePDF(listJournal?.data?.data?.data, listJournal?.data?.data?.debit, listJournal?.data?.data?.debit)} buttonName='Cetak PDF'
+            <TableData title='Jurnal' data={listJournal?.data?.data?.data} head={head} noButton
                 pages={<Pagination page={page} allPage={listJournal?.data?.data?.totalPages} setPage={setPage} value={size} setValue={(data) => {
                     setSize(parseInt(data.value as string))
                     setPage(1)

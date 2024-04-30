@@ -8,8 +8,8 @@ import { PiNotebookFill } from 'react-icons/pi'
 
 
 const menuData = [
-    { link: '/home/cash-bank/journal', icon: <ImBook className='w-36 h-36 text-white' />, color: 'bg-[#bf7c58] hover:bg-[#a2694a]', title: "Penginputan Jurnal" },
-    { link: '/home/cash-bank/begining-balance', icon: <FaCalculator className='w-36 h-36 text-white' />, color: 'bg-[#145b80] hover:bg-[#104a67]', title: "Pengisian Saldo Awal" },
+    { link: '/home/cash-bank/journal', icon: <ImBook className='w-36 h-36 text-white' />, color: 'bg-[#bf7c58] hover:bg-[#a2694a]', title: "Transaksi" },
+    { link: '/home/cash-bank/begining-balance', icon: <FaCalculator className='w-36 h-36 text-white' />, color: 'bg-[#145b80] hover:bg-[#104a67]', title: "Saldo Awal" },
     { link: '/home/cash-bank/close-book', icon: <PiNotebookFill className='w-36 h-36 text-white' />, color: 'bg-[#00c190] hover:bg-[#02af83]', title: "Tutup Buku" },
 
 

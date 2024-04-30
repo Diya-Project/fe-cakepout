@@ -166,7 +166,7 @@ export type AccountsBalancing = {
 }
 
 export type BalancingAttributes = {
-    accounts: Array<AccountsBalancing>,
+    account: Array<AccountsBalancing>,
     group_account: string;
     group_account_label: string;
     name: string;
