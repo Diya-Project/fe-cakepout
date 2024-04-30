@@ -2,7 +2,6 @@
 import React, { ReactNode, useState } from 'react'
 import { DisbursementOfFundAttributes } from '@/type'
 import Detail from '../Detail'
-import Antrian from '../Antrian'
 
 export default function Page(): ReactNode {
     const [oneDisbursementOfFund, setOneDisbursementOfFund] = useState<DisbursementOfFundAttributes | null>()
@@ -14,12 +13,6 @@ export default function Page(): ReactNode {
     return (
         <>
             <div className='flex md:flex-row flex-col gap-7'>
-                <Antrian
-                    render={true}
-                    clickDisbursementOfFund={getAnggaranDisbursementOfFund}
-                    status={1}
-                    approve={1}
-                />
                 <Detail
                     anggaran={oneDisbursementOfFund!}
                     confirm={(e: string | number | undefined) => {

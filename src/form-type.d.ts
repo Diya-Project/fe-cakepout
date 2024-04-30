@@ -23,6 +23,7 @@ type ToAccountJournalAttributes = {
 type AddJournalAttributes = {
     from_account: string;
     transaction_date: string;
+    description: string;
     to_account?: Array<ToAccountJournalAttributes>
 }
 
@@ -54,8 +55,11 @@ export type FormSaldoAwal = {
     account_balancing?: number | undefined;
 }
 
-export type AddJournalDisbursementOfFundAttributes={
-    from_account:string;
-    transaction_date:string;
-    id:string
+export type AddJournalDisbursementOfFundAttributes = {
+    from_account: string;
+    transaction_date: string;
+    description: string;
+    id: string;
+    ptk_id?: string | undefined;
+    receipient?: string | undefined;
 }

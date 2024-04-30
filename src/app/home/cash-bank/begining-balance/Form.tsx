@@ -13,6 +13,7 @@ import useShowMessage, { OutputMessageAttributes } from '@/hooks/useShowMessage'
 import { useRouter } from 'next/navigation'
 import { UseMutationResult } from '@tanstack/react-query'
 import { AxiosResponse } from 'axios'
+import TextAreaForm from '@/components/fields/TextAreaForm'
 
 function useCalculate(group: Array<BeginingBalanceAttributes>): number {
     let result = 0
@@ -84,7 +85,9 @@ export default function FormBeginingBalance({ data, loading }: { data: AccountBa
                     id: yup.string().required("akun tidak boleh kosong"),
                     value: yup.number().typeError("jumlah tidak boleh kosong").required()
                 })),
-                account_balancing: yup.number()
+                account_balancing: yup.number(),
+                description:yup.string().required("Deskripsi tidak boleh kosong"),
+            
             })
         ),
         defaultValues: { account_balancing: 0 }
@@ -137,6 +140,7 @@ export default function FormBeginingBalance({ data, loading }: { data: AccountBa
                 <div className='flex'>
                     <button type='button' onClick={calculate} className={`text-white my-1 rounded-md px-5 py-2 font-montserrat bg-sky-600 hover:bg-sky-700 hover:text-white`}>Kalkulasikan</button>
                 </div>
+                <TextAreaForm method={method} methodName='description' title='Deskripsi'/>
                 <div className='flex justify-end'>
                     {finalbalance === 0 && hartaResult !== 0 && kewajibanResult !== 0 && modalResult !== 0 ?
                         <button type='submit' className={`text-white my-1 rounded-md px-5 py-2 font-montserrat bg-sky-600 hover:bg-sky-700 hover:text-white`}>Simpan</button>

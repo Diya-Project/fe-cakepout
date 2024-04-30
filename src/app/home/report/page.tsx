@@ -4,8 +4,9 @@ import { HiOutlineQueueList } from "react-icons/hi2";
 import { PiQueue } from "react-icons/pi";
 
 const menuData = [
-    { link: '/home/report/', icon: <HiOutlineQueueList className='w-36 h-36 text-white' />, color: 'bg-[#28436d] hover:bg-[#223759]', title: "Antrian Anggaran" },
-    { link: '/home/report/', icon: <PiQueue className='w-36 h-36 text-white' />, color: 'bg-[#daa551] hover:bg-[#b28641]', title: "Anggaran Disetujui" },
+    { link: '/home/report/balance-sheet', icon: <HiOutlineQueueList className='w-36 h-36 text-white' />, color: 'bg-[#28436d] hover:bg-[#223759]', title: "Antrian Anggaran" },
+    { link: '/home/report/cash-flow', icon: <PiQueue className='w-36 h-36 text-white' />, color: 'bg-[#daa551] hover:bg-[#b28641]', title: "Anggaran Disetujui" },
+    { link: '/home/report/profit-loss', icon: <PiQueue className='w-36 h-36 text-white' />, color: 'bg-[#daa551] hover:bg-[#b28641]', title: "Anggaran Disetujui" },
 ]
 
 export default function Page(): ReactNode {

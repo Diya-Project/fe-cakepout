@@ -10,7 +10,6 @@ import Loading from '@/components/templates/Loading'
 export default function page() {
     const navigate = useRouter()
     const allAccount = useGetAccountBeginingBalancing(true)
-    console.log(allAccount?.data?.data)
     useEffect(() => {
         if (allAccount?.data?.data?.harta?.find((harta) => harta?.accounts?.find((account) => account.monthly_account_calculations.length! > 0))) {
             navigate.push('/home/ledger/journal')

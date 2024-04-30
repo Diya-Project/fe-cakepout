@@ -31,15 +31,14 @@ export default function Page(): ReactNode {
     const [size, setSize] = useState<number>(5)
 
     const [selectedDisbursementOfFund, setSelectedDsibursementOfFund] = useState<Array<string>>([])
-    const disbursementOfFund = useGetDisbursementOfFundByStatus(1, true, page !== null ? page : 1, size !== null ? size : 1)
 
     const addJournalDisbursementOfFundAttributes = useAddJournalDisbursementOfFund()
     const showMessage = useShowMessage(addJournalDisbursementOfFundAttributes)
     const sendJournal = (value: AddJournalDisbursementOfFundAttributes) => {
-        console.log(value)
         addJournalDisbursementOfFundAttributes.mutate(value)
         setShowFormJournal(false)
     }
+    const disbursementOfFund = useGetDisbursementOfFundByStatus(1, showMessage.show, page !== null ? page : 1, size !== null ? size : 1)
     return (
         <>
             <Loading show={disbursementOfFund.isLoading} />

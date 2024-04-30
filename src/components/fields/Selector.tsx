@@ -3,6 +3,7 @@ import { ReactNode } from 'react';
 import Select from 'react-select'
 
 type SelectorAttributes = {
+    instanceId: string;
     title: string;
     options: Array<SelectAttributes>
     value: SelectAttributes
@@ -11,11 +12,12 @@ type SelectorAttributes = {
 }
 
 
-function Selector({ title, onChange, options, value }: SelectorAttributes): ReactNode {
+function Selector({ title, onChange, options, value, instanceId }: SelectorAttributes): ReactNode {
     return (
         <div className='w-full font-montserrat font-light'>
             <h1 className="md:mx-0 text-md font-montserrat font-semibold text-gray-700">{title}</h1>
             <Select
+                instanceId={instanceId}
                 styles={{
                     control: (baseStyles: any) => ({
                         ...baseStyles,

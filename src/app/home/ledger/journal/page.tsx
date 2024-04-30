@@ -5,35 +5,24 @@ import { useGetAllJournal } from '@/hooks/react-query/useGetAllJournal'
 import Pagination from '@/components/templates/Pagination'
 import { JournalAttributes } from '@/type'
 import { currency } from '@/helper/currency'
-import FormAddJournal from '@/components/Form/FormAddJournal'
-import { useAddJournal } from '@/hooks/react-query/useAddJournal'
-import useShowMessage from '@/hooks/useShowMessage'
 import Loading from '@/components/templates/Loading'
-import Message from '@/components/templates/Message'
 import { formatTime } from '@/helper/time'
 import Input from '@/components/fields/Input'
-import { AddJournalAttributes } from '@/form-type'
+import useGeneratePDF from './Pdf'
 
 export default function Page() {
-    const head = ['Nomor Akun', 'Nama Akun', 'Tanggal Transaksi', 'Referensi', 'D', 'K']
-    const [showFormAddJournal, setShowFormAddJournal] = useState<boolean>(false)
+    const head = ['COA', 'Nama Akun', 'Tanggal Transaksi', 'Referensi', 'D', 'K', 'Deskripsi']
     const [page, setPage] = useState<number>(1)
-    const [size, setSize] = useState<number>(5)
+    const [size, setSize] = useState<number>(50)
     const [fromDate, setFromDate] = useState("")
     const [toDate, setToDate] = useState("")
 
-    const saveJournal = useAddJournal()
+    const listJournal = useGetAllJournal(true, page !== null ? page : 1, size !== null ? size : 1, fromDate, toDate)
 
-    const showMessage = useShowMessage(saveJournal)
-    const listJournal = useGetAllJournal(showMessage?.show, page !== null ? page : 1, size !== null ? size : 1, fromDate, toDate)
 
-    const addJournal = (data: AddJournalAttributes) => {
-        saveJournal.mutate(data)
-        setShowFormAddJournal(false)
-    }
     return (
         <>
-            <TableData title='Jurnal' clickAdd={() => setShowFormAddJournal(true)} data={listJournal?.data?.data?.data} head={head}
+            <TableData title='Jurnal' data={listJournal?.data?.data?.data} head={head} clickAdd={() => useGeneratePDF(listJournal?.data?.data?.data, listJournal?.data?.data?.debit, listJournal?.data?.data?.debit)} buttonName='Cetak PDF'
                 pages={<Pagination page={page} allPage={listJournal?.data?.data?.totalPages} setPage={setPage} value={size} setValue={(data) => {
                     setSize(parseInt(data.value as string))
                     setPage(1)
@@ -59,12 +48,11 @@ export default function Page() {
                         <td className='px-6 py-3'>{e.reference}</td>
                         <td className='px-6 py-3'>{e.status === 'D' ? currency(e.amount) : "-"}</td>
                         <td className='px-6 py-3'>{e.status === 'K' ? currency(e.amount) : "-"}</td>
+                        <td className='px-6 py-3'>{i === 0 || e.reference !== listJournal?.data?.data?.data[i - 1]?.reference ? e.description : "-"}</td>
                     </tr>
                 ))}
             </TableData >
-            <Message show={showMessage.show} message={showMessage.message} succes={showMessage.status} />
             <Loading show={listJournal.isLoading} />
-            <FormAddJournal show={showFormAddJournal} close={() => setShowFormAddJournal(false)} submit={addJournal} />
         </>
     )
 }

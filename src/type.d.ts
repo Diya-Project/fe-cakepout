@@ -1,3 +1,5 @@
+
+
 export type SelectAttributes = {
     value: string | number | null,
     label: string | number | null
@@ -137,6 +139,7 @@ export type JournalAttributes = {
     accounting_year: string;
     account_id: string;
     account?: AccountAttributes;
+    description:string;
 }
 
 export type AccountingYearAttributes = {

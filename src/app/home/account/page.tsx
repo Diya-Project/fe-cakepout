@@ -24,7 +24,7 @@ export default function Page(): ReactNode {
     const [oneDataAccount, setOneDataAccount] = useState<{ name: string }>({ name: '' })
     const [oneIdAccount, setOneIdAccount] = useState<string>('')
     const [page, setPage] = useState<number>(1)
-    const [size, setSize] = useState<number>(5)
+    const [size, setSize] = useState<number>(50)
 
     const saveAccount = useAddAccount()
     const editAccount = useUpdateAccount()
@@ -53,7 +53,7 @@ export default function Page(): ReactNode {
             <Message show={showMessageAdd.show} message={showMessageAdd.message} succes={showMessageAdd.status} />
             <Message show={showMessageUpdate.show} message={showMessageUpdate.message} succes={showMessageUpdate.status} />
             <Message show={showMessageDelete.show} message={showMessageDelete.message} succes={showMessageDelete.status} />
-            <TableData title='Daftar Akun' clickAdd={() => setShowFormAddAccount(true)} data={listAccount?.data?.data?.data} head={head}
+            <TableData title='COA' clickAdd={() => setShowFormAddAccount(true)} data={listAccount?.data?.data?.data} head={head}
                 pages={<Pagination page={page} allPage={listAccount?.data?.data?.totalPages} setPage={setPage} value={size} setValue={(data) => setSize(parseInt(data.value as string))} />}
             >
                 {listAccount?.data?.data?.data?.map((data: AccountAttributes, index: number) => (

@@ -1,17 +1,17 @@
 import Menu from '@/components/templates/Menu'
-import React, { ReactNode } from 'react'
-import { GiPayMoney } from "react-icons/gi";
-import { GiReceiveMoney } from "react-icons/gi";
-import { GiTakeMyMoney } from "react-icons/gi";
+import React, { ReactNode, useState } from 'react'
+import { FaCalculator } from 'react-icons/fa'
+import { ImBook } from 'react-icons/im'
+import { PiNotebookFill } from 'react-icons/pi'
 
 
 
 
 const menuData = [
-    { link: '/home/cash-bank/', icon: <GiPayMoney className='w-28 h-28 text-white' />, color: 'bg-[#696969] hover:bg-[#494949]', title: "Pengeluaran" },
-    { link: '/home/cash-bank/', icon: <GiTakeMyMoney className='w-28 h-28 text-white' />, color: 'bg-[#fa6607] hover:bg-[#c2530b]', title: "Uang Muka Pengeluaran" },
-    { link: '/home/cash-bank/', icon: <GiReceiveMoney className='w-28 h-28 text-white' />, color: 'bg-[#089bcc] hover:bg-[#0b7497]', title: "Penerimaan" },
-    { link: '/home/cash-bank/', icon: <GiTakeMyMoney className='w-28 h-28 text-white' />, color: 'bg-[#d51b21] hover:bg-[#a6171b]', title: "Uang Muka Penerimaan" },
+    { link: '/home/cash-bank/journal', icon: <ImBook className='w-36 h-36 text-white' />, color: 'bg-[#bf7c58] hover:bg-[#a2694a]', title: "Penginputan Jurnal" },
+    { link: '/home/cash-bank/begining-balance', icon: <FaCalculator className='w-36 h-36 text-white' />, color: 'bg-[#145b80] hover:bg-[#104a67]', title: "Pengisian Saldo Awal" },
+    { link: '/home/cash-bank/close-book', icon: <PiNotebookFill className='w-36 h-36 text-white' />, color: 'bg-[#00c190] hover:bg-[#02af83]', title: "Tutup Buku" },
+
 
 ]
 
