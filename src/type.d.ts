@@ -139,7 +139,7 @@ export type JournalAttributes = {
     accounting_year: string;
     account_id: string;
     account?: AccountAttributes;
-    description:string;
+    description: string;
 }
 
 export type AccountingYearAttributes = {
@@ -193,4 +193,24 @@ export type GroupingDisbursementOfFund = {
     uraian: string;
     no_kegiatan: string;
     activity: DisbursementOfFundAttributes[]
+}
+
+
+export type GroupBalanceReportAttributes = {
+    group_account_name: string
+    finalAmount: number;
+    accounts: Array<Omit<AccountAttributes, 'group_account_id' | 'activity_id'> & { amount: number }>
+}
+
+export type AmountAndGroupAttributes = {
+    finalAmount: number;
+    group: GroupBalanceReportAttributes[]
+}
+
+
+export type BalanceReportAttributes = {
+    harta: AmountAndGroupAttributes
+    kewajiban: AmountAndGroupAttributes;
+    modal: AmountAndGroupAttributes;
+    labaRugi: number;
 }

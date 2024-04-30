@@ -2,11 +2,14 @@ import React, { ReactNode } from 'react'
 import Menu from '@/components/templates/Menu'
 import { HiOutlineQueueList } from "react-icons/hi2";
 import { PiQueue } from "react-icons/pi";
+import { MdOutlineBalance } from 'react-icons/md';
+import { GiProfit } from 'react-icons/gi';
+import { FaArrowsRotate } from 'react-icons/fa6';
 
 const menuData = [
-    { link: '/home/report/balance-sheet', icon: <HiOutlineQueueList className='w-36 h-36 text-white' />, color: 'bg-[#28436d] hover:bg-[#223759]', title: "Neraca" },
-    { link: '/home/report/cash-flow', icon: <PiQueue className='w-36 h-36 text-white' />, color: 'bg-[#daa551] hover:bg-[#b28641]', title: "Laba Rugi" },
-    { link: '/home/report/profit-loss', icon: <PiQueue className='w-36 h-36 text-white' />, color: 'bg-[#daa551] hover:bg-[#b28641]', title: "Arus Kas" },
+    { link: '/home/report/balance-sheet', icon: <MdOutlineBalance className='w-36 h-36 text-white' />, color: 'bg-[#28436d] hover:bg-[#223759]', title: "Neraca" },
+    { link: '/home/report/cash-flow', icon: <GiProfit className='w-36 h-36 text-white' />, color: 'bg-[#daa551] hover:bg-[#b28641]', title: "Laba Rugi" },
+    { link: '/home/report/profit-loss', icon: <FaArrowsRotate className='w-36 h-36 text-white' />, color: 'bg-[#00c190] hover:bg-[#05aa80]', title: "Arus Kas" },
 ]
 
 export default function Page(): ReactNode {
