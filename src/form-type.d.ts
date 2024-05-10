@@ -17,7 +17,7 @@ type StatusJournalAttributes = 'K' | 'D'
 
 type ToAccountJournalAttributes = {
     account_id: string;
-    amount: number;
+    amount: number|string;
 }
 
 type AddJournalAttributes = {

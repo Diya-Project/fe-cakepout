@@ -24,10 +24,10 @@ export default function FormAddJournal({ show, close, submit }: { show: boolean,
                 description: yup.string().required("Deskripsi tidak boleh kosong"),
                 to_account: yup.array().of(yup.object().shape({
                     account_id: yup.string().required('akun tidak boleh kosong'),
-                    amount: yup.number().typeError('jumlah tidak boleh kosong').required('jumlah tidak boleh kosong'),
+                    amount: yup.string().typeError('jumlah tidak boleh kosong').required('jumlah tidak boleh kosong'),
                 }))
             })
-        ), defaultValues: { to_account: [{ account_id: '', amount: 0 }] }
+        ), defaultValues: { to_account: [{ account_id: '', amount: '0' }] }
     })
     const { fields, append, remove } = useFieldArray({
         control: method.control,
@@ -52,13 +52,13 @@ export default function FormAddJournal({ show, close, submit }: { show: boolean,
                 {fields.map((e, i: number) => (
                     <div key={e.id} className='border-b border-b-slate-400 pb-3'>
                         <SelectForm instanceId={`select-akun-options${i}`} title={`Akun`} method={method} methodName={`to_account[${i}].account_id`} options={toAccountOptions} />
-                        <InputForm id={`input-amount`} title='Jumlah' type='number' method={method} methodName={`to_account[${i}].amount`} />
+                        <InputForm isConvert id={`input-amount`} title='Jumlah' method={method} methodName={`to_account[${i}].amount`} />
                         <div className='flex justify-end mt-2'>
                             <HiTrash className='bg-red-600 hover:bg-red-700 text-white w-6 h-6 p-1 rounded-lg cursor-pointer' onClick={() => remove(i)} />
                         </div>
                     </div>
                 ))}
-                <button onClick={() => append({ account_id: '', amount: 0 })} className='bg-sky-600 hover:bg-sky-700 text-white px-8 py-2 rounded-lg'>Tambah</button>
+                <button onClick={() => append({ account_id: '', amount: '0' })} className='bg-sky-600 hover:bg-sky-700 text-white px-8 py-2 rounded-lg'>Tambah</button>
             </Form>
         </div>
     )

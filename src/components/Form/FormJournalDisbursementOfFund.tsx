@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import * as yup from "yup"
@@ -10,15 +10,17 @@ import { AddJournalDisbursementOfFundAttributes } from '@/form-type'
 import InputForm from '../fields/InputForm'
 import { usePtkOptions } from '@/options/usePtkOptions'
 import TextAreaForm from '../fields/TextAreaForm'
+import Input from '../fields/Input'
 
 export default function FormJournalDisbursementOfFund({ show, close, submit, groupId }: { show: boolean, close: () => void, submit: SubmitHandler<AddJournalDisbursementOfFundAttributes>, groupId: string }) {
+    const [receipient, setReceipient] = useState(0)
     const method = useForm({
         mode: 'all',
         resolver: yupResolver(
             yup.object().shape({
                 from_account: yup.string().required('akun sumber tidak boleh kosong'),
                 transaction_date: yup.string().required("Tanggal tidak boleh kosong"),
-                description:yup.string().required("Deskripsi tidak boleh kosong"),
+                description: yup.string().required("Deskripsi tidak boleh kosong"),
                 id: yup.string().required('id tidak boleh kosong'),
                 ptk_id: yup.string(),
                 receipient: yup.string()
