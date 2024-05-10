@@ -51,9 +51,9 @@ export default function TableData({ title, clickAdd, children, data, head, pages
                         <TitleTable title={title} />
                         {filters}
                     </div>
-                    <div className='flex gap-2 items-end'>
+                    <div className='flex gap-2 items-end md:flex-row flex-col bg-yellow-400'>
                         {noButton ? <></> : <Button title={buttonName ? buttonName : 'Buat Baru'} click={clickAdd!} />}
-                        <div className='bg-white h-[10%] mb-1'>
+                        <div className='bg-white'>
                             {data?.length! > 0 ?
                                 <>
                                     {pages}

@@ -1,5 +1,5 @@
 'use client'
-import React, { LegacyRef, ReactNode, useRef, useState } from 'react'
+import React, { Dispatch, LegacyRef, ReactNode, SetStateAction, useRef, useState } from 'react'
 import { menu } from '../constants/HeadMenu'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -21,10 +21,19 @@ function HeadMenu(): ReactNode {
   ))
 }
 
-function MobileMenu({ show }: { show: boolean }): ReactNode {
+function MobileMenu({ show, setShow }: { show: boolean, setShow: Dispatch<SetStateAction<boolean>> }): ReactNode {
+  const pathName = usePathname()
+  const [activeMenu, setActiveMenu] = useState<string>(pathName)
   return (
     <div className={`fixed top-[10vh] w-[90vw] h-[90vh] bg-white ${show ? 'left-0' : '-left-[95vh]'} transition-all ease-in-out duration-300`}>
-
+      <div className='flex flex-col gap-3 m-3'>
+        {menu.map((e, i) => (
+          <Link key={i} onClick={() => {
+            setActiveMenu(e.link)
+            setShow(false)
+          }} className={`text-gray-800 hover:bg-slate-200 py-2 font-montserrat cursor-pointer uppercase md:text-sm text-lg ${activeMenu === e.link || activeMenu?.split('/')[2] === e.link?.split('/')[2] ? 'border-b-2 border-white' : ''}`} href={e.link}>{e.title}</Link>
+        ))}
+      </div>
     </div>
   )
 }
@@ -65,7 +74,7 @@ export default function HeaderMenu(): ReactNode {
       </div>
       <div ref={mobileMenuRef} className='md:w-[0%] w-[50%] md:hidden block pl-2'>
         <HiListBullet className='w-8 h-8 text-white' onClick={() => setShowMenuMobile(!showMenuMobile)} />
-        <MobileMenu show={showMenuMobile} />
+        <MobileMenu show={showMenuMobile} setShow={()=>setShowMenuMobile(!showMenuMobile)} />
       </div>
       <div ref={profileRef} className='relative'>
         <Image loading='lazy' placeholder='blur' src={userCircle} alt='' className='w-10 h-10 fill-white m-3' onClick={() => setProfileMenu(!profileMenu)} />

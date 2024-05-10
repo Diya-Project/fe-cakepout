@@ -15,13 +15,13 @@ import { UseMutationResult } from '@tanstack/react-query'
 import { AxiosResponse } from 'axios'
 import TextAreaForm from '@/components/fields/TextAreaForm'
 
-function useCalculate(group: Array<BeginingBalanceAttributes>, setState: Dispatch<SetStateAction<number>>): void {
+function useCalculate(group: Array<BeginingBalanceAttributes>): number {
     let result = 0
     for (let i in group) {
         let toNumber = convertToRupiah(group[i].value! as unknown as number)
         result += toNumber
     }
-    setState(result)
+    return result
 }
 
 function useReturnToNumber(group: Array<BeginingBalanceAttributes>): Array<BeginingBalanceAttributes> {
@@ -32,7 +32,7 @@ function useReturnToNumber(group: Array<BeginingBalanceAttributes>): Array<Begin
     return setValue
 }
 
-function ColumnSaldoAwal({ data, method, methodName, readOnly, isSetValue, isValue }: { data: Array<BalancingAttributes>, method: any, methodName: string, readOnly?: boolean, isSetValue?: boolean, isValue?: number | string | undefined }) {
+function ColumnSaldoAwal({ data, method, methodName, readOnly, isSetValue, isValue, noMessage }: { data: Array<BalancingAttributes>, method: any, methodName: string, readOnly?: boolean, isSetValue?: boolean, isValue?: number | string | undefined, noMessage?: boolean }) {
     let indexing = -1
     return (
         <div className='w-[32%]'>
@@ -43,7 +43,7 @@ function ColumnSaldoAwal({ data, method, methodName, readOnly, isSetValue, isVal
                         indexing++
                         method?.setValue(`${methodName}.${indexing}.id`, account?.uuid)
                         return <div key={indexing} className='grid grid-cols-1 gap-5'>
-                            <InputForm isConvert key={indexing} id={account.uuid} title={account.name} method={method} methodName={`${methodName}.${indexing}.value`} read={readOnly} isSetValue={isSetValue} setValue={isValue} />
+                            <InputForm noMessage={noMessage!} isConvert key={indexing} id={account.uuid} title={account.name} method={method} methodName={`${methodName}.${indexing}.value`} read={readOnly} isSetValue={isSetValue} setValue={isValue} />
                         </div>
                     })}
                 </div>
@@ -106,18 +106,20 @@ export default function FormBeginingBalance({ data, loading }: { data: AccountBa
     }
     const Calculate = () => {
         const values = method.getValues() as FormSaldoAwal
-        useCalculate(values.harta!, setHartaResult)
-        useCalculate(values.kewajiban!, setKewajibanResult)
-        setFinalBalance(hartaResult - kewajibanResult - modalResult)
+        setHartaResult(useCalculate(values.harta!))
+        setKewajibanResult(useCalculate(values.kewajiban!))
     }
     const showMessage = useShowMessage(addBeginingBalance)
 
     UseMoveToJournal(addBeginingBalance, showMessage)
-    useEffect(()=>{
-        if(hartaResult && kewajibanResult){
-            setModalResult(hartaResult-kewajibanResult)
+    useEffect(() => {
+        if (hartaResult) {
+            setModalResult(hartaResult - kewajibanResult)
         }
-    },[hartaResult,kewajibanResult])
+        if (hartaResult) {
+            setFinalBalance(hartaResult - kewajibanResult - modalResult)
+        }
+    }, [hartaResult, kewajibanResult, modalResult])
     return (
         <>
             <Loading show={addBeginingBalance.isPending} />
@@ -128,25 +130,12 @@ export default function FormBeginingBalance({ data, loading }: { data: AccountBa
                     <div className='w-[2px] bg-slate-700'></div>
                     <ColumnSaldoAwal data={data?.kewajiban} method={method} methodName='kewajiban' />
                     <div className='w-[2px] bg-slate-700'></div>
-                    <ColumnSaldoAwal data={data?.modal} method={method} methodName='modal' readOnly isSetValue isValue={hartaResult - kewajibanResult} />
+                    <ColumnSaldoAwal data={data?.modal} method={method} methodName='modal' readOnly isSetValue isValue={hartaResult - kewajibanResult} noMessage />
                 </div>
                 <div className='grid grid-cols-3 gap-3'>
                     <ColumnResult title='Harta' value={hartaResult} />
                     <ColumnResult title='Kewajiban' value={kewajibanResult} />
-                    <ColumnResult title='Modal' value={modalResult}>
-                        {/* <div className='flex gap-1'>
-                            <button type='button' onClick={() => {
-                                setShowBalance(!showBalance)
-                                method.setValue("account_balancing", '0')
-                            }} className={`text-white rounded-md px-2 font-montserrat bg-sky-600 hover:bg-sky-700 hover:text-white`}>{showBalance ? "-" : "+"}</button>
-                            <h1>Balancing</h1>
-                        </div>
-                        {showBalance ?
-                            <InputForm id='balancing-field' title='' method={method} methodName='account_balancing' />
-                            :
-                            <></>
-                        } */}
-                    </ColumnResult>
+                    <ColumnResult title='Modal' value={modalResult} />
                 </div>
                 <ColumnResult title='Balancing' value={finalbalance < 0 ? finalbalance * -1 : finalbalance} minus={finalbalance < 0 ? true : false} />
                 <div className='flex'>
@@ -154,7 +143,7 @@ export default function FormBeginingBalance({ data, loading }: { data: AccountBa
                 </div>
                 <TextAreaForm method={method} methodName='description' title='Deskripsi' />
                 <div className='flex justify-end'>
-                    {finalbalance === 0 && hartaResult !== 0 && kewajibanResult !== 0 && modalResult !== 0 ?
+                    {finalbalance === 0 && hartaResult !== 0 && modalResult !== 0 ?
                         <button type='submit' className={`text-white my-1 rounded-md px-5 py-2 font-montserrat bg-sky-600 hover:bg-sky-700 hover:text-white`}>Simpan</button>
                         :
                         <h1 className={`text-slate-800 my-1 rounded-md px-5 py-2 font-montserrat bg-slate-300 cursor-pointer`}>Saldo awal harus balance!</h1>
