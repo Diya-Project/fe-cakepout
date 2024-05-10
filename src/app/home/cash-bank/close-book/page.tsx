@@ -8,7 +8,7 @@ import { useCloseBook } from '@/hooks/react-query/useCloseBook'
 import useNavigate from '@/hooks/useNavigate'
 import useShowMessage from '@/hooks/useShowMessage'
 import { SelectAttributes } from '@/type'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
 export default function page() {
     const [oneMonth, setOneMonth] = useState<SelectAttributes>({ value: '', label: '' })
@@ -17,7 +17,7 @@ export default function page() {
     const sendCloseBook = () => {
         saveCloseBook.mutate(oneMonth.value as string)
     }
-    useNavigate(saveCloseBook?.data?.status!, '/home/ledger/journal')
+    useNavigate(saveCloseBook?.data?.status!, '/home/cash-bank')
     return (
         <div className='flex justify-center items-center'>
             <Loading show={saveCloseBook.isPending} />

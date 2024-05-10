@@ -15,7 +15,7 @@ export default function Page(): ReactNode {
     const head = ['No Kegiatan', 'Nama', 'Jumlah', 'Pilih']
     const [showFormUpdateDisbursementOfFund, setShowFormUpdateDisbursementOfFund] = useState(false)
     const [page, setPage] = useState<number>(1)
-    const [size, setSize] = useState<number>(5)
+    const [size, setSize] = useState<number>(50)
 
     const [selectedDisbursementOfFund, setSelectedDsibursementOfFund] = useState<Array<string>>([])
     const saveDisbursementOfFund = (value: string) => {

@@ -2,7 +2,7 @@
 import monthIndex from '@/components/constants/monthIndex'
 import Selector from '@/components/fields/Selector'
 import { currency } from '@/helper/currency'
-import { useGetReportBalancing } from '@/hooks/react-query/useGetReportBalancing'
+import { useGetReportBalancingStatement } from '@/hooks/react-query/useGetReportBalancingStatement'
 import { AccountAttributes, AmountAndGroupAttributes, GroupBalanceReportAttributes, SelectAttributes } from '@/type'
 import React, { useEffect, useState } from 'react'
 
@@ -17,19 +17,15 @@ const ColumnGroup = ({ data, title, group }: { data: AmountAndGroupAttributes, t
                         <div className="bg-white border-b border-slate-100 hover:bg-gray-100 overflow-y-auto flex justify-between">
                             <h1 className='w-[10%] text-sm font-semibold'>COA</h1>
                             <h1 className='w-[30%] text-sm font-semibold'>AKUN</h1>
-                            <h1 className='w-[30%] text-sm font-semibold'>D</h1>
-                            <h1 className='w-[30%] text-sm font-semibold'>K</h1>
+                            <h1 className='w-[30%] text-sm font-semibold'>Nilai</h1>
                         </div>
                         {val?.accounts?.map((account: Omit<AccountAttributes, 'group_account_id' | 'activity_id'> & { amount: number }, idx: number) => (
                             <div key={idx} className="bg-white border-b border-slate-100 hover:bg-gray-100 overflow-y-auto flex justify-between">
                                 <h1 className='w-[10%] text-sm'>{account.account_number}</h1>
                                 <h1 className='w-[30%] text-sm'>{account.name}</h1>
-                                <h1 className='w-[30%] text-sm'>{group === 1 ? account.amount ? currency(account.amount) : currency(0) : "-"}</h1>
-                                <h1 className='w-[30%] text-sm'>{group !== 1 ? account.amount ? currency(account.amount) : currency(0) : "-"}</h1>
+                                <h1 className='w-[30%] text-sm'>{account.amount ? currency(account.amount) : currency(0)}</h1>
                             </div>
                         ))}
-                        {/* <div className='w-[100%] h-[2px] bg-slate-600 my-1'></div>
-                        <h1 className='text-right'>Total : {val.finalAmount ? currency(val.finalAmount) : currency(0)}</h1> */}
                     </div>
                 </div>
             ))}
@@ -43,7 +39,7 @@ const ColumnGroup = ({ data, title, group }: { data: AmountAndGroupAttributes, t
 
 export default function page() {
     const [month, setMonth] = useState<SelectAttributes>({ value: null, label: '' })
-    const reportBalancing = useGetReportBalancing(month.value as number)?.data?.data
+    const reportBalancing = useGetReportBalancingStatement(month.value as number)?.data?.data
     const [kredit, setKredit] = useState(0)
     const [debit, setDebit] = useState(0)
     useEffect(() => {
@@ -67,23 +63,17 @@ export default function page() {
                             <div className="bg-white border-b border-slate-100 hover:bg-gray-100 overflow-y-auto flex justify-between">
                                 <h1 className='w-[10%] text-sm font-semibold'></h1>
                                 <h1 className='w-[30%] text-sm font-semibold'></h1>
-                                <h1 className='w-[30%] text-sm font-semibold'>D</h1>
-                                <h1 className='w-[30%] text-sm font-semibold'>K</h1>
+                                <h1 className='w-[30%] text-sm font-semibold'>Nilai</h1>
                             </div>
                             <div className="bg-white border-b border-slate-100 hover:bg-gray-100 overflow-y-auto flex justify-between">
                                 <h1 className='w-[10%] text-sm'></h1>
                                 <h1 className='w-[30%] text-sm'></h1>
-                                <h1 className='w-[30%] text-sm'>-</h1>
                                 <h1 className='w-[30%] text-sm'>{reportBalancing?.labaRugi ? currency(reportBalancing?.labaRugi) : currency(0)}</h1>
                             </div>
                         </div>
                         :
                         <></>
                     }
-                    {/* <div className='px-3'>
-                        <div className='w-[100%] h-[2px] bg-slate-600 my-1'></div>
-                        <h1 className='text-right'>Total Akhir : {reportBalancing?.labaRugi ? currency(reportBalancing?.labaRugi) : currency(0)}</h1>
-                    </div> */}
                 </div>
                 <div className='px-3'>
                     <div className='w-[100%] h-[2px] bg-slate-600 my-1'></div>

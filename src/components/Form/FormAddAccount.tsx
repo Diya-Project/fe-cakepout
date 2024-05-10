@@ -1,6 +1,6 @@
 import InputForm from '@/components/fields/InputForm'
 import SelectForm from '@/components/fields/SelectForm'
-import React, { ReactNode, useState } from 'react'
+import React, { ReactNode, useEffect, useState } from 'react'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import * as yup from "yup"
@@ -14,8 +14,8 @@ import useInstitutionOptions from '@/options/useInstitutionOptions'
 import Selector from '../fields/Selector'
 import { SelectAttributes } from '@/type'
 import { AddAccountAttributes } from '@/form-type'
+import MultiRadio from '../fields/MultiRadio'
 
-const activityCode = [4, 5]
 
 type FormAddAccountAttributes = { show: boolean, close: () => void, submit: SubmitHandler<AddAccountAttributes> }
 
@@ -30,10 +30,11 @@ export default function FormAddAccount({ submit, show, close }: FormAddAccountAt
                 group_account_label: yup.number().nullable().typeError('grup label akun tidak boleh kosong').min(0, 'min 0').required(),
                 group_account_name: yup.string().when('group_account_label', (group_account_label, fields) => group_account_label[0] === null ? fields.required("grup nama akun tidak boleh kosong") : fields.nullable()),
                 name: yup.string().required("nama akun tidak boleh kosong"),
-                activity_id: yup.string().nullable()
+                activity_id: yup.string().nullable(),
+                asset: yup.boolean().required('asset tidak boleh kosong')
 
             })
-        ), defaultValues: { activity_id: undefined }
+        ), defaultValues: { activity_id: undefined, asset: false }
     })
     const watchGroupAccount = method.watch('group_account')
 
@@ -42,6 +43,9 @@ export default function FormAddAccount({ submit, show, close }: FormAddAccountAt
     const institutionOptions = useInstitutionOptions()
 
     useResetForm(method, show, null)
+    useEffect(() => {
+        method.reset({ group_account: watchGroupAccount, activity_id: undefined, asset: false, group_account_label: 0, group_account_name: undefined, name:'' })
+    }, [watchGroupAccount])
     return (
         <Modal title='Tambah Akun' show={show} close={close}>
             <Form submit={method.handleSubmit(submit)}>
@@ -59,9 +63,10 @@ export default function FormAddAccount({ submit, show, close }: FormAddAccountAt
                     :
                     <InputForm id='iput-group-account-name' title='Grup Akun' method={method} methodName='group_account_name' />
                 }
+                {watchGroupAccount === 1 ? <MultiRadio method={method} methodName='asset' title={['Iya', "Tidak"]} value={['1', '0']} header='Bagian dari asset' /> : <></>}
+                {watchGroupAccount === 5 ? <Selector instanceId='select-lembaga-accounts' title='Lembaga' options={institutionOptions} value={institutionValue} onChange={(e) => setInstitutionValue(e)} /> : <></>}
+                {watchGroupAccount === 5 ? <SelectForm instanceId='select-detailOfActivity' title='Kegiatan' method={method} methodName='activity_id' options={detailOfActiviyOptions} /> : <></>}
                 <InputForm id='input-name-account' title='Nama' method={method} methodName='name' />
-                {activityCode.includes(watchGroupAccount) ? <Selector title='Lembaga' options={institutionOptions} value={institutionValue} onChange={(e) => setInstitutionValue(e)} /> : <></>}
-                {activityCode.includes(watchGroupAccount) ? <SelectForm instanceId='select-detailOfActivity' title='Kegiatan' method={method} methodName='activity_id' options={detailOfActiviyOptions} /> : <></>}
             </Form>
         </Modal>
     )

@@ -43,7 +43,7 @@ type UpdateWithdrawDisbursementOfFundAttributes = {
 }
 
 export type BeginingBalanceAttributes = {
-    value: number;
+    value: string | number;
     id: string;
 }
 
@@ -52,7 +52,8 @@ export type FormSaldoAwal = {
     harta?: BeginingBalanceAttributes[] | undefined;
     kewajiban?: BeginingBalanceAttributes[] | undefined;
     modal?: BeginingBalanceAttributes[] | undefined;
-    account_balancing?: number | undefined;
+    account_balancing?: string | number | undefined;
+    description: string;
 }
 
 export type AddJournalDisbursementOfFundAttributes = {

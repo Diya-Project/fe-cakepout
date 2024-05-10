@@ -77,6 +77,7 @@ export type AccountAttributes = {
     activity_id: string;
     detail_of_activity: DetailOfActivityAttributes;
     group_account: GroupAccountAttributes;
+    asset: boolean;
 }
 
 export type JournalReferenceNumberAttributes = {

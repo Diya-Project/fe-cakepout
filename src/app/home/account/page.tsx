@@ -17,7 +17,7 @@ import React, { ReactNode, useState } from 'react'
 import { HiPencil, HiTrash } from 'react-icons/hi2'
 
 export default function Page(): ReactNode {
-    const head = ['Nomor Akun', 'Nama', 'Kegiatan', 'Aksi']
+    const head = ['Nomor Akun', 'Nama', 'Kegiatan','Bagian dari aset', 'Aksi']
     const [showFormAddAccount, setShowFormAddAccount] = useState<boolean>(false)
     const [showFormEditAccount, setShowFormEditAccount] = useState<boolean>(false)
     const [showFormDeleteAccount, setShowFormDeleteAccount] = useState<boolean>(false)
@@ -61,6 +61,7 @@ export default function Page(): ReactNode {
                         <td className='px-6 py-3'>{data.account_number}</td>
                         <td className='px-6 py-3'>{data.name}</td>
                         <td className='px-6 py-3'>{data.detail_of_activity ? `${data.detail_of_activity.uraian}` : '-'}</td>
+                        <td className='px-6 py-3'>{data.asset ? 'Iya':'Tidak'}</td>
                         <td className='px-6 py-3 flex gap-2'>
                             <HiPencil className='w-8 h-8 bg-sky-400 hover:bg-sky-500 rounded-full p-2 cursor-pointer text-white' onClick={() => {
                                 setOneDataAccount({ name: data.name })

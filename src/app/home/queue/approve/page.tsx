@@ -28,7 +28,7 @@ export default function Page(): ReactNode {
     const [idGroup, setIdGroup] = useState("")
     const [saveListGroupDisbursementOfFund, setSaveListDisbursementOfFund] = useState<DisbursementOfFundAttributes[]>([])
     const [page, setPage] = useState<number>(1)
-    const [size, setSize] = useState<number>(5)
+    const [size, setSize] = useState<number>(50)
 
     const [selectedDisbursementOfFund, setSelectedDsibursementOfFund] = useState<Array<string>>([])
 

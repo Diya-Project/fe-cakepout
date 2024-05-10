@@ -5,9 +5,9 @@ import { AxiosResponse } from "axios";
 import { useEffect } from "react";
 
 
-export function useGetReportBalancing(monthIndex: number): UseQueryResult<AxiosResponse<any, any>, Error> {
+export function useGetReportBalancingStatement(monthIndex: number): UseQueryResult<AxiosResponse<any, any>, Error> {
     const monthlyAccountCalculation = useQuery({
-        queryKey: ['get_report_balance'],
+        queryKey: ['get_report_balance_statement'],
         queryFn: () => api.get(`/report/balance-statement?month_index=${monthIndex}`),
         enabled: monthIndex !== null ? true : false
     })
