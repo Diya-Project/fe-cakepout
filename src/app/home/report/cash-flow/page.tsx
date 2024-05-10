@@ -31,7 +31,7 @@ const ColumnGroup = ({ data, title, total }: { data: any, title: string, total: 
 }
 
 
-export default function page() {
+export default function Page() {
     const [fromDate, setFromDate] = useState('')
     const [toDate, settoDate] = useState('')
     const cashFlow = useGetReportIncomeStatement(fromDate, toDate)

@@ -7,5 +7,6 @@ export default function useNavigate(status: number, location: string): void {
         if (status === 200) {
             navigate.push(location)
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [status])
 }

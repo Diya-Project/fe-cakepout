@@ -10,7 +10,7 @@ import useShowMessage from '@/hooks/useShowMessage'
 import { SelectAttributes } from '@/type'
 import React, { useState } from 'react'
 
-export default function page() {
+export default function Page() {
     const [oneMonth, setOneMonth] = useState<SelectAttributes>({ value: '', label: '' })
     const saveCloseBook = useCloseBook()
     const showMessage = useShowMessage(saveCloseBook)

@@ -8,5 +8,6 @@ export default function useResetForm(method: UseFormReturn<any, any, undefined>,
         } else {
             method.reset()
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [trigger, value])
 }

@@ -12,6 +12,7 @@ export function useGetAllSharingProgram(trigger: boolean): UseQueryResult<AxiosR
     })
     useEffect(() => {
         sharingProgram.refetch()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [trigger])
     return sharingProgram
 }

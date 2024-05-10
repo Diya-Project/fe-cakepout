@@ -12,6 +12,7 @@ export function useGetAllPtk(trigger: boolean): UseQueryResult<AxiosResponse<any
     })
     useEffect(() => {
         ptk.refetch()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [trigger])
     return ptk
 }

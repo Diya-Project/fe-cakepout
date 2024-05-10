@@ -32,6 +32,7 @@ function InputForm({ id, max, step, type, title, className, read, icon, method, 
             let toIdr = formatRupiah(setValue as number, '')
             method.setValue(methodName, toIdr)
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isConvert, watch, isSetValue, setValue])
     return (
         <div className={`flex flex-col relative w-[100%] items-center`}>

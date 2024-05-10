@@ -33,6 +33,7 @@ export default function FormJournalDisbursementOfFund({ show, close, submit, gro
         if (show && groupId !== "") {
             method.reset({ id: groupId })
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [show, groupId])
     const ptkOptions = usePtkOptions()
     return (

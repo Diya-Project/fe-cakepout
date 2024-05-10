@@ -8,7 +8,6 @@ import { currency } from '@/helper/currency'
 import Loading from '@/components/templates/Loading'
 import { formatTime } from '@/helper/time'
 import Input from '@/components/fields/Input'
-import useGeneratePDF from './Pdf'
 
 export default function Page() {
     const head = ['COA', 'Nama Akun', 'Tanggal Transaksi', 'Referensi', 'D', 'K', 'Deskripsi']

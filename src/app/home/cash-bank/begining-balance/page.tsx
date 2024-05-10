@@ -7,13 +7,14 @@ import { useGetAccountBeginingBalancing } from '@/hooks/react-query/useGetAccoun
 import { useRouter } from 'next/navigation'
 import Loading from '@/components/templates/Loading'
 
-export default function page() {
+export default function Page() {
     const navigate = useRouter()
     const allAccount = useGetAccountBeginingBalancing(true)
     useEffect(() => {
         if (allAccount?.data?.data?.harta?.find((harta) => harta?.account?.find((val) => val.monthly_account_calculations.length! > 0))) {
             navigate.push('/home/ledger/journal')
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [allAccount?.data?.data])
     return (
         <>

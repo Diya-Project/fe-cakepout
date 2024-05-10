@@ -45,6 +45,7 @@ export default function FormAddAccount({ submit, show, close }: FormAddAccountAt
     useResetForm(method, show, null)
     useEffect(() => {
         method.reset({ group_account: watchGroupAccount, activity_id: undefined, asset: false, group_account_label: 0, group_account_name: undefined, name:'' })
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [watchGroupAccount])
     return (
         <Modal title='Tambah Akun' show={show} close={close}>

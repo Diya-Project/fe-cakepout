@@ -1,5 +1,6 @@
 'use client'
 import api from "@/app/api/lib/axios";
+import { EditAccountAttributes } from "@/form-type";
 import { AccountAttributes } from "@/type";
 import { UseMutationResult, useMutation } from "@tanstack/react-query";
 import { AxiosResponse } from "axios";

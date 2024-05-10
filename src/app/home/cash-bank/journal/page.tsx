@@ -9,7 +9,7 @@ import useNavigate from '@/hooks/useNavigate'
 import useShowMessage from '@/hooks/useShowMessage'
 import React, { useState } from 'react'
 
-export default function page() {
+export default function Page() {
     const [showFormJournal, setShowFormJournal] = useState(true)
     const saveJournal = useAddJournal()
     const showMessage = useShowMessage(saveJournal)

@@ -49,7 +49,7 @@ export default function Page(): ReactNode {
             <DetailModal show={showModalListGroup} close={() => setShowModalListGroup(false)}>
                 <Table head={["No Kegiatan", "Kegiatan", "Nilai"]}>
                     {saveListGroupDisbursementOfFund?.map((value, id) => (
-                        <tr>
+                        <tr key={id}>
                             <td className='font-montserrat uppercase px-6 py-3'>{value.rincian_kegiatan.no_kegiatan}</td>
                             <td className='font-montserrat uppercase px-6 py-3'>{value.rincian_kegiatan.uraian}</td>
                             <td className='font-montserrat uppercase px-6 py-3'>{value.amount ? currency(value.amount) : currency(0)}</td>

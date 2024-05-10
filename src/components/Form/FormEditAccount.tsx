@@ -6,6 +6,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import * as yup from "yup"
 import useResetForm from '@/hooks/useResetForm'
+import { EditAccountAttributes } from '@/form-type'
 
 type FormEditeAccountAttributes = { show: boolean, close: () => void, submit: SubmitHandler<EditAccountAttributes>, oneAccount: { name: string } }
 

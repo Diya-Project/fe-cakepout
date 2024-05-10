@@ -37,7 +37,7 @@ const ColumnGroup = ({ data, title, group }: { data: AmountAndGroupAttributes, t
     )
 }
 
-export default function page() {
+export default function Page() {
     const [month, setMonth] = useState<SelectAttributes>({ value: null, label: '' })
     const reportBalancing = useGetReportBalancingStatement(month.value as number)?.data?.data
     const [kredit, setKredit] = useState(0)

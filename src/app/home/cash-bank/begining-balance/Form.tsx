@@ -67,6 +67,7 @@ function UseMoveToJournal(data: UseMutationResult<AxiosResponse<any, any>, Error
         if (data.data?.status === 200 && !showMessage.show) {
             navigate.push('/home/ledger/journal')
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [data.data?.status, showMessage.show])
 }
 
@@ -100,10 +101,10 @@ export default function FormBeginingBalance({ data, loading }: { data: AccountBa
         defaultValues: { account_balancing: '0' }
     })
     const addBeginingBalance = useAddBeginingBalancing()
-    const submit = (value: FormSaldoAwal) => {
+    const useSubmit = (value: FormSaldoAwal) => {
         addBeginingBalance.mutate({ account_balancing: value.account_balancing, description: value.description, harta: useReturnToNumber(value.harta!), kewajiban: useReturnToNumber(value.kewajiban!), modal: useReturnToNumber(value.modal!) })
     }
-    const calculate = () => {
+    const Calculate = () => {
         const values = method.getValues() as FormSaldoAwal
         useCalculate(values.harta!, setHartaResult)
         useCalculate(values.kewajiban!, setKewajibanResult)
@@ -121,7 +122,7 @@ export default function FormBeginingBalance({ data, loading }: { data: AccountBa
         <>
             <Loading show={addBeginingBalance.isPending} />
             <Message message={showMessage.message} show={showMessage.show} succes={showMessage.status} />
-            <form onSubmit={method.handleSubmit(submit)}>
+            <form onSubmit={method.handleSubmit(useSubmit)}>
                 <div className='flex gap-3'>
                     <ColumnSaldoAwal data={data?.harta} method={method} methodName='harta' />
                     <div className='w-[2px] bg-slate-700'></div>
@@ -149,7 +150,7 @@ export default function FormBeginingBalance({ data, loading }: { data: AccountBa
                 </div>
                 <ColumnResult title='Balancing' value={finalbalance < 0 ? finalbalance * -1 : finalbalance} minus={finalbalance < 0 ? true : false} />
                 <div className='flex'>
-                    <button type='button' onClick={calculate} className={`text-white my-1 rounded-md px-5 py-2 font-montserrat bg-sky-600 hover:bg-sky-700 hover:text-white`}>Kalkulasikan</button>
+                    <button type='button' onClick={Calculate} className={`text-white my-1 rounded-md px-5 py-2 font-montserrat bg-sky-600 hover:bg-sky-700 hover:text-white`}>Kalkulasikan</button>
                 </div>
                 <TextAreaForm method={method} methodName='description' title='Deskripsi' />
                 <div className='flex justify-end'>
