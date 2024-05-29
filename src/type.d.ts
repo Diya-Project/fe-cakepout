@@ -148,7 +148,7 @@ export type AccountingYearAttributes = {
     active: boolean;
 }
 
-export type MonthlyAccountCalculationAttributes = {
+export type LedgerAttributes = {
     uuid: string;
     month_index: number;
     accounting_year: string;
@@ -163,7 +163,7 @@ export type AccountsBalancing = {
     account_number: string;
     name: string;
     uuid: string;
-    monthly_account_calculations: MonthlyAccountCalculationAttributes[]
+    ledger: LedgerAttributes[]
 }
 
 export type BalancingAttributes = {

@@ -11,7 +11,7 @@ export default function Page() {
     const navigate = useRouter()
     const allAccount = useGetAccountBeginingBalancing(true)
     useEffect(() => {
-        if (allAccount?.data?.data?.harta?.find((harta) => harta?.account?.find((val) => val.monthly_account_calculations.length! > 0))) {
+        if (allAccount?.data?.data?.harta?.find((harta) => harta?.account?.find((val) => val?.ledger?.length! > 0))) {
             navigate.push('/home/ledger/journal')
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
