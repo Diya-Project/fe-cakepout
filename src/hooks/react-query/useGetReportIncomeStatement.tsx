@@ -8,7 +8,7 @@ import { useEffect } from "react";
 export function useGetReportIncomeStatement(start: string, end: string): UseQueryResult<AxiosResponse<any, any>, Error> {
     const monthlyAccountCalculation = useQuery({
         queryKey: ['get_report_income_statement'],
-        queryFn: () => api.get(`/report/income-statement?start=${start}&end=${end}`),
+        queryFn: () => api.get(`/cakepout/report/income-statement?start=${start}&end=${end}`),
         enabled: start !== "" && end !== "" ? true : false
     })
     useEffect(() => {

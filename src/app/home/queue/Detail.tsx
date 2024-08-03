@@ -21,7 +21,7 @@ type DetailAttributes = {
 
 export default function Detail({ anggaran, confirm,titleButton }: DetailAttributes):ReactNode {
     const listDetail = [
-        { icon: <MdOutlineDescription className='w-20 h-20 text-sky-800 my-auto' />, title: 'Uraian', value: anggaran?.rincian_kegiatan?.uraian || '-' },
+        { icon: <MdOutlineDescription className='w-20 h-20 text-sky-800 my-auto' />, title: 'Uraian', value: anggaran?.rincian_kegiatan?.description || '-' },
         { icon: <IoCalendarNumberOutline className='w-20 h-20 text-sky-800 my-auto' />, title: 'Tahun Ajar', value: anggaran?.accounting_year || '-' },
         { icon: <TbMoneybag className='w-20 h-20 text-sky-800 my-auto' />, title: 'Total Anggaran', value: anggaran?.rincian_kegiatan?.total ? currency(anggaran?.rincian_kegiatan?.total) : currency(0) },
         { icon: <BsGraphUpArrow className='w-20 h-20 text-sky-800 my-auto' />, title: 'Total Realisasi', value: anggaran?.rincian_kegiatan?.total_realisasi && anggaran?.amount ? anggaran?.withdraw ? currency(anggaran?.rincian_kegiatan?.total_realisasi) : currency(anggaran?.rincian_kegiatan?.total_realisasi - anggaran?.amount) : currency(0) },

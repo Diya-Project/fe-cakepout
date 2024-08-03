@@ -7,7 +7,7 @@ import { AxiosResponse } from "axios";
 export function useAddJournal(): UseMutationResult<AxiosResponse<any, any>, Error, AddJournalAttributes, unknown> {
     const account = useMutation({
         mutationKey: ['post_account'],
-        mutationFn: (e: AddJournalAttributes) => api.post(`/journal`, e),
+        mutationFn: (e: AddJournalAttributes) => api.post(`/cakepout/journal`, e),
         onSuccess: (e) => {
             return e
         },

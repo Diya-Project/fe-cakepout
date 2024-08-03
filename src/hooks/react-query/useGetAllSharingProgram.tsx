@@ -7,7 +7,7 @@ import { useEffect } from "react";
 export function useGetAllSharingProgram(trigger: boolean): UseQueryResult<AxiosResponse<any, any>, Error> {
     const sharingProgram = useQuery({
         queryKey: ['get_all_sharing_program'],
-        queryFn: () => api.get('/sharing-program'),
+        queryFn: () => api.get('/apakah/sharing-program'),
         enabled: trigger
     })
     useEffect(() => {

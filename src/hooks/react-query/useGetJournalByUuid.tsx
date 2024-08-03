@@ -7,7 +7,7 @@ import { useEffect } from "react";
 export function useGetJournalByUuid(uuid: string): UseQueryResult<AxiosResponse<any, any>, Error> {
     const journal = useQuery({
         queryKey: ['get_journal_by_uuid'],
-        queryFn: () => api.get(`/journal/${uuid}`),
+        queryFn: () => api.get(`/cakepout/journal/${uuid}`),
         enabled: uuid !== null ? true:false
     })
     useEffect(()=>{

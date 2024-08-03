@@ -9,7 +9,7 @@ export default function useInstitutionOptions() {
     useEffect(() => {
         if (institution.data?.data) {
             setInstitutionOptions(institution?.data?.data?.map((e: InstitutionAttributes) => {
-                return { value: e.no_lembaga, label: e.nama_lembaga }
+                return { value: e.id, label: e.name }
             }))
         }
     }, [institution.data?.data])

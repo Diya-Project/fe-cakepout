@@ -7,7 +7,7 @@ import { useEffect } from "react";
 export function useGetGroupAccountByGroup(groupAccount: number, main: boolean): UseQueryResult<AxiosResponse<any, any>, Error> {
     const groupAccount_ = useQuery({
         queryKey: ['get_group_account_by_group'],
-        queryFn: () => api.post(`/group-account`, { group_account: groupAccount }),
+        queryFn: () => api.post(`/cakepout/group-account`, { group_account: groupAccount }),
         enabled: groupAccount && groupAccount !== null ? true : false
     })
     useEffect(() => {

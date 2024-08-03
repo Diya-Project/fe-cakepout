@@ -17,7 +17,7 @@ type StatusJournalAttributes = 'K' | 'D'
 
 type ToAccountJournalAttributes = {
     account_id: string;
-    amount: number|string;
+    amount: number | string;
 }
 
 type AddJournalAttributes = {
@@ -63,4 +63,10 @@ export type AddJournalDisbursementOfFundAttributes = {
     id: string;
     ptk_id?: string | undefined;
     receipient?: string | undefined;
+}
+
+export type AddAutomationAttributes = {
+    uuid_account_from?: string | null | undefined;
+    uuid_account_to?: string | null | undefined
+    role: string | undefined
 }

@@ -8,7 +8,7 @@ import { useEffect } from "react";
 export function useGetAllJournalReferenceNumber(): UseQueryResult<AxiosResponse<any, any>, Error> {
     const journalReferenceNumber = useQuery({
         queryKey: ['get_all_journal_reference_number'],
-        queryFn: () => api.get(`/journal-reference-number`),
+        queryFn: () => api.get(`/cakepout/journal-reference-number`),
     })
     useEffect(() => {
         journalReferenceNumber.refetch()

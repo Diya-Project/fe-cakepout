@@ -8,7 +8,7 @@ import { AxiosResponse } from "axios";
 export function useGetDisbursementOfFundByWithdraw(withDraw: number, trigger: boolean): UseQueryResult<AxiosResponse<any, any>, Error> {
     const disbursementOfFund = useQuery({
         queryKey: ['get_disbursement_of_fund_by_withdraw'],
-        queryFn: () => api.get(`/disbursement-of-fund/withdraw/${withDraw}`),
+        queryFn: () => api.get(`/cakepout/disbursement-of-fund/withdraw/${withDraw}`),
         enabled: withDraw !== null ? true : false
     })
     useEffect(() => {

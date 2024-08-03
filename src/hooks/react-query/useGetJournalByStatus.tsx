@@ -8,7 +8,7 @@ import { useEffect } from "react";
 export function useGetJournalByStatus(status: string): UseQueryResult<AxiosResponse<any, any>, Error> {
     const journal = useQuery({
         queryKey: ['get_journal_by_status'],
-        queryFn: () => api.get(`/journal/status/${status}`),
+        queryFn: () => api.get(`/cakepout/journal/status/${status}`),
         enabled: status !== null ? true : false
     })
     useEffect(() => {

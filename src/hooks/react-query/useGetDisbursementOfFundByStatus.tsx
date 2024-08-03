@@ -9,7 +9,7 @@ import { AxiosResponse } from "axios";
 export function useGetDisbursementOfFundByStatus(status: number, trigger: boolean, page: number, size: number): UseQueryResult<AxiosResponse<any, any>, Error> {
     const disbursementOfFund = useQuery({
         queryKey: ['get_disbursement_of_fund_by_status'],
-        queryFn: () => api.get(`/disbursement-of-fund/status/${status}?page=${page}&&size=${size}`),
+        queryFn: () => api.get(`/cakepout/disbursement-of-fund/status/${status}?page=${page}&&size=${size}`),
         enabled: status !== null ? true : false
     })
     useEffect(() => {

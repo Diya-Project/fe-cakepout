@@ -34,15 +34,15 @@ export default function Page(): ReactNode {
             <TableData title='Anggaran Terlaksana' head={head} data={disbursementOfFund?.data?.data} noButton
                 pages={<Pagination page={page} allPage={disbursementOfFund?.data?.data?.totalPages} setPage={setPage} value={size} setValue={(data) => setSize(parseInt(data.value as string))} />}
             >
-                {disbursementOfFund?.data?.data?.map((value:any, index: number) => (
+                {disbursementOfFund?.data?.data?.map((data:any, index: number) => (
                     <tr key={index} className="bg-white border-b border-slate-100 hover:bg-gray-100 overflow-y-auto">
-                        <td className='px-6 py-3'>{value.sharing_program_id ? <FaChevronDown onClick={() => {
-                            setSaveListDisbursementOfFund(value.activity)
+                        <td className='px-6 py-3'>{data.sharing_program_id ? <FaChevronDown onClick={() => {
+                            setSaveListDisbursementOfFund(data.activity)
                             setShowModalListGroup(true)
                         }} /> : <>-</>}</td>
-                        <td className='px-6 py-3'>{value.sharing_program_id ? "-" : value?.rincian_kegiatan?.no_kegiatan}</td>
-                        <td className='px-6 py-3'>{value.sharing_program_name ? value.sharing_program_name : value?.rincian_kegiatan?.uraian}</td>
-                        <td className='px-6 py-3'>{value.amount ? currency(value.amount) : currency(0)}</td>
+                        <td className='px-6 py-3'>{data.sharing_program_id ? "-" : data?.rincian_kegiatan?.no_kegiatan}</td>
+                        <td className='px-6 py-3'>{data.sharing_program_name ? data.sharing_program_name : data?.rincian_kegiatan?.uraian}</td>
+                        <td className='px-6 py-3'>{data.amount ? currency(data.amount) : currency(0)}</td>
                     </tr>
                 ))}
             </TableData>
@@ -50,8 +50,8 @@ export default function Page(): ReactNode {
                 <Table head={["No Kegiatan", "Kegiatan", "Nilai"]}>
                     {saveListGroupDisbursementOfFund?.map((value, id) => (
                         <tr key={id}>
-                            <td className='font-montserrat uppercase px-6 py-3'>{value.rincian_kegiatan.no_kegiatan}</td>
-                            <td className='font-montserrat uppercase px-6 py-3'>{value.rincian_kegiatan.uraian}</td>
+                            <td className='font-montserrat uppercase px-6 py-3'>{value.rincian_kegiatan.activity_id}</td>
+                            <td className='font-montserrat uppercase px-6 py-3'>{value.rincian_kegiatan.description}</td>
                             <td className='font-montserrat uppercase px-6 py-3'>{value.amount ? currency(value.amount) : currency(0)}</td>
                         </tr>
                     ))}

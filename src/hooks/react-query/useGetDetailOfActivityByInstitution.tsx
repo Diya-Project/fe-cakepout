@@ -5,17 +5,17 @@ import { AxiosResponse } from "axios";
 import { useEffect } from "react";
 
 
-export function useGetDetailOfActivityByInstitution(institutionId: number | string | null): UseQueryResult<AxiosResponse<any, any>, Error> {
+export function useGetDetailOfActivityByInstitution(institution_no: number | string | null): UseQueryResult<AxiosResponse<any, any>, Error> {
     const detailOfActivity = useQuery({
         queryKey: ['get_detail_of_activity_by_institution'],
-        queryFn: () => api.post(`/detail-of-activity/institution`, { institutionId: institutionId }),
-        enabled: institutionId !== null ? true : false
+        queryFn: () => api.post(`/apakah/detail-of-activity/institution`, { institution_no: institution_no }),
+        enabled: institution_no !== null ? true : false
     })
     useEffect(() => {
-        if (institutionId !== null) {
+        if (institution_no !== null) {
             detailOfActivity.refetch()
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [institutionId])
+    }, [institution_no])
     return detailOfActivity
 }

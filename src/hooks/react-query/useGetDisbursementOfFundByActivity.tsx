@@ -7,7 +7,7 @@ import { AxiosResponse } from "axios";
 export function useGetDisbursementOfFundByActivity(activity_id: string, trigger: boolean): UseQueryResult<AxiosResponse<any, any>, Error> {
     const disbursementOfFund = useQuery({
         queryKey: ['get_disbursement_of_fund_by_activity'],
-        queryFn: () => api.get(`/disbursement-of-fund/activity/${activity_id}`),
+        queryFn: () => api.get(`/cakepout/disbursement-of-fund/activity/${activity_id}`),
         enabled: activity_id !== null ? true : false
     })
     useEffect(() => {

@@ -13,7 +13,7 @@ export function useUpdateAccount(): UseMutationResult<AxiosResponse<any, any>, E
 }, unknown> {
     const account = useMutation({
         mutationKey: ['update_account'],
-        mutationFn: (e: { uuid: string, data: EditAccountAttributes }) => api.put(`/account/${e.uuid}`, e.data),
+        mutationFn: (e: { uuid: string, data: EditAccountAttributes }) => api.put(`/cakepout/account/${e.uuid}`, e.data),
         onSuccess: (e) => {
             return e
         },

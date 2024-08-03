@@ -7,9 +7,9 @@ import { GiProfit } from 'react-icons/gi';
 import { FaArrowsRotate } from 'react-icons/fa6';
 
 const menuData = [
-    { link: '/home/report/balance-sheet', icon: <MdOutlineBalance className='w-36 h-36 text-white' />, color: 'bg-[#28436d] hover:bg-[#223759]', title: "Neraca" },
-    { link: '/home/report/cash-flow', icon: <GiProfit className='w-36 h-36 text-white' />, color: 'bg-[#daa551] hover:bg-[#b28641]', title: "Laba Rugi" },
-    { link: '/home/report/profit-loss', icon: <FaArrowsRotate className='w-36 h-36 text-white' />, color: 'bg-[#00c190] hover:bg-[#05aa80]', title: "Arus Kas" },
+    { link: '/home/report/balance-statement', icon: <MdOutlineBalance className='w-36 h-36 text-white' />, color: 'bg-[#28436d] hover:bg-[#223759]', title: "Neraca" },
+    { link: '/home/report/income-statement', icon: <GiProfit className='w-36 h-36 text-white' />, color: 'bg-[#daa551] hover:bg-[#b28641]', title: "Laba Rugi" },
+    { link: '/home/report/cash-flow-statement', icon: <FaArrowsRotate className='w-36 h-36 text-white' />, color: 'bg-[#00c190] hover:bg-[#05aa80]', title: "Arus Kas" },
 ]
 
 export default function Page(): ReactNode {

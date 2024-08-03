@@ -7,7 +7,7 @@ import { useEffect } from "react";
 export function useGetAccountByActivity(activityId: string): UseQueryResult<AxiosResponse<any, any>, Error> {
     const account = useQuery({
         queryKey: ['get_account_by_activity'],
-        queryFn: () => api.get(`/account/activity/${activityId}`),
+        queryFn: () => api.get(`/cakepout/account/activity/${activityId}`),
         enabled: activityId !== null && activityId !== '' ? true : false
     })
     useEffect(() => {

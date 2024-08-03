@@ -7,7 +7,7 @@ import { useEffect } from "react";
 export function useGetAllMonthlyAccountCalculation(trigger: boolean, page: number, size: number): UseQueryResult<AxiosResponse<any, any>, Error> {
     const monthlyAccountCalculation = useQuery({
         queryKey: ['get_all_monthly_account_calculation'],
-        queryFn: () => api.get(`/monthly-account-calculation?page=${page}&size=${size}`),
+        queryFn: () => api.get(`/cakepout/monthly-account-calculation?page=${page}&size=${size}`),
     })
     useEffect(() => {
         if (page && size) {

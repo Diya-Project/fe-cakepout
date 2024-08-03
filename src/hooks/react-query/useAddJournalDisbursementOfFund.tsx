@@ -7,7 +7,7 @@ import { AxiosResponse } from "axios";
 export function useAddJournalDisbursementOfFund(): UseMutationResult<AxiosResponse<any, any>, Error, AddJournalDisbursementOfFundAttributes, unknown> {
     const account = useMutation({
         mutationKey: ['post_journal_disbursement_of_fund'],
-        mutationFn: (data: AddJournalDisbursementOfFundAttributes) => api.post(`/journal/disbursement-of-fund`, data),
+        mutationFn: (data: AddJournalDisbursementOfFundAttributes) => api.post(`/cakepout/journal/disbursement-of-fund`, data),
         onSuccess: (e) => {
             return e
         },

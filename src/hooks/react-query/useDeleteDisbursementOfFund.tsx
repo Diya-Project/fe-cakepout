@@ -7,7 +7,7 @@ import { AxiosResponse } from "axios";
 export function useDeleteDisbursementOfFund(): UseMutationResult<AxiosResponse<any, any>, Error, string, unknown> {
     const disbursementOfFund = useMutation({
         mutationKey: ['delete_disbursement_of_fund'],
-        mutationFn: (uuid: string) => api.delete(`/disbursementOfFund/${uuid}`),
+        mutationFn: (uuid: string) => api.delete(`/cakepout/disbursementOfFund/${uuid}`),
         onSuccess: (e) => {
             return e
         },

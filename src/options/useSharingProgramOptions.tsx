@@ -8,7 +8,7 @@ export function useSharingProgramOptions(): Array<SelectAttributes> {
     useEffect(() => {
         if (sharingProgram?.data?.data) {
             setSharingProgramOptions([{ value: "-", label: "SEMUA" },...sharingProgram?.data?.data?.map((e: SharingProgramsAttributes) => {
-                return { value: e.uuid, label: e.name }
+                return { value: e.id, label: e.name }
             })])
         }
     }, [sharingProgram?.data?.data])

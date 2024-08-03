@@ -7,7 +7,7 @@ import { useEffect } from 'react'
 export default function useGetAllInstitution() {
     const institution = useQuery({
         queryKey: ['get_all_institution'],
-        queryFn: () => api.get(`/institution`)
+        queryFn: () => api.get(`/apakah/institution`)
     })
     useEffect(() => {
         institution.refetch()

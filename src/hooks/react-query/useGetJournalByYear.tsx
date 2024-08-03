@@ -8,7 +8,7 @@ import { useEffect } from "react";
 export function useGetJournalByYear(year: string): UseQueryResult<AxiosResponse<any, any>, Error> {
     const journal = useQuery({
         queryKey: ['get_journal_by_year'],
-        queryFn: () => api.get(`/journal/year/${year}`),
+        queryFn: () => api.get(`/cakepout/journal/year/${year}`),
         enabled: year !== null ? true : false
     })
     useEffect(() => {

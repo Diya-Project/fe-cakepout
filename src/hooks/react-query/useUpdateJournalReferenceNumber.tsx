@@ -11,7 +11,7 @@ export function useUpdateJournalReferenceNumber(): UseMutationResult<AxiosRespon
 }, unknown> {
     const journalReferenceNumber = useMutation({
         mutationKey: ['update_journal_reference_number'],
-        mutationFn: (e: { uuid: string, data: Omit<JournalReferenceNumberAttributes, 'uuid'> }) => api.put(`/journal-reference-number/${e.uuid}`, e.data),
+        mutationFn: (e: { uuid: string, data: Omit<JournalReferenceNumberAttributes, 'uuid'> }) => api.put(`/cakepout/journal-reference-number/${e.uuid}`, e.data),
         onSuccess: (e) => {
             return e
         },

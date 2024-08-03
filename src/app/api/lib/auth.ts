@@ -29,11 +29,14 @@ export const authOptions: NextAuthOptions = {
                 },
                 password: {
                     type: 'string'
+                },
+                system: {
+                    type: 'string'
                 }
             },
             async authorize(credentials): Promise<any> {
                 try {
-                    const res = await api.post(`/authentication/login`, { username: credentials?.username, password: credentials?.password })
+                    const res = await api.post(`/authentication/login`, { username: credentials?.username, password: credentials?.password, system: credentials?.system })
                     if (res.status === 200) {
                         return {
                             token: res.data?.token,
@@ -52,21 +55,6 @@ export const authOptions: NextAuthOptions = {
         })
     ],
     callbacks: {
-        session: ({ session, token }) => {
-            return {
-                ...session,
-                user: {
-                    ...session.user,
-                    token: token.token,
-                    username: token.username,
-                    name: token.name,
-                    geeneralUser: token.generalUser,
-                    role: token.role,
-                    sistem: token.sistem,
-                    superAdmin: token.superAdmin
-                }
-            }
-        },
         jwt: ({ token, user }) => {
             const e = user as unknown as User
             if (user) {
@@ -83,6 +71,21 @@ export const authOptions: NextAuthOptions = {
                 }
             }
             return token
+        },
+        session: ({ session, token }) => {
+            return {
+                ...session,
+                user: {
+                    ...session.user,
+                    token: token.token,
+                    username: token.username,
+                    name: token.name,
+                    geeneralUser: token.generalUser,
+                    role: token.role,
+                    sistem: token.sistem,
+                    superAdmin: token.superAdmin
+                }
+            }
         }
     }
 }

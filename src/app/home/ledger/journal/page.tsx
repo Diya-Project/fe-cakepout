@@ -10,15 +10,21 @@ import { formatTime } from '@/helper/time'
 import Input from '@/components/fields/Input'
 
 export default function Page() {
-    const head = ['COA', 'Nama Akun', 'Tanggal Transaksi', 'Referensi', 'D', 'K', 'Deskripsi']
+    const head = [
+        { title: "COA", type: "string" },
+        { title: "Nama AKun", type: "string" },
+        { title: "Tanggal Transaksi", type: "string" },
+        { title: "Referensi", type: "string" },
+        { title: "D", type: "number" },
+        { title: "K", type: "number" },
+        { title: "Deskripsi", type: "string" },
+    ]
     const [page, setPage] = useState<number>(1)
     const [size, setSize] = useState<number>(50)
     const [fromDate, setFromDate] = useState("")
     const [toDate, setToDate] = useState("")
 
     const listJournal = useGetAllJournal(true, page !== null ? page : 1, size !== null ? size : 1, fromDate, toDate)
-
-
     return (
         <>
             <TableData title='Jurnal' data={listJournal?.data?.data?.data} head={head} noButton
@@ -39,15 +45,15 @@ export default function Page() {
                     </div>
                 }
             >
-                {listJournal?.data?.data?.data?.map((e: JournalAttributes, i: number) => (
+                {listJournal?.data?.data?.data?.map((data: JournalAttributes, i: number) => (
                     <tr key={i} className="bg-white border-b border-slate-100 hover:bg-gray-100 overflow-y-auto">
-                        <td className='px-6 py-3'>{e.account?.account_number}</td>
-                        <td className='px-6 py-3'>{e.account?.name}</td>
-                        <td className='px-6 py-3'>{e.transaction_date ? formatTime(e.transaction_date) : '-'}</td>
-                        <td className='px-6 py-3'>{e.reference}</td>
-                        <td className='px-6 py-3'>{e.status === 'D' ? currency(e.amount) : "-"}</td>
-                        <td className='px-6 py-3'>{e.status === 'K' ? currency(e.amount) : "-"}</td>
-                        <td className='px-6 py-3'>{i === 0 || e.reference !== listJournal?.data?.data?.data[i - 1]?.reference ? e.description : "-"}</td>
+                        <td className='px-6 py-3'>{data.account?.account_number}</td>
+                        <td className='px-6 py-3'>{data.account?.name}</td>
+                        <td className='px-6 py-3'>{data.transaction_date ? formatTime(data.transaction_date) : '-'}</td>
+                        <td className='px-6 py-3'>{data.reference}</td>
+                        <td className='px-6 py-3 text-right'>{data.status === 'D' ? currency(data.amount) : "-"}</td>
+                        <td className='px-6 py-3 text-right'>{data.status === 'K' ? currency(data.amount) : "-"}</td>
+                        <td className='px-6 py-3'>{i === 0 || data.reference !== listJournal?.data?.data?.data[i - 1]?.reference ? data.description : "-"}</td>
                     </tr>
                 ))}
             </TableData >

@@ -7,7 +7,7 @@ import { useEffect } from "react";
 export function useGetJournalByTransactionDate(start:string,end:string): UseQueryResult<AxiosResponse<any, any>, Error>{
     const journal = useQuery({
         queryKey:['get_journal_by_transaction_date'],
-        queryFn:()=>api.get(`/journal/transaction-date/${start}/${end}`),
+        queryFn:()=>api.get(`/cakepout/journal/transaction-date/${start}/${end}`),
         enabled:start !== null && end !== null ? true:false
     })
     useEffect(()=>{

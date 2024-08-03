@@ -7,7 +7,7 @@ import { AxiosResponse } from "axios";
 export function useDeleteAccount(): UseMutationResult<AxiosResponse<any, any>, Error, string, unknown> {
     const account = useMutation({
         mutationKey: ['delete_account'],
-        mutationFn: (uuid: string) => api.delete(`/account/${uuid}`),
+        mutationFn: (uuid: string) => api.delete(`/cakepout/account/${uuid}`),
         onSuccess: (e) => {
             return e
         },

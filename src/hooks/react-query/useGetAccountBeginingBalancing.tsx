@@ -8,7 +8,7 @@ import { useEffect } from "react";
 export function useGetAccountBeginingBalancing(trigger: boolean): UseQueryResult<AxiosResponse<AccountBalancingBeginingAttributes, any>, Error> {
     const account = useQuery({
         queryKey: ["get_account_begining_balance"],
-        queryFn: () => api.get(`/journal/account/account-begining-balance`),
+        queryFn: () => api.get(`/cakepout/journal/account/account-begining-balance`),
         enabled: trigger
     })
     useEffect(() => {

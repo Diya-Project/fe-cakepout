@@ -8,31 +8,32 @@ export type SelectAttributes = {
 export type InputType = 'text' | 'number' | 'password' | 'date' | 'datetime-local' | 'radio' | 'checkbox'
 
 export type AuthenticationAttributes = {
-    username: string | undefined;
-    password: string | undefined;
+    username: string;
+    password: string;
+    system: string;
 }
 
 export type DetailOfActivityAttributes = {
-    uuid: string;
-    uraian: string;
-    id_satuan: number;
+    id: string;
+    description: string;
+    unit_id: number;
     vol: number;
-    harga_satuan: number;
-    metode_pencairan: string;
-    dari: number;
-    sampai: number;
+    unit_price: number;
+    thawing_motode: string;
+    from: number;
+    until: number;
     total: number;
-    no_sub_kegiatan: string;
-    no_kegiatan: string;
-    tahun_ajar: string;
-    no_pendapatan: string;
+    sub_activity_id: string;
+    activity_id: string;
+    academic_year: string;
+    income_id: string;
     sharing_program: boolean;
-    total_realisasi: number;
-    list_kegiatan: ActivityAttributes;
+    post: number;
+    activity: ActivityAttributes;
 }
 
 export type SharingProgramsAttributes = {
-    uuid: string;
+    id: string;
     name: string;
 }
 
@@ -94,35 +95,44 @@ export type GroupAccountAttributes = {
 }
 
 export type ProgramAttributes = {
-    no_program: string;
-    item_program: string;
-    modifiable: boolean;
-    no_lembaga: number;
+    id: string;
+    program_no: string;
+    item: string;
+    modifable: boolean;
+    institution_no: number;
     list_lembaga: InstitutionAttributes;
 }
 
 export type InstitutionAttributes = {
-    no_lembaga: number;
-    nama_lembaga: string;
+    id: number;
+    name: string;
 }
 
 export type ComponentAttributes = {
-    no_komponen: string;
-    item_komponen: string;
-    modifiable: boolean;
-    no_program: string;
+    id: string;
+    component_no: string;
+    item: string;
+    modifable: boolean;
+    program_id: string;
     list_program: ProgramAttributes;
 }
 
 type statusActivity = 'Ditunda' | 'Disetujui' | 'Ditolak'
 
 export type ActivityAttributes = {
-    no_kegiatan: string;
-    item_kegiatan: string;
-    status: statusActivity;
-    no_komponen: string;
+    uuid: string;
+    activity_no: number;
+    name: string;
+    status: number
+    component_id: string;
+    institution_no: number;
+    academic_year: string;
     continue: boolean;
-    list_komponen: ComponentAttributes;
+    sub_activity?: Array<SubActivityAttributes>
+    detail_of_activity?: Array<DetailOfActivityAttributes>
+    weight: number,
+    list_komponen?: ComponentAttributes;
+    institution?: InstitutionAttributes
 
 }
 
@@ -181,19 +191,19 @@ export type AccountBalancingBeginingAttributes = {
 }
 
 export type GroupingDisbursementOfFund = {
-    uuid: string;
+    id: string;
     amount: number;
     sharing_program_id: string | null;
     sharing_program_name: string | null;
-    status: boolean;
+    status: number;
     withdraw: boolean;
     accounting_year: string;
     ptk_id: string | null;
     receipient: string | null;
     reference_of_journal: string | null;
     uraian: string;
-    no_kegiatan: string;
-    activity: DisbursementOfFundAttributes[]
+    detail_of_activity_id: string;
+    detail_of_activities?: DetailOfActivityAttributes[];
 }
 
 
@@ -214,4 +224,28 @@ export type BalanceReportAttributes = {
     kewajiban: AmountAndGroupAttributes;
     modal: AmountAndGroupAttributes;
     labaRugi: number;
+}
+
+export type LedgerTable = {
+    total: number;
+    month_index: number;
+    account: {
+        name: string;
+        account_number: string;
+        uuid: string;
+    }
+}
+
+export type DetailLedger = {
+    reference: string;
+    transaction_date: Date;
+    amount: number;
+    status: string
+}
+
+export type AutomationAttributes = {
+    uuid: string;
+    uuid_account_from: string | null
+    uuid_account_to: string | null
+    role: string
 }

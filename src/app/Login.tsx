@@ -1,13 +1,12 @@
 'use client'
 import Image from "next/image";
 import Example from "@/assets/icons/example.png"
-import { useForm } from "react-hook-form";
+import { FieldValues, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup"
 import InputForm from "@/components/fields/InputForm";
 import { UseLogin } from "@/hooks/react-query/useLogin";
 import { ReactNode, useState } from "react";
-import { useRouter } from "next/navigation";
 import Loading from "@/components/templates/Loading";
 import UseCheckHasLogin from "@/hooks/useCheckHasLogin";
 import { AuthenticationAttributes } from "@/type";
@@ -24,9 +23,9 @@ export default function Login(): ReactNode {
             })
         )
     })
-    const submit_ = async (e: AuthenticationAttributes) => {
+    const submit_ = async (e: FieldValues) => {
         setShowLoading(true)
-        const isLogin = await UseLogin(e)
+        const isLogin = await UseLogin({ username: e.username, password: e.password, system: 'cakepout' })
         if (isLogin?.status === 200 && isLogin?.url) {
             setMessage('')
             window.location.href = '/home/ledger'

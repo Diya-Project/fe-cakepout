@@ -4,5 +4,6 @@ export const menu = [
     { title: 'Buku Besar', link: '/home/ledger' },
     { title: 'Kas & Bank', link: '/home/cash-bank' },
     { title: 'Laporan', link: '/home/report' },
+    { title: 'Automasi', link: '/home/automation' },
     { title: 'Antrian', link: '/home/queue' },
 ]

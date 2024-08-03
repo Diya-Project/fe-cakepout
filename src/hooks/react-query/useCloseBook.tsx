@@ -6,7 +6,7 @@ import { AxiosResponse } from "axios";
 export function useCloseBook(): UseMutationResult<AxiosResponse<any, any>, Error, string, unknown> {
     const account = useMutation({
         mutationKey: ['post_close_book'],
-        mutationFn: (month: string) => api.post(`/journal/monthly-account/close-book?month_index=${month}`),
+        mutationFn: (month: string) => api.post(`/journal/ledger/close-book?month_index=${month}`),
         onSuccess: (res) => {
             return res
         },

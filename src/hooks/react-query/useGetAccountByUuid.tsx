@@ -7,7 +7,7 @@ import { useEffect } from "react"
 export function useGetAccountByUuid(uuid: string): UseQueryResult<AxiosResponse<any, any>, Error> {
     const account = useQuery({
         queryKey: ['get_account_by_uuid'],
-        queryFn: () => api.get(`/account/${uuid}`),
+        queryFn: () => api.get(`/cakepout/account/${uuid}`),
         enabled: uuid && uuid !== null ? true : false
     })
     useEffect(() => {

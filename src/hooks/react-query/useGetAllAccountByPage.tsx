@@ -8,7 +8,7 @@ import { useEffect } from "react";
 export default function useGetAllAccountByPage(trigger: boolean, page: number, size: number): UseQueryResult<AxiosResponse<any, any>, Error> {
     const account = useQuery({
         queryKey: ['get_all_account_by_page'],
-        queryFn: () => api.get(`/account/page?page=${page}&size=${size}`)
+        queryFn: () => api.get(`/cakepout/account/page?page=${page}&size=${size}`)
     })
     useEffect(() => {
         if (page && size) {

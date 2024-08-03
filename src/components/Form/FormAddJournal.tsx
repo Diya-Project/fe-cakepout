@@ -2,7 +2,6 @@ import React from 'react'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { SubmitHandler, useFieldArray, useForm } from 'react-hook-form'
 import * as yup from "yup"
-import Modal from '../templates/Modal'
 import Form from '../templates/Form'
 import InputForm from '../fields/InputForm'
 import useAllAccountOptions from '@/options/useAllAccountOptions'

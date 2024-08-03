@@ -1,5 +1,6 @@
 'use client'
 import Input from '@/components/fields/Input'
+import Loading from '@/components/templates/Loading'
 import { currency } from '@/helper/currency'
 import { useGetReportIncomeStatement } from '@/hooks/react-query/useGetReportIncomeStatement'
 import React, { useState } from 'react'
@@ -36,20 +37,29 @@ export default function Page() {
     const [toDate, settoDate] = useState('')
     const cashFlow = useGetReportIncomeStatement(fromDate, toDate)
     return (
-        <div className='flex justify-center'>
-            <div className='w-[40vw] p-4 bg-white shadow-xl'>
-                <Input id='from-date-cash-flow' title='Dari' value={fromDate} setValue={(key) => setFromDate(key.target.value)} type='date' />
-                <Input id='to-date-cash-flow' title='Sampai' value={toDate} setValue={(key) => settoDate(key.target.value)} type='date' />
-                <div className='w-[100%] h-[2px] bg-slate-600 my-5'></div>
-                <ColumnGroup data={cashFlow?.data?.data?.income} title='Pendapatan' total={cashFlow?.data?.data?.totalIncome} />
-                <ColumnGroup data={cashFlow?.data?.data?.cost} title='Biaya' total={cashFlow?.data?.data?.totalCost} />
-                <div className=''>
-                    <div className='w-[100%] h-[2px] bg-slate-600 my-1'></div>
-                    <div className='flex gap-7 justify-end'>
-                        <h1 className='text-right'>Total : {cashFlow?.data?.data?.incomeStatement ? currency(cashFlow?.data?.data?.incomeStatement) : currency(0)}</h1>
-                    </div>
+        <>
+            <Loading show={cashFlow?.isLoading} />
+            <div className='flex justify-center'>
+                <div className='w-[40vw] p-4 bg-white shadow-xl'>
+                    <Input id='from-date-cash-flow' title='Dari' value={fromDate} setValue={(key) => setFromDate(key.target.value)} type='date' />
+                    <Input id='to-date-cash-flow' title='Sampai' value={toDate} setValue={(key) => settoDate(key.target.value)} type='date' />
+                    <div className='w-[100%] h-[2px] bg-slate-600 my-5'></div>
+                    {fromDate !== '' && toDate !== '' ?
+                        <>
+                            <ColumnGroup data={cashFlow?.data?.data?.income} title='Pendapatan' total={cashFlow?.data?.data?.totalIncome} />
+                            <ColumnGroup data={cashFlow?.data?.data?.cost} title='Biaya' total={cashFlow?.data?.data?.totalCost} />
+                            <div className=''>
+                                <div className='w-[100%] h-[2px] bg-slate-600 my-1'></div>
+                                <div className='flex gap-7 justify-end'>
+                                    <h1 className='text-right'>Total : {cashFlow?.data?.data?.incomeStatement ? currency(cashFlow?.data?.data?.incomeStatement) : currency(0)}</h1>
+                                </div>
+                            </div>
+                        </>
+                        :
+                        <></>
+                    }
                 </div>
             </div>
-        </div>
+        </>
     )
 }

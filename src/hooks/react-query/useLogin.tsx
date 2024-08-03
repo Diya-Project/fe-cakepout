@@ -8,6 +8,7 @@ export async function UseLogin(data: AuthenticationAttributes): Promise<SignInRe
         redirect: false,
         username: data.username,
         password: data.password,
+        system: data.system,
         callbackUrl: '/home/dashboard'
     })
     return login
