@@ -16,7 +16,7 @@ import { useGetDisbursementOfFundByWithdraw } from '@/hooks/react-query/useGetDi
 
 
 export default function Page(): ReactNode {
-    const head = ["Rincian", 'No Kegiatan', 'Nama', 'Jumlah']
+    const head = [{ title: 'No Kegiatan', type: 'string' }, { title: 'Nama', type: 'string' }, { title: 'Jumlah', type: 'string' }]
     const [showModalListGroup, setShowModalListGroup] = useState(false)
     const [saveListGroupDisbursementOfFund, setSaveListDisbursementOfFund] = useState<DisbursementOfFundAttributes[]>([])
     const [page, setPage] = useState<number>(1)
@@ -47,7 +47,7 @@ export default function Page(): ReactNode {
                 ))}
             </TableData>
             <DetailModal show={showModalListGroup} close={() => setShowModalListGroup(false)}>
-                <Table head={["No Kegiatan", "Kegiatan", "Nilai"]}>
+                <Table head={head}>
                     {saveListGroupDisbursementOfFund?.map((value, id) => (
                         <tr key={id}>
                             <td className='font-montserrat uppercase px-6 py-3'>{value.rincian_kegiatan.activity_id}</td>
