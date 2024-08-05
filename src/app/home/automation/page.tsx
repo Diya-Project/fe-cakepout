@@ -7,7 +7,7 @@ import { FieldValues } from 'react-hook-form'
 import TableData from '../TableData'
 import { HiPencil, HiTrash } from 'react-icons/hi2'
 
-export default function page() {
+export default function Page() {
   const header = [{ title: 'No', type: 'string' }, { title: 'Akun Sumber', type: 'string' }, { title: 'Akun Tujuan', type: 'string' }, { title: 'Role', type: 'string' }, { title: 'Aksi', type: 'string' }]
   const [showFormAddAutomation, setShowFormAddAutomation] = useState(false)
   const [selectedGroutAccount, setSelectedGroupAccount] = useState<SelectAttributes>({ value: 1, label: "" })
