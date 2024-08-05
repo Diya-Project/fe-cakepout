@@ -24,7 +24,7 @@ export default function Detail({ anggaran, confirm,titleButton }: DetailAttribut
         { icon: <MdOutlineDescription className='w-20 h-20 text-sky-800 my-auto' />, title: 'Uraian', value: anggaran?.rincian_kegiatan?.description || '-' },
         { icon: <IoCalendarNumberOutline className='w-20 h-20 text-sky-800 my-auto' />, title: 'Tahun Ajar', value: anggaran?.accounting_year || '-' },
         { icon: <TbMoneybag className='w-20 h-20 text-sky-800 my-auto' />, title: 'Total Anggaran', value: anggaran?.rincian_kegiatan?.total ? currency(anggaran?.rincian_kegiatan?.total) : currency(0) },
-        { icon: <BsGraphUpArrow className='w-20 h-20 text-sky-800 my-auto' />, title: 'Total Realisasi', value: anggaran?.rincian_kegiatan?.total_realisasi && anggaran?.amount ? anggaran?.withdraw ? currency(anggaran?.rincian_kegiatan?.total_realisasi) : currency(anggaran?.rincian_kegiatan?.total_realisasi - anggaran?.amount) : currency(0) },
+        // { icon: <BsGraphUpArrow className='w-20 h-20 text-sky-800 my-auto' />, title: 'Total Realisasi', value: anggaran?.rincian_kegiatan?. && anggaran?.amount ? anggaran?.withdraw ? currency(anggaran?.rincian_kegiatan?.total_realisasi) : currency(anggaran?.rincian_kegiatan?.total_realisasi - anggaran?.amount) : currency(0) },
         { icon: <GiMoneyStack className='w-20 h-20 text-sky-800 my-auto' />, title: 'Permintaan', value: anggaran?.amount ? currency(anggaran?.amount) : currency(0) },
         { icon: <FaUserGroup className='w-20 h-20 text-sky-800 my-auto' />, title: 'Program Bersama', value: anggaran?.sharing_program ? `Program Bersama - ${anggaran?.sharing_programs?.name}` : "-" },
     ]
