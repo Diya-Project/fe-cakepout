@@ -36,7 +36,7 @@ export default function Login(): ReactNode {
     }
     UseCheckHasLogin()
     return (
-        <>
+        <div>
             <Loading show={showLoading} />
             <div className="flex justify-center items-center h-screen">
                 <div className="md:w-[30vw] w-[95vw] rounded-xl shadow-xl border bg-sky-600">
@@ -46,12 +46,12 @@ export default function Login(): ReactNode {
                     </div>
                     <form className="p-4 flex flex-col items-end" onSubmit={method.handleSubmit(submit_)}>
                         <InputForm id="input-username" title="Username" method={method} methodName="username" whiteText />
-                        <InputForm id="input-password" title="Password" method={method} methodName="password" whiteText />
+                        <InputForm id="input-password" title="Password" method={method} methodName="password" type="password" whiteText />
                         <h1 className="font-montserrat text-white text-left">{message}</h1>
                         <button type="submit" className="bg-white px-5 py-2 mt-4 flex font-montserrat text-sky-700 rounded-md hover:bg-slate-100 cursor-pointer outline-none">Login</button>
                     </form>
                 </div>
             </div >
-        </>
+        </div>
     );
 }
