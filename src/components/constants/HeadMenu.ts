@@ -6,4 +6,5 @@ export const menu = [
     { title: 'Laporan', link: '/home/report' },
     { title: 'Automasi', link: '/home/automation' },
     { title: 'Antrian', link: '/home/queue' },
+    {title: 'Realisasi', link:"/home/realization"}
 ]
