@@ -23,7 +23,7 @@ import { useEffect, useState } from "react";
   
    
     useEffect(() => {
-      if (institution_no !== null && institution_no !== undefined) {
+      if (institution_no !== null ) {
         
         if (!realization.isLoading && realization?.data?.data) {
           let total_activity = 0;
