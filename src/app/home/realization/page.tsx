@@ -6,6 +6,13 @@ import Select from "react-select";
 import { useGetRealization } from "@/hooks/react-query/useGetRealization";
 import { formatRupiah } from "@/helper/currency";
 
+const customStyles = {
+  container: (provided:any) => ({
+    ...provided,
+    width: "95%", // Set the width here (in px or %)
+  }),
+};
+
 export default function Page(): ReactNode {
   const [insitution_, setInstitution_] = useState<any>();
 
@@ -15,15 +22,23 @@ export default function Page(): ReactNode {
 
   return (
     <div className="border  bg-white px-7 py-10 full rounded-sm shodow-md mt-[2-vh]">
+      <div className="flex bg-blue-50">
       <Select
+        styles={customStyles}
         options={institution?.data?.data}
         defaultValue={{ label: "SEMUA", value: 0 }}
         onChange={(e: any) => {
           setInstitution_(e.value);
         }}
       />
+      <div className="flex flex-1 justify-end items-center font-semibold">
+        90%
+      </div>
+      </div>
       {realization.isLoading ? (
-        <h1>Loading...</h1>
+        <div className="w-full flex justify-center p-10">
+          <h1 className="">Memuat Data...</h1>
+        </div> 
       ) : (
         <div className="relative overflow-x-auto mt-10">
           <table className="w-full text-sm text-left rtl:text-right text-gray-500 ">
