@@ -17,7 +17,7 @@ export default function Page(): ReactNode {
   const [insitution_, setInstitution_] = useState<any>();
 
   const institution = useGetInstitution();
-  const realization = useGetRealization(insitution_);
+  const {realization, totalPercentation} = useGetRealization(insitution_);
   console.log(realization.data);
 
   return (
@@ -32,7 +32,7 @@ export default function Page(): ReactNode {
         }}
       />
       <div className="flex flex-1 justify-end items-center font-semibold">
-        90%
+       {totalPercentation}
       </div>
       </div>
       {realization.isLoading ? (
@@ -51,10 +51,17 @@ export default function Page(): ReactNode {
                   Nama
                 </th>
                 <th scope="col" className="px-6 py-3">
-                  Anggaran
+                  Sumber Dana
                 </th>
                 <th scope="col" className="px-6 py-3">
+                  Anggaran
+                </th>
+               
+                <th scope="col" className="px-6 py-3">
                   Realisasi
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Sisa Anggaran
                 </th>
                 <th scope="col" className="px-6 py-3">
                   Progress
@@ -68,13 +75,26 @@ export default function Page(): ReactNode {
                   <td className="px-6 py-4 text-left">
                     {e.name.toUpperCase()}
                   </td>
+                  <td className="px-6 py-4 text-left">
+                    {
+                      e.source_of_funds.map((e:any, i:any)=>(
+                        e
+                      ))
+                    }
+                  </td>
                   <td className="px-6 py-4 text-right">{formatRupiah(e.total_activity,",")}</td>
+                  
                   <td className="px-6 py-4 text-right">
                     {formatRupiah(e.total_realization,",")}
                   </td>
                   <td className="px-6 py-4 text-right">
+                    {
+                      e.total_realization > e.total_activity ? `-${formatRupiah(e.total_activity-e.total_realization,",")}` :formatRupiah(e.total_activity-e.total_realization,",")
+                    }
+                  </td>
+                  
+                  <td className="px-6 py-4 text-right">
                     <div className="w-full bg-gray-200 rounded-full h-2.5">
-                        
                       <div
                         className="bg-blue-600 h-2.5 rounded-full"
                         style={{width: `${e.achievement}`}}
