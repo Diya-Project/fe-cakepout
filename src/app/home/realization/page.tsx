@@ -5,6 +5,7 @@ import { useGetInstitution } from "@/hooks/react-query/useGetInstitution";
 import Select from "react-select";
 import { useGetRealization } from "@/hooks/react-query/useGetRealization";
 import { formatRupiah } from "@/helper/currency";
+import Link from "next/link";
 
 const customStyles = {
   container: (provided:any) => ({
@@ -51,6 +52,9 @@ export default function Page(): ReactNode {
                   Nama
                 </th>
                 <th scope="col" className="px-6 py-3">
+                  No Akun
+                </th>
+                <th scope="col" className="px-6 py-3">
                   Sumber Dana
                 </th>
                 <th scope="col" className="px-6 py-3">
@@ -74,6 +78,10 @@ export default function Page(): ReactNode {
                   <td className="px-6 py-4 text-center">{i + 1}</td>
                   <td className="px-6 py-4 text-left">
                     {e.name.toUpperCase()}
+                  </td>
+                  <td className="px-6 py-4 text-left">
+                    <Link href={`/home/realization/${e.account_id}`}><div className="bg-red-500 text-white text-center rounded-md p-1">{e.account_number}</div></Link>
+                    
                   </td>
                   <td className="px-6 py-4 text-left">
                     {
