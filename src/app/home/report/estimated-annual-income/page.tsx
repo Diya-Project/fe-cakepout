@@ -64,7 +64,7 @@ export default function Page() {
                           <td className="px-6 py-4">
                             {
                                 e.subsidy.map((x:any, i:any)=>(
-                                    <div>
+                                    <div key={i}>
                                         <div className="bg-red-500 text-white p-1 rounded-md">{x.name}</div>
                                         <ul>
                                             <li>Spp: {formatRupiah(x.spp,",")}</li>    
