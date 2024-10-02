@@ -9,6 +9,9 @@ import { formatTime } from "@/helper/time";
 export default function Page() {
   const params = useParams();
   const detailRealization = useGetDetailRealization(params.id as string);
+  const grandTotal = ()=>{
+    return detailRealization?.data?.data.reduce((total:any, item:any)=>total + item.amount, 0)
+  }
   return (
     <div>
       <div className="border  bg-white px-7 py-10 full rounded-sm shodow-md mt-[2-vh]">
@@ -62,6 +65,11 @@ export default function Page() {
                             </td>
                         </tr>
                     ))}
+                    <tr>
+                      <td colSpan={3} className="text-right"><b>Total</b></td>
+                      <td className="px-6 py-4 text-right"><b>{formatRupiah(grandTotal(),',')}</b></td>
+                      
+                    </tr>
                 </tbody>
               </table>
             ):(<div className="flex justify-center font-semibold">

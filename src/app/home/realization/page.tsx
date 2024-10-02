@@ -19,7 +19,6 @@ export default function Page(): ReactNode {
 
   const institution = useGetInstitution();
   const {realization, totalPercentation} = useGetRealization(insitution_);
-  console.log(realization.data);
 
   return (
     <div className="border  bg-white px-7 py-10 full rounded-sm shodow-md mt-[2-vh]">
