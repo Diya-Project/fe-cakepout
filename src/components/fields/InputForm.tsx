@@ -13,7 +13,7 @@ type InputFormAttributes = {
     read?: boolean;
     icon?: ReactNode;
     methodName: string;
-    method: UseFormReturn<any, any, undefined>;
+    method: UseFormReturn<any, any, any>;
     whiteText?: boolean;
     isConvert?: boolean;
     isSetValue?: boolean;

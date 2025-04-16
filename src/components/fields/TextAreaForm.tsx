@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react'
 import { UseFormReturn } from 'react-hook-form';
 
 type TextAreaFormAttributes = {
-    method: UseFormReturn<any, any, undefined>;
+    method: UseFormReturn<any, any, any>;
     methodName: string;
     className?: string;
     title: string;

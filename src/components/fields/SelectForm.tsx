@@ -6,7 +6,7 @@ import { SelectAttributes } from "@/type";
 
 type SelectFormAttributes = {
     instanceId: string;
-    method: UseFormReturn<any, any, undefined>;
+    method: UseFormReturn<any, any, any>;
     methodName: string;
     className?: string;
     title: string;
